@@ -91,9 +91,12 @@ finds, each one written here because it actually happened:
 2. **Check every promise the introduction makes against the sessions.** The unit
    intro said a dozen rules let you pronounce any word on sight; Session 4
    spends half an hour showing that unmarked stress does not work that way.
-3. **Trace every fact about the exam to the specification, or weaken it until
-   you can.** "Examined in two of the four papers" was asserted twice about
-   handwriting and the specification does not support it.
+3. **Trace every fact about the exam to a source, and prefer a real paper to
+   the specification.** "Handwriting is examined in two of the four papers" was
+   asserted twice, weakened because the specification never says what language
+   Paper 3's answers are in, and then restored because the June 2025 paper
+   shows Section B answered in Italian. The specification describes the
+   qualification; the papers show what it does.
 4. **Every rule must cover every word the unit teaches.** Session 1's gender
    rule handled -o, -a and -e; Session 3 drilled *lo sport* and *lo yogurt*,
    which are none of those.
