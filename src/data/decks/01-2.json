@@ -1,0 +1,132 @@
+{
+  "unit": 1,
+  "session": 2,
+  "notes": [
+    {
+      "lead": "The one deck they can do alone",
+      "body": "Hard or soft? needs no sound and marks itself, so it is the only deck in this unit a child can work through without you sitting there. Leave them to it."
+    }
+  ],
+  "cards": [
+    {
+      "d": "Sound rules",
+      "t": "rule",
+      "f": "When is c hard, and when is it soft?",
+      "m": "Hard before a, o, u â casa, cosa, cura. Soft, like ch in chair, before e and i â cena, cinema."
+    },
+    {
+      "d": "Sound rules",
+      "t": "rule",
+      "f": "When is g hard, and when is it soft?",
+      "m": "Hard before a, o, u â gatto, gonna, gusto. Soft, like j in jam, before e and i â gelato, giro."
+    },
+    {
+      "d": "Sound rules",
+      "t": "rule",
+      "f": "What does an h do after c or g?",
+      "m": "Forces the hard sound back: chi, che, spaghetti, ghiaccio. The h itself is never pronounced."
+    },
+    {
+      "d": "Sound rules",
+      "t": "rule",
+      "f": "What does an i do after c or g, before a, o or u?",
+      "m": "Forces the soft sound: ciao, giornale. That i is not pronounced as a separate sound."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "cane",
+      "m": "Hard â c before a."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "cena",
+      "m": "Soft â c before e. CHE-na."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "gatto",
+      "m": "Hard â g before a."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "gelato",
+      "m": "Soft â g before e. je-LA-to."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "chiesa",
+      "m": "Hard â the h keeps the c hard. KYEH-za."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "ciao",
+      "m": "Soft â the i makes the c soft, and is itself silent. chow."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "cinque",
+      "m": "Soft â c before i. CHEEN-kwe."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "cosa",
+      "m": "Hard â c before o."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "giovane",
+      "m": "Soft â the i makes the g soft, and is itself silent. JO-va-ne."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "gonna",
+      "m": "Hard â g before o."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "ghiaccio",
+      "m": "Hard â the h keeps the g hard. GYAHT-cho."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "chilo",
+      "m": "Hard â the h keeps the c hard. KEE-lo."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "cucina",
+      "m": "Both. Hard cu, then soft ci. koo-CHEE-na."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "cioccolato",
+      "m": "Soft â the i makes the c soft, and is itself silent. chok-ko-LA-to."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "magico",
+      "m": "Soft â g before i. MA-ji-ko."
+    },
+    {
+      "d": "Hard or soft?",
+      "t": "rule",
+      "f": "spaghetti",
+      "m": "Hard â the h keeps the g hard. spa-GET-tee."
+    }
+  ]
+}

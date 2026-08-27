@@ -1,0 +1,136 @@
+{
+  "unit": 1,
+  "session": 4,
+  "notes": [
+    {
+      "lead": "How to use the Stress deck",
+      "body": "Have them say the word before turning the card over, then check. Guessing first is the whole exercise — the default is reliable enough that they should be right most of the time, and being right is what makes the rule stick."
+    }
+  ],
+  "cards": [
+    {
+      "d": "Sound rules",
+      "t": "rule",
+      "f": "Where does the stress normally fall?",
+      "m": "On the second-to-last syllable: ca-SA, a-MI-co, spa-GHET-ti. The default is reliable."
+    },
+    {
+      "d": "Sound rules",
+      "t": "rule",
+      "f": "What does a written accent tell you â cittÃ , caffÃ¨, perchÃ©?",
+      "m": "That the stress falls on the final syllable. It is marked so you always know."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "casa",
+      "s": "ca-SA",
+      "m": "Default â second-to-last syllable."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "amico",
+      "s": "a-MI-co",
+      "m": "Default â second-to-last syllable."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "signore",
+      "s": "si-GNO-re",
+      "m": "Default â second-to-last syllable."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "bicicletta",
+      "s": "bi-ci-CLET-ta",
+      "m": "Default â second-to-last syllable."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "spaghetti",
+      "s": "spa-GHET-ti",
+      "m": "Default â second-to-last syllable."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "cittÃ ",
+      "s": "cit-TÃ",
+      "m": "Accent â stress on the final syllable."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "perchÃ©",
+      "s": "per-CHÃ",
+      "m": "Accent â stress on the final syllable."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "caffÃ¨",
+      "s": "caf-FÃ",
+      "m": "Accent â stress on the final syllable."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "universitÃ ",
+      "s": "u-ni-ver-si-TÃ",
+      "m": "Accent â stress on the final syllable."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "papÃ ",
+      "s": "pa-PÃ",
+      "m": "Accent â stress on the final syllable."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "lunedÃ¬",
+      "s": "lu-ne-DÃ",
+      "m": "Accent â stress on the final syllable."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "tavolo",
+      "s": "TA-vo-lo",
+      "m": "Breaks the default, and is not marked. Learn it."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "medico",
+      "s": "ME-di-co",
+      "m": "Breaks the default, and is not marked. Learn it."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "sabato",
+      "s": "SA-ba-to",
+      "m": "Breaks the default, and is not marked. Learn it."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "telefono",
+      "s": "TE-le-fo-no",
+      "m": "Breaks the default, and is not marked. Learn it."
+    },
+    {
+      "d": "Stress",
+      "t": "word",
+      "f": "difficile",
+      "s": "dif-FI-ci-le",
+      "m": "Breaks the default, and is not marked. Learn it."
+    }
+  ]
+}

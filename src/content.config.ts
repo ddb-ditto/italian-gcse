@@ -1,5 +1,5 @@
 import { defineCollection, z } from "astro:content";
-import { glob, file } from "astro/loaders";
+import { glob } from "astro/loaders";
 
 /**
  * The course, as data.
@@ -45,11 +45,13 @@ const sessions = defineCollection({
 });
 
 const decks = defineCollection({
-  loader: file("./src/data/decks.json", {
-    parser: (text) => JSON.parse(text) as Record<string, unknown>,
-  }),
+  /**
+   * One file per session, named to match the session it belongs to — 01-2.json
+   * is the deck for src/content/sessions/01-2.mdx. The id comes from the
+   * filename, so a new deck is a new file and nothing central has to be edited.
+   */
+  loader: glob({ pattern: "**/*.json", base: "./src/data/decks" }),
   schema: z.object({
-    id: z.string(),
     unit: z.number().int().positive(),
     session: z.number().int().positive(),
     /**

@@ -1,0 +1,160 @@
+{
+  "unit": 1,
+  "session": 5,
+  "notes": [
+    {
+      "lead": "Both directions",
+      "body": "Greetings works on its own for recognition. Turn on English first to make them produce the Italian instead, which is the harder and more useful direction once they know the words."
+    },
+    {
+      "lead": "The review deck",
+      "body": "Six cards pulled back from Sessions 1–4. Italian grammar and sound both compound, so nothing is ever finished — every unit from here carries a small review set forward."
+    }
+  ],
+  "cards": [
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "ciao",
+      "s": "chow",
+      "m": "hi / bye â informal, to friends"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "buongiorno",
+      "s": "bwon-JOR-no",
+      "m": "good morning, good day"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "buonasera",
+      "s": "bwo-na-SEH-ra",
+      "m": "good evening"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "buonanotte",
+      "s": "bwo-na-NOT-te",
+      "m": "goodnight â only when leaving or going to bed"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "arrivederci",
+      "s": "ar-ri-ve-DER-chee",
+      "m": "goodbye â neutral to formal"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "come ti chiami?",
+      "s": "KO-me tee KYA-mee",
+      "m": "what's your name? â informal"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "mi chiamoâ¦",
+      "s": "mee KYA-mo",
+      "m": "my name isâ¦"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "come stai?",
+      "s": "KO-me STAI",
+      "m": "how are you? â informal"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "bene",
+      "s": "BEH-ne",
+      "m": "well"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "molto bene",
+      "s": "MOL-to BEH-ne",
+      "m": "very well"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "non c'Ã¨ male",
+      "s": "non che MA-le",
+      "m": "not bad"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "e tu?",
+      "s": "e TOO",
+      "m": "and you?"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "per favore",
+      "s": "per fa-VO-re",
+      "m": "please"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "grazie",
+      "s": "GRA-tsye",
+      "m": "thank you"
+    },
+    {
+      "d": "Greetings",
+      "t": "word",
+      "f": "prego",
+      "s": "PREH-go",
+      "m": "you're welcome / after you / go ahead"
+    },
+    {
+      "d": "Review",
+      "t": "word",
+      "f": "u",
+      "s": "oo",
+      "m": "As in boot. Never as in but, and never the English you sound. (Session 1)"
+    },
+    {
+      "d": "Review",
+      "t": "rule",
+      "f": "When is c hard, and when is it soft?",
+      "m": "Hard before a, o, u. Soft, like ch in chair, before e and i. (Session 2)"
+    },
+    {
+      "d": "Review",
+      "t": "rule",
+      "f": "What does an h do after c or g?",
+      "m": "Forces the hard sound back, and is never pronounced itself. (Session 2)"
+    },
+    {
+      "d": "Review",
+      "t": "word",
+      "f": "figlio",
+      "s": "FEE-lyo",
+      "m": "gli â like lli in million, softer and further back. (Session 3)"
+    },
+    {
+      "d": "Review",
+      "t": "word",
+      "f": "nonno / nono",
+      "s": "NON-no / NO-no",
+      "m": "grandfather / ninth â hold the n for a beat. (Session 3)"
+    },
+    {
+      "d": "Review",
+      "t": "rule",
+      "f": "Where does the stress normally fall?",
+      "m": "On the second-to-last syllable, unless a written accent says otherwise. (Session 4)"
+    }
+  ]
+}

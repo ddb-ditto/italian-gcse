@@ -1,0 +1,113 @@
+{
+  "unit": 1,
+  "session": 3,
+  "notes": [
+    {
+      "lead": "What these cards cannot do",
+      "body": "A printed nonno / nono proves nothing. Minimal pairs and Read aloud only work if they say the word and you judge it. Use the pairs deck as the prompt list for the guessing game, not as a test."
+    }
+  ],
+  "cards": [
+    {
+      "d": "Sound rules",
+      "t": "rule",
+      "f": "How is gn pronounced?",
+      "m": "Like ny in canyon. One sound, not two. gnocchi, signore, bagno, lasagne."
+    },
+    {
+      "d": "Sound rules",
+      "t": "rule",
+      "f": "How is gli pronounced?",
+      "m": "Like lli in million, but softer and further back. famiglia, figlio, meglio, aglio."
+    },
+    {
+      "d": "Sound rules",
+      "t": "rule",
+      "f": "How is sc pronounced?",
+      "m": "Sh before e and i â pesce, sciare. Sk before a, o, u â scuola, scarpa. Same rule as c and g."
+    },
+    {
+      "d": "Sound rules",
+      "t": "rule",
+      "f": "What does a double consonant do in Italian?",
+      "m": "It is genuinely held longer, and it changes meaning: nonno and nono are different words."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "gnocchi",
+      "s": "NYOK-kee",
+      "m": "gn as one sound, then a held cch."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "signore",
+      "s": "see-NYO-re",
+      "m": "gn as one sound, not two."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "famiglia",
+      "s": "fa-MEE-lya",
+      "m": "gli. Recognisable is good enough."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "figlio",
+      "s": "FEE-lyo",
+      "m": "gli. Recognisable is good enough."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "pesce",
+      "s": "PE-she",
+      "m": "sc before e is sh."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "scuola",
+      "s": "SKWOH-la",
+      "m": "sc before u is sk."
+    },
+    {
+      "d": "Minimal pairs",
+      "t": "word",
+      "f": "nonno / nono",
+      "s": "NON-no / NO-no",
+      "m": "grandfather / ninth"
+    },
+    {
+      "d": "Minimal pairs",
+      "t": "word",
+      "f": "cane / canne",
+      "s": "KA-ne / KAN-ne",
+      "m": "dog / reeds"
+    },
+    {
+      "d": "Minimal pairs",
+      "t": "word",
+      "f": "sono / sonno",
+      "s": "SO-no / SON-no",
+      "m": "I am / sleep"
+    },
+    {
+      "d": "Minimal pairs",
+      "t": "word",
+      "f": "casa / cassa",
+      "s": "KA-za / KAS-sa",
+      "m": "house / crate, till"
+    },
+    {
+      "d": "Minimal pairs",
+      "t": "word",
+      "f": "copia / coppia",
+      "s": "KO-pya / KOP-pya",
+      "m": "copy / couple"
+    }
+  ]
+}

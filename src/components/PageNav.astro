@@ -9,6 +9,11 @@ const { prev, cards, next } = Astro.props;
 ---
 <div class="pagenav">
   {prev && <a href={prev.href}><span class="k">{prev.kicker}</span><span class="v">← {prev.label}</span></a>}
-  {cards && <a class="cards" href={cards.href}><span class="k">{cards.kicker}</span><span class="v">{cards.label}</span></a>}
+  {cards && (
+    <a class="deck" href={cards.href} target="_blank" rel="noopener"
+       aria-label={`${cards.label} — opens in a new tab`}>
+      <span class="k">{cards.kicker}</span><span class="v">{cards.label} ↗</span>
+    </a>
+  )}
   {next && <a class="next" href={next.href}><span class="k">{next.kicker}</span><span class="v">{next.label} →</span></a>}
 </div>

@@ -119,11 +119,46 @@ with sync_playwright() as pw:
     if wide() > 390:
         fails.append("session page scrolls sideways at 390px")
 
+    # The deck is the point of the session, so its link is above the content
+    # and opens beside it rather than navigating away from the lesson.
+    cue = page.locator(".deckcue")
+    if not cue.count():
+        fails.append("no flashcards link at the top of the session page")
+    else:
+        top = page.evaluate("document.querySelector('.deckcue').getBoundingClientRect().top")
+        notes.append(f"deck link at y={round(top)}: {cue.inner_text()!r}")
+        if top > 400:
+            fails.append(f"flashcards link is not immediately visible (y={round(top)})")
+        if cue.get_attribute("target") != "_blank":
+            fails.append("flashcards link does not open in a new tab")
+
     # --- the flashcard app -------------------------------------------------
     page.goto(f"{ROOT}/units/1/sessions/1/cards/")
     page.wait_for_selector("#decks .chip")
     decks = page.locator("#decks .chip").all_inner_texts()
     notes.append(f"decks: {decks}")
+
+    # The chips are built by the script, so they do not carry the scope
+    # attribute and their styles have to be written to reach them. When that
+    # breaks nothing throws — the chips just render as bare buttons reading
+    # "Vowels5" — so it is asserted rather than eyeballed.
+    chip = page.evaluate('''() => {
+      const c = document.querySelector(".chip");
+      const n = document.querySelector(".chip .n");
+      const on = document.querySelector('.chip[aria-pressed="true"]');
+      return {
+        radius: parseFloat(getComputedStyle(c).borderRadius),
+        gap: parseFloat(getComputedStyle(n).marginLeft),
+        selected: getComputedStyle(on).backgroundColor,
+      };
+    }''')
+    notes.append(f"chip: radius {chip['radius']}px, count gap {chip['gap']}px")
+    if chip["radius"] < 20:
+        fails.append("deck chips are not styled — scoped CSS is not reaching them")
+    if chip["gap"] < 2:
+        fails.append("no gap between a deck name and its count (renders as 'Vowels5')")
+    if chip["selected"] in ("rgba(0, 0, 0, 0)", "transparent"):
+        fails.append("the selected deck chip is not highlighted")
     first_face = page.locator("#face").inner_text()
     pos = page.locator("#position").inner_text()
     notes.append(f"opens on: {first_face!r} at {pos!r}")

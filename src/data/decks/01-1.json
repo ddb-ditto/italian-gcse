@@ -1,0 +1,115 @@
+{
+  "unit": 1,
+  "session": 1,
+  "notes": [
+    {
+      "lead": "What these cards cannot do",
+      "body": "A card cannot test sound. Vowels and Read aloud are prompts for you to listen to and judge — the child has to say the vowel, not recognise it. Sound rules works on its own."
+    }
+  ],
+  "cards": [
+    {
+      "d": "Vowels",
+      "t": "word",
+      "f": "a",
+      "s": "ah",
+      "m": "As in father. Never as in cat. Hold it steady â the mouth does not move."
+    },
+    {
+      "d": "Vowels",
+      "t": "word",
+      "f": "e",
+      "s": "eh",
+      "m": "As in bet, or the vowel in day without the y-glide on the end."
+    },
+    {
+      "d": "Vowels",
+      "t": "word",
+      "f": "i",
+      "s": "ee",
+      "m": "As in machine. Never as in bit."
+    },
+    {
+      "d": "Vowels",
+      "t": "word",
+      "f": "o",
+      "s": "oh",
+      "m": "As in pot or for. Never the English oh with a w on the end."
+    },
+    {
+      "d": "Vowels",
+      "t": "word",
+      "f": "u",
+      "s": "oo",
+      "m": "As in boot. Never as in but, and never the English you sound."
+    },
+    {
+      "d": "Sound rules",
+      "t": "rule",
+      "f": "What must never happen to an Italian vowel?",
+      "m": "It must never slide or be swallowed. The mouth stays still, and the final vowel is as strong as the first."
+    },
+    {
+      "d": "Sound rules",
+      "t": "rule",
+      "f": "Which letters in an Italian word are silent?",
+      "m": "Only h. Everything else is pronounced, including every final vowel."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "casa",
+      "s": "KA-za",
+      "m": "Clean vowels. The final a as strong as the first."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "vino",
+      "s": "VEE-no",
+      "m": "Clean vowels. i as in machine, not as in bit."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "luna",
+      "s": "LOO-na",
+      "m": "Clean vowels. u as in boot."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "sole",
+      "s": "SO-le",
+      "m": "Clean vowels. o as in pot, with no w on the end."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "mare",
+      "s": "MA-re",
+      "m": "Clean vowels. Don't let the final e fade to uh."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "pane",
+      "s": "PA-ne",
+      "m": "Clean vowels. Don't let the final e fade to uh."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "nome",
+      "s": "NO-me",
+      "m": "Clean vowels. Every letter is pronounced."
+    },
+    {
+      "d": "Read aloud",
+      "t": "word",
+      "f": "vita",
+      "s": "VEE-ta",
+      "m": "Clean vowels. Every letter is pronounced."
+    }
+  ]
+}

@@ -12,12 +12,12 @@ import Plain from "../../../components/Plain.astro";
 import Note from "../../../components/Note.astro";
 import PageNav from "../../../components/PageNav.astro";
 import SiteFooter from "../../../components/SiteFooter.astro";
-import decks from "../../../data/decks.json";
 import stage1 from "../../../data/stage1.json";
 
 export async function getStaticPaths() {
   const units = await getCollection("units");
   const sessions = await getCollection("sessions");
+  const decks = await getCollection("decks");
   return units.map((unit) => ({
     params: { unit: String(unit.data.number) },
     props: {
@@ -25,17 +25,18 @@ export async function getStaticPaths() {
       sessions: sessions
         .filter((s) => s.data.unit === unit.data.number)
         .sort((a, b) => a.data.number - b.data.number),
+      decks: decks.filter((d) => d.data.unit === unit.data.number),
     },
   }));
 }
 
-const { unit, sessions } = Astro.props;
+const { unit, sessions, decks } = Astro.props;
 const { Content } = await render(unit);
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const n = unit.data.number;
 
 const cardCount = (session: number) =>
-  decks.find((d) => d.unit === n && d.session === session)?.cards.length ?? 0;
+  decks.find((d) => d.data.session === session)?.data.cards.length ?? 0;
 
 const rows = sessions.map((s) => ({
   number: s.data.number,

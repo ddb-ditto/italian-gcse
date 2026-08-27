@@ -552,7 +552,20 @@ footer a { color: var(--ink-faint); }
   margin-bottom: 0.25rem;
 }
 .pagenav a .v { display: block; font-family: var(--sans); font-size: 0.9rem; font-weight: 600; }
-.pagenav a.cards { border-left: 3px solid var(--accent); }
+.pagenav a.deck { border-left: 3px solid var(--accent); }
+
+/* ---- the deck link at the top of a session ------------------------------- */
+
+.deckcue {
+  display: inline-flex; align-items: baseline; gap: 0.5rem;
+  font-family: var(--sans); font-size: 0.85rem; font-weight: 600;
+  text-decoration: none; color: var(--accent);
+  border: 1px solid var(--accent-line); border-radius: 999px;
+  background: var(--accent-soft);
+  padding: 0.45rem 1rem; margin: 0 0 1.6rem;
+}
+.deckcue:hover { border-color: var(--accent); }
+.deckcue .n { font-weight: 400; color: var(--ink-soft); }
 .pagenav a.next { text-align: right; }
 
 /* ---- session list on the introduction page ------------------------------- */

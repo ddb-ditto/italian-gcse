@@ -59,17 +59,23 @@ const { cards } = Astro.props;
   .app { max-width: 44rem; margin: 0 auto; }
 
   .decks { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1.2rem; }
-  .chip {
+
+  /* The chips are created by the script, so they never get the scope
+     attribute an element written in this file would. Hanging each rule off
+     .decks — which is in the markup above and does get it — keeps them
+     contained without relying on a class name being unique site-wide. */
+  .decks :global(.chip) {
     font-family: var(--sans); font-size: 0.82rem;
     padding: 0.4rem 0.85rem;
     border: 1px solid var(--rule); border-radius: 999px;
     background: var(--card); color: var(--ink-soft);
     cursor: pointer; line-height: 1.2;
   }
-  .chip[aria-pressed="true"] {
+  .decks :global(.chip:hover) { border-color: var(--accent); color: var(--accent); }
+  .decks :global(.chip[aria-pressed="true"]) {
     background: var(--accent); border-color: var(--accent); color: #fff;
   }
-  .chip :global(.n) { opacity: 0.65; font-size: 0.76rem; margin-left: 0.3rem; }
+  .decks :global(.chip .n) { opacity: 0.65; font-size: 0.76rem; margin-left: 0.35rem; }
 
   .card {
     background: var(--card);
