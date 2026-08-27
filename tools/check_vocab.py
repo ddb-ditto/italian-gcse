@@ -82,40 +82,6 @@ def check_articles(nouns: dict[str, set[str]]) -> list[str]:
     return wrong
 
 
-# A reflexive infinitive drops the final -e: chiamare -> chiamarsi. Matching
-# "are" plus an optional "si" therefore never matches a reflexive at all.
-INFINITIVE = re.compile(r"(.+?)(?:ar|er|ir)(?:e|si)$")
-
-
-def verb_stems(listed: set[str]) -> dict[str, set[str]]:
-    """Stem -> every infinitive on the list that shares it.
-
-    The list gives infinitives; a lesson teaches "mi chiamo" and "come stai?".
-    Matching surface forms alone reports those as off-syllabus, which is wrong
-    and, worse, trains whoever reads the output to wave the report away.
-
-    A stem can belong to more than one verb, and which one a form came from is
-    a question about the sentence, not the word: *chiamo* is *chiamare* in
-    "chiamo mia madre" and *chiamarsi* in "mi chiamo Marco". Both are reported,
-    because choosing between them here would be a guess presented as a fact.
-    """
-    stems: dict[str, set[str]] = {}
-    for word in listed:
-        m = INFINITIVE.fullmatch(word)
-        if m and len(m.group(1)) >= 2:
-            stems.setdefault(m.group(1), set()).add(word)
-    return stems
-
-
-def looks_inflected(word: str, stems: dict[str, set[str]]) -> list[str] | None:
-    """The infinitives this could be a form of, matching the longest stem."""
-    for n in range(len(word), 1, -1):
-        found = stems.get(word[:n])
-        if found:
-            return sorted(found)
-    return None
-
-
 def taught_terms() -> list[tuple[str, str]]:
     """(deck id, term) for every word card in the course."""
     out = []
@@ -147,7 +113,7 @@ def main() -> int:
 
     nouns, listed = vocab.parse(given)
     grammar = vocab.grammar_words(given)
-    stems = verb_stems(listed)
+    stems = vocab.verb_stems(listed)
     allowed = exceptions()
     print(f"vocabulary list: {given} ({len(listed)} words, {len(nouns)} nouns "
           f"with a gender, {len(stems)} verb stems); grammar appendix: "
@@ -165,7 +131,7 @@ def main() -> int:
         if all(w in grammar for w in missing):
             grammar_only.append((deck, term, missing))
             continue
-        forms = {w: looks_inflected(w, stems) for w in missing}
+        forms = {w: vocab.looks_inflected(w, stems) for w in missing}
         if all(forms.values()):
             inflected.append((deck, term, forms))
             continue

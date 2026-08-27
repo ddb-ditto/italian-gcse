@@ -37,7 +37,8 @@ src/
   scripts/       the flashcard app, bundled once
   styles/        the house stylesheet, loaded once
 tools/
-  check_text.py      local paths and double-encoded text — run by CI
+  check_all.py       all of the below, reporting what could not run
+  check_text.py      local paths, calendar years, encoding — run by CI
   check_vocab.py     every taught word is on the examined list
   vocab.py           reads the specification's vocabulary appendix
   check_site.py      open the built site in a browser and use it

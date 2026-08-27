@@ -205,6 +205,40 @@ def parse(path: pathlib.Path) -> tuple[dict[str, set[str]], set[str]]:
     return nouns, words
 
 
+# A reflexive infinitive drops the final -e: chiamare -> chiamarsi. Matching
+# "are" plus an optional "si" therefore never matches a reflexive at all.
+INFINITIVE = re.compile(r"(.+?)(?:ar|er|ir)(?:e|si)$")
+
+
+def verb_stems(listed: set[str]) -> dict[str, set[str]]:
+    """Stem -> every infinitive on the list that shares it.
+
+    The list gives infinitives; a lesson teaches "mi chiamo" and "come stai?".
+    Matching surface forms alone reports those as off-syllabus, which is wrong
+    and, worse, trains whoever reads the output to wave the report away.
+
+    A stem can belong to more than one verb, and which one a form came from is
+    a question about the sentence, not the word: *chiamo* is *chiamare* in
+    "chiamo mia madre" and *chiamarsi* in "mi chiamo Marco". Both are reported,
+    because choosing between them here would be a guess presented as a fact.
+    """
+    stems: dict[str, set[str]] = {}
+    for word in listed:
+        m = INFINITIVE.fullmatch(word)
+        if m and len(m.group(1)) >= 2:
+            stems.setdefault(m.group(1), set()).add(word)
+    return stems
+
+
+def looks_inflected(word: str, stems: dict[str, set[str]]) -> list[str] | None:
+    """The infinitives this could be a form of, matching the longest stem."""
+    for n in range(len(word), 1, -1):
+        found = stems.get(word[:n])
+        if found:
+            return sorted(found)
+    return None
+
+
 # Genders that are not in doubt, checked mechanically because every failure this
 # parser has had looked entirely reasonable in the output.
 KNOWN = {
@@ -220,10 +254,15 @@ KNOWN = {
 # fragments, and their presence means a term was cut in the wrong place.
 NEVER = {"a", "di", "in", "e", "da", "del", "della", "n", "ttore", "tto",
          "vagna", "mpada", "ico", "ndia"}
+# Forms a lesson teaches, and the infinitive each must resolve to. The
+# reflexives are here because an earlier pattern could not match one at all,
+# so every reflexive form a lesson taught looked off-syllabus.
+KNOWN_FORMS = {"chiamo": "chiamarsi", "stai": "stare", "alzo": "alzarsi",
+               "diverto": "divertirsi", "capisco": "capire"}
 
 
 def selftest(spec: pathlib.Path) -> int:
-    nouns, _ = parse(spec)
+    nouns, words = parse(spec)
     bad = []
     for word, expected in sorted(KNOWN.items()):
         got = nouns.get(word)
@@ -234,12 +273,21 @@ def selftest(spec: pathlib.Path) -> int:
     junk = sorted(NEVER & nouns.keys())
     if junk:
         bad.append(f"fragments recorded as nouns: {', '.join(junk)}")
+    stems = verb_stems(words)
+    for form, lemma in sorted(KNOWN_FORMS.items()):
+        found = looks_inflected(form, stems)
+        if not found:
+            bad.append(f"{form}: no infinitive found, expected {lemma}")
+        elif lemma not in found:
+            bad.append(f"{form}: resolved to {', '.join(found)}, expected {lemma}")
+
     # cd, tv and tè are real; a single letter never is.
     short = sorted(w for w in nouns if len(w) < 2)
     if short:
         bad.append(f"single letters recorded as nouns: {', '.join(short)}")
 
-    print(f"{len(KNOWN)} known genders checked, {len(nouns)} nouns parsed")
+    print(f"{len(KNOWN)} known genders and {len(KNOWN_FORMS)} verb forms checked, "
+          f"{len(nouns)} nouns parsed")
     if bad:
         print("\nFAILED:")
         for b in bad:

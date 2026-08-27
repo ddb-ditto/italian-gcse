@@ -110,15 +110,21 @@ is.
 
 ```
 npm run build
-python3 tools/check_site.py     # drives the built site in a real browser
-python3 tools/check_text.py     # paths and encoding — CI runs this too
-python3 tools/check_vocab.py    # every taught word is on the examined list
+python3 tools/check_all.py
 ```
+
+That runs all four and says which of them did not run — a skipped check and a
+passing check look identical otherwise. `check_site.py` needs a build and a
+browser; the two vocabulary checks need `tools/spec.txt`. CI has neither the
+specification nor a browser, so it runs `check_text.py` alone and the rest are
+yours to run before you push.
 
 `check_site.py` is not decoration. Every failure this project has shipped was
 silent — nothing threw, the page just looked wrong — so it asserts computed
-styles and positions, not only text. When you fix a bug of that kind, add the
-assertion that would have caught it.
+styles and positions, not only text. **When you fix a bug of that kind, add the
+assertion that would have caught it, and prove the assertion fails against the
+bug before you call it done.** Every guard in these tools was verified that way,
+against the actual defect it exists for.
 
 **Verify in the browser, not by grepping the HTML.** Astro's entity encoding
 does not match what you expect, and a `grep` that returns 0 will convince you a

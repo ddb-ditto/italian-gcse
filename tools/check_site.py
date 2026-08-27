@@ -19,6 +19,7 @@ import http.server
 import os
 import pathlib
 import re
+import json
 import socketserver
 import sys
 import threading
@@ -53,9 +54,24 @@ httpd = socketserver.TCPServer(
 threading.Thread(target=httpd.serve_forever, daemon=True).start()
 ROOT = f"http://127.0.0.1:{httpd.server_address[1]}{BASE}"
 
+def find_chromium() -> dict:
+    """Where the browser is, if it is anywhere."""
+    if os.environ.get("CHROMIUM"):
+        return {"executable_path": os.environ["CHROMIUM"]}
+    root = pathlib.Path(os.environ.get("PLAYWRIGHT_BROWSERS_PATH", "/opt/pw-browsers"))
+    for found in sorted(root.glob("chromium*/chrome-linux/chrome")):
+        return {"executable_path": str(found)}
+    return {}
+
+
 with sync_playwright() as pw:
-    launch = {"executable_path": os.environ["CHROMIUM"]} if os.environ.get("CHROMIUM") else {}
-    b = pw.chromium.launch(**launch)
+    try:
+        b = pw.chromium.launch(**find_chromium())
+    except Exception as why:                       # no browser on this machine
+        print(f"No browser to drive: {str(why).splitlines()[0]}")
+        print("Install one with `playwright install chromium`. Nothing was checked.")
+        httpd.shutdown()
+        sys.exit(2)
     page = b.new_page(viewport={"width": 390, "height": 844})
     errors: list[str] = []
     page.on("pageerror", lambda e: errors.append(str(e)))
@@ -140,6 +156,26 @@ with sync_playwright() as pw:
     notes.append(f"unit 1 session rows: {rows}")
     if rows != 5:
         fails.append(f"unit 1 has {rows} session rows, expected 5")
+
+    # The unit file and the template both used to render the can-do list, its
+    # heading and the insist note, so the page carried each of them twice.
+    headings = page.locator("main h2").all_inner_texts()
+    duplicated = {h for h in headings if headings.count(h) > 1}
+    notes.append(f"unit 1 sections: {len(headings)}")
+    if duplicated:
+        fails.append(f"unit page renders a section twice: {sorted(duplicated)}")
+    candos = page.locator("main .plain li").all_inner_texts()
+    repeated = {c for c in candos if candos.count(c) > 1}
+    if repeated:
+        fails.append(f"unit page lists the same item twice: {sorted(repeated)[:2]}")
+
+    # The can-do heading counts to the next unit. It used to count past the end.
+    units = len(json.loads((REPO / "src/data/stage1.json").read_text(encoding="utf-8")))
+    for h in headings:
+        m = re.search(r"BEFORE UNIT (\d+)", h.upper())
+        if m and int(m.group(1)) > units:
+            fails.append(f"unit page points at Unit {m.group(1)}, past the last "
+                         f"unit of Stage 1 ({units})")
 
     page.goto(f"{ROOT}/units/1/sessions/2/")
     if "hard and soft" not in page.title():
