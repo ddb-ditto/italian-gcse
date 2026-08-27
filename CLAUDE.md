@@ -22,6 +22,40 @@ session list or a contingency section into a unit's body: the template already
 renders all four, and doing both is how Unit 1 ended up printing its can-dos
 twice.
 
+## Building a unit
+
+The brief for every unit already exists: the Stage 1 units page gives its
+grammar, language field, can-do and task, and the grammar checklist gives the
+points in teaching order. Neither says how to teach it — that is the writing.
+
+**Always check the examined vocabulary list.** Every Italian word a unit teaches
+is either on Appendix 3 of the specification or a deliberate exception with a
+reason. Not "mostly", and not by eye: fluent, plausible Italian is exactly what
+gets written when nobody checks, and a child drilling a word that is not on the
+list is spending their time on something the exam will not ask for.
+
+The list is Pearson's copyright and is not in this repository. Produce it once,
+per machine, from the specification PDF:
+
+```
+pdftotext -layout specification-gcse2017-l12-italian-issue5.pdf tools/spec.txt
+python3 tools/check_vocab.py
+```
+
+`tools/spec.txt` is gitignored. Without it the check exits non-zero and says so
+rather than passing quietly — a vocabulary check with no vocabulary list looks
+exactly like one that found nothing.
+
+It reports three things. Words on the list; words that are inflected forms of
+listed words (*chiamo* → *chiamare*), which are fine and are shown so you can
+see they were understood; and words on neither footing, which fail the run.
+An off-list word is not automatically wrong — Unit 1 teaches *gnocchi* and
+*spaghetti* for their sound in a unit that says not to teach their meaning — but
+it has to be a decision, so each one goes in `src/data/off-syllabus.json` with a
+reason. Prefer fixing to declaring: the check found the stress deck teaching
+*medico*, which is not on the list, where *musica* makes the identical point and
+is.
+
 ## House rules for content
 
 - **Nobody real appears.** Where a lesson needs a name it is invented and
@@ -63,6 +97,7 @@ twice.
 npm run build
 python3 tools/check_site.py     # drives the built site in a real browser
 python3 tools/check_text.py     # paths and encoding — CI runs this too
+python3 tools/check_vocab.py    # every taught word is on the examined list
 ```
 
 `check_site.py` is not decoration. Every failure this project has shipped was

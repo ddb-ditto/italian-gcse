@@ -30,6 +30,7 @@ src/
   data/
     stage1.json  the fourteen units of Stage 1, built or not
     decks/       one file per session's deck, named for that session
+    off-syllabus.json  words taught anyway, and why
   components/    the blocks the lessons are written out of
   layouts/       the one layout
   pages/         routes; the unit and session pages are generated from content
@@ -37,6 +38,7 @@ src/
   styles/        the house stylesheet, loaded once
 tools/
   check_text.py      local paths and double-encoded text — run by CI
+  check_vocab.py     every taught word is on the examined list
   check_site.py      open the built site in a browser and use it
   make_icons.py      regenerate the home-screen icons
 ```
@@ -52,7 +54,10 @@ unit's record sheet — with no change to any template.
    frontmatter is checked, so a mistake is a build error rather than a bad page.
 2. Write its deck at `src/data/decks/<unit>-<n>.json` — same name as the
    session. A session is not finished until its deck exists.
-3. `npm run build`, then `python3 tools/check_site.py`.
+3. `python3 tools/check_vocab.py` — every Italian word it teaches is on the
+   specification's vocabulary list, or declared in `src/data/off-syllabus.json`
+   with a reason. This needs the specification; see `CLAUDE.md`.
+4. `npm run build`, then `python3 tools/check_site.py`.
 
 A new unit is the same, plus `src/content/units/unit-<nn>.mdx`. Its body is the
 introduction only: the can-do list, the one to insist on and what to do if it

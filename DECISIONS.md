@@ -74,6 +74,22 @@ Every page below the contents carries a trail — Contents › Unit 01 › Sessi
 Flashcards — pinned to the top of the window. A session page runs four screens on
 a phone, and a link that only exists at the bottom of that is not navigation.
 
+## The vocabulary is checked against the specification, not chosen by ear
+
+The syllabus decides what is learned; the teaching is written here. That split
+is fine for pedagogy and dangerous for vocabulary, because plausible Italian is
+easy to produce and impossible to spot afterwards — a child can drill a word for
+a term before anyone notices the exam will never ask for it. So every word a
+deck teaches is checked against Appendix 3 by `tools/check_vocab.py`, and a word
+that is not on it must be declared in `src/data/off-syllabus.json` with a
+reason.
+
+It earns its place: on its first run it found the stress deck teaching *medico*,
+which is not on the list, where *musica* makes the same point and is. The
+specification itself stays out of the repository — Pearson's copyright — so this
+is an authoring check rather than a CI one, run while a unit is being written,
+which is the only point at which it can change anything.
+
 ## Can-dos, not coverage
 
 A unit's frontmatter carries its can-do list and the unit page says to move on
