@@ -1,8 +1,8 @@
 name: Deploy site
 
-# Build the site and publish it. Every push is checked first: if a child's name,
-# a local file path or the progress tracker's filename is anywhere in the
-# repository, the run fails and nothing is deployed.
+# Build the site and publish it. Every push gets a last look first — a local
+# file path, or a name if a list is configured — and a run that flags something
+# deploys nothing.
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Check nothing private is being published
+      - name: A last look before publishing
         run: python3 tools/check_private.py
         env:
           PRIVATE_NAMES: ${{ secrets.PRIVATE_NAMES }}

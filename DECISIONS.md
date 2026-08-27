@@ -30,11 +30,11 @@ The record is a printed sheet: a tick box per session and per unit's can-do
 list, one sheet per child, filled in by hand.
 
 The alternative was an account per family and a database behind it. That buys
-synchronised ticks and costs a login, a service to keep running, a privacy
-surface, and somebody's children's names in a datastore — for a record that two
-people already keep in the same room. On-screen checkboxes with no account are
-worse still: state that vanishes when the tab closes looks like a record and is
-not one, so the boxes on `/progress/` are printed squares.
+synchronised ticks and costs a login, a service to keep running and a privacy
+surface — for a record two people already keep in the same room. On-screen
+checkboxes with no account are worse still: state that vanishes when the tab
+closes looks like a record and is not one, so the boxes on `/progress/` are
+printed squares.
 
 The sheets are generated from the content, so they cannot drift from the course,
 and they carry only what the syllabus turns on: the sessions worked through, and
@@ -49,20 +49,12 @@ on the record sheet, and it is tested cold, on a different day from the last
 session. This is the one piece of assessment in the whole design, and making it
 the *only* one is deliberate.
 
-## The names are never written down in this repository
+## Nothing personal goes in, so nothing personal comes out
 
-Not in a page, not in a source file, not in a note — including in the check that
-looks for them. A name in a design document is exactly as public as a name in a
-page once the repository is public, which is why `tools/check_private.py` scans
-every text file rather than just the built site.
-
-The names are supplied from outside: `PRIVATE_NAMES` in CI, or a gitignored
-`tools/private-names.txt`. When no list is available the script says so loudly
-rather than passing quietly, because a name scan that checks for nothing looks
-exactly like one that found nothing.
-
-The progress tracker's filename is treated as private too: it is made of the
-children's names, so quoting it anywhere would publish them.
+The course is written here and published from here — no folder is copied in, so
+nothing arrives that was not typed on purpose. `tools/check_private.py` is a net
+under that rather than a policy: it catches a local file path pasted into a
+file, and personal names if a list is configured from outside the repository.
 
 ## Published by GitHub Actions, not by pointing Pages at a folder
 

@@ -3,8 +3,8 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# The children's names, for tools/check_private.py to scan for.
-# Never committed. In CI they come from the PRIVATE_NAMES secret instead.
+# Optional list of names for tools/check_private.py. Never committed;
+# in CI the same list comes from the PRIVATE_NAMES secret instead.
 tools/private-names.txt
 
 # Astro

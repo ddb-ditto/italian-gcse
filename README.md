@@ -36,7 +36,7 @@ src/
   scripts/       the flashcard app, bundled once
   styles/        the house stylesheet, loaded once
 tools/
-  check_private.py   nothing private is in the repository — run by CI
+  check_private.py   a last look before publishing — run by CI
   check_site.py      open the built site in a browser and use it
   make_icons.py      regenerate the home-screen icons
 ```
@@ -62,8 +62,8 @@ show as *not built yet*, which is the honest state.
 
 `/progress/` prints a record sheet per child per unit: a tick box for each
 session and a tick box for each of that unit's can-dos. It is paper by design —
-nothing is stored on the site, there is no sign-in, and a name is never typed
-into it. The sheets are generated from the content, so a unit built later gets
+nothing is stored on the site and there is no sign-in, so the sheet is filled in
+by hand. The sheets are generated from the content, so a unit built later gets
 its sheet for free.
 
 ## Publishing
@@ -86,32 +86,19 @@ plan for *the account that owns the repository* — a personal account on Free
 gets an upgrade prompt regardless of what other plans you hold elsewhere.
 
 Public is the intended end state, not a workaround: the site is meant to be
-readable by anyone given the link, and the content is name-free by design. That
-is what the check below is for.
+read by anyone given the link.
 
-## What is never in this repository
+## Before publishing
 
-| | |
-|---|---|
-| the children's names | anywhere at all — not in a page, not in a source file, not in a note |
-| local file paths | a Windows user directory names a person as surely as a name does |
-| the progress tracker's filename | it is made of their names, so quoting it publishes them |
-| Pearson's specification and sample assessment PDFs | copyright |
-
-`python3 tools/check_private.py` enforces it, and CI runs it on every push
-before anything is built. It scans **every text file in the repository**, not
-just the built site: once the repository is public a name in a source file is as
-published as a name in a page.
-
-The names themselves are never written down here. Set them in a repository
-secret named `PRIVATE_NAMES` (comma-separated) or in a gitignored
-`tools/private-names.txt`. **If no list is configured the script says so and the
-name scan has done nothing** — worth reading before trusting a pass.
+`python3 tools/check_private.py` scans every text file for a local file path,
+which names whoever owns the machine, and CI runs it before the build. Set
+`PRIVATE_NAMES` (comma-separated) or a gitignored `tools/private-names.txt` and
+it will look for those too.
 
 ## Checking it before you trust it
 
 ```
-python3 tools/check_private.py   # names, local paths, the tracker  — run by CI
+python3 tools/check_private.py                 # run by CI
 npm run build && python3 tools/check_site.py   # opens it and uses it
 ```
 
