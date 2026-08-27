@@ -1,0 +1,6 @@
+---
+/** A set of words to read aloud or sort. */
+interface Props { words: string[]; }
+const { words } = Astro.props;
+---
+<div class="grid">{words.map((w) => <span set:html={w} />)}</div>

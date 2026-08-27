@@ -1,0 +1,110 @@
+---
+/**
+ * Progress, recorded on paper.
+ *
+ * A tick box per session and per unit, one sheet per child. The sheets are
+ * generated from the course itself, so a unit built later gets a sheet with no
+ * work here — and the syllabus check on each sheet is the unit's own can-do
+ * list, which is what decides whether to move on.
+ */
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Section from "../../components/Section.astro";
+import Steps from "../../components/Steps.astro";
+import Note from "../../components/Note.astro";
+import TickSheet from "../../components/TickSheet.astro";
+import PageNav from "../../components/PageNav.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import stage1 from "../../data/stage1.json";
+
+const units = (await getCollection("units")).sort((a, b) => a.data.number - b.data.number);
+const sessions = await getCollection("sessions");
+
+const sheets = units
+  .map((u) => ({
+    number: u.data.number,
+    title: u.data.title,
+    canDos: u.data.canDos,
+    sessions: sessions
+      .filter((s) => s.data.unit === u.data.number)
+      .sort((a, b) => a.data.number - b.data.number)
+      .map((s) => ({ number: s.data.number, title: s.data.title, minutes: s.data.minutes })),
+  }))
+  .filter((s) => s.sessions.length > 0);
+
+const waiting = stage1.filter((u) => !sheets.some((s) => s.number === u.number));
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+<Base
+  title="Progress — Italian GCSE"
+  eyebrow="Pearson Edexcel GCSE Italian · 1IN0"
+  heading="Keeping the record"
+  standfirst="One sheet per child per unit, ticked by hand. Two lists: the sessions worked through, and the can-dos that decide whether to move on."
+  description="Printable tick sheets for recording progress through a home-taught Edexcel GCSE Italian course: one per child per unit, sessions and can-do checks."
+>
+
+  <Section kicker="How it works">Paper, on purpose</Section>
+
+  <p>Nothing is stored on this site. There is no account and no name anywhere on
+  it — the record lives on a printed sheet in the front of the notebook, where
+  whoever is teaching can see it without opening anything.</p>
+
+  <p>That also keeps the record honest. A tick means someone watched it happen.</p>
+
+  <Section kicker="The routine">How to record it</Section>
+
+  <Steps>
+    <li><strong>Print one sheet per child, per unit</strong> — the sheets are below, one to a page. Write the child's name at the top.</li>
+    <li><strong>Tick a session on the day you do it</strong>, and put the date beside it. A session is done when it has been worked through once, aloud, from beginning to end. Not when it is perfect.</li>
+    <li><strong>Leave the can-dos alone until the unit is finished.</strong> They are not a summary of the sessions; they are a separate check, and ticking them as you go defeats them.</li>
+    <li><strong>At the end of the unit, test each can-do once</strong> — cold, with no reminders, on a different day from the last session. Tick only the ones that are true without prompting, and date them.</li>
+    <li><strong>Move on when every can-do is ticked.</strong> If one is not, go back to the session that taught it and do that session again. Repeating one session is normal; carrying an untrue can-do into the next unit is not.</li>
+  </Steps>
+
+  <Note lead="What is deliberately not recorded">
+    <p>No marks, no scores, no minutes spent. A nine-year-old's progress through
+    the sound system is not a percentage, and a number here would be invented.
+    The can-dos are the assessment: each one is either true or it is not, and
+    the ones on these sheets are the statements the specification actually turns
+    on.</p>
+  </Note>
+
+  <Note lead="Two children, two sheets" child>
+    <p>Print a sheet each and keep them apart. They will not move at the same
+    speed, and a shared sheet turns the slower one's record into a comparison
+    with the faster one every time it is opened. Same course, separate paper.</p>
+  </Note>
+
+  <Section kicker="The sheets">One per unit</Section>
+
+  <p class="noprint">Print this page for every sheet at once, or print a single
+  page from the browser's print dialogue. Each unit starts a new page.</p>
+
+  {sheets.map((s) => (
+    <TickSheet number={s.number} title={s.title} sessions={s.sessions} canDos={s.canDos} />
+  ))}
+
+  {waiting.length > 0 && (
+    <p class="noprint waiting">
+      {`Sheets for ${waiting.length} more unit${waiting.length === 1 ? "" : "s"} appear here as they are built — Unit ${String(waiting[0].number).padStart(2, "0")} onwards. There is nothing to record until there is something to teach.`}
+    </p>
+  )}
+
+  <PageNav
+    prev={{ kicker: "Back to", label: "Contents", href: `${base}/` }}
+    next={sheets[0] && {
+      kicker: `Unit ${String(sheets[0].number).padStart(2, "0")}`,
+      label: sheets[0].title,
+      href: `${base}/units/${sheets[0].number}/`,
+    }}
+  />
+
+  <SiteFooter slot="footer" left="Edexcel GCSE Italian 1IN0 · Progress" />
+</Base>
+
+<style>
+  .waiting {
+    font-family: var(--sans); font-size: 0.82rem; color: var(--ink-faint);
+    border-top: 1px solid var(--rule); padding-top: 1rem; max-width: 44rem;
+  }
+</style>

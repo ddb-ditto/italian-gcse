@@ -1,0 +1,85 @@
+---
+/**
+ * A unit's introduction: why it exists, its sessions, the can-do check and what
+ * to do if it goes badly. The session list is built from the sessions
+ * themselves, so adding a session adds a row.
+ */
+import { getCollection, render } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import Section from "../../../components/Section.astro";
+import SessionList from "../../../components/SessionList.astro";
+import Plain from "../../../components/Plain.astro";
+import Note from "../../../components/Note.astro";
+import PageNav from "../../../components/PageNav.astro";
+import SiteFooter from "../../../components/SiteFooter.astro";
+import decks from "../../../data/decks.json";
+
+export async function getStaticPaths() {
+  const units = await getCollection("units");
+  const sessions = await getCollection("sessions");
+  return units.map((unit) => ({
+    params: { unit: String(unit.data.number) },
+    props: {
+      unit,
+      sessions: sessions
+        .filter((s) => s.data.unit === unit.data.number)
+        .sort((a, b) => a.data.number - b.data.number),
+    },
+  }));
+}
+
+const { unit, sessions } = Astro.props;
+const { Content } = await render(unit);
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const n = unit.data.number;
+
+const cardCount = (session: number) =>
+  decks.find((d) => d.unit === n && d.session === session)?.cards.length ?? 0;
+
+const rows = sessions.map((s) => ({
+  number: s.data.number,
+  title: s.data.title,
+  summary: s.data.summary,
+  minutes: s.data.minutes,
+  cardCount: cardCount(s.data.number),
+  href: `${base}/units/${n}/sessions/${s.data.number}/`,
+  cardsHref: `${base}/units/${n}/sessions/${s.data.number}/cards/`,
+}));
+
+const first = rows[0];
+---
+<Base
+  title={`Unit ${n} — ${unit.data.title}`}
+  eyebrow={`Unit ${String(n).padStart(2, "0")} · Edexcel GCSE Italian 1IN0`}
+  heading={unit.data.title}
+  standfirst={unit.data.standfirst}
+>
+
+  <Content />
+
+  <Section kicker="The unit">{rows.length} sessions</Section>
+  <p>Each session is a single sitting with its own page and its own set of flashcards. Work through
+  them in order. The cards for a session only ever cover what that session taught.</p>
+  <SessionList sessions={rows} />
+
+  <Section kicker={`Before Unit ${n + 1}`}>Can-do check</Section>
+  <p>Move on when these are true, not when the material has been covered.</p>
+  <Plain>
+    {unit.data.canDos.map((c) => <li>{c}</li>)}
+  </Plain>
+
+  <Note lead="The one to insist on">
+    <p>The third. If they can state the rule, they own it. If they can only follow it when you
+    remind them, they don't yet.</p>
+  </Note>
+
+  <p class="noprint">These are the ticks on the <a href={`${base}/progress/#unit-${n}`}>record
+  sheet</a> for this unit. Test them cold, on a different day from the last session.</p>
+
+  <PageNav
+    prev={{ kicker: "Back to", label: "Contents", href: `${base}/` }}
+    next={first && { kicker: "First session", label: first.title, href: first.href }}
+  />
+
+  <SiteFooter slot="footer" left={`Edexcel GCSE Italian 1IN0 · Unit ${String(n).padStart(2, "0")}`} />
+</Base>

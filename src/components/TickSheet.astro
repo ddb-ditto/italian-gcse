@@ -1,0 +1,146 @@
+---
+/**
+ * One unit's record sheet: the sessions worked through, then the can-dos that
+ * decide whether to move on.
+ *
+ * It is paper. There is no account on this site and nothing is stored, so the
+ * boxes are printed squares rather than form controls — a checkbox that forgets
+ * itself the moment you close the tab is worse than no checkbox at all. The
+ * child's name is written on by hand and never typed into the site.
+ */
+export interface Row { number: number; title: string; minutes: number; }
+
+interface Props { number: number; title: string; sessions: Row[]; canDos: string[]; }
+const { number, title, sessions, canDos } = Astro.props;
+const nn = String(number).padStart(2, "0");
+---
+<section class="sheet" id={`unit-${number}`}>
+
+  <header>
+    <p class="kicker">Unit {nn} · record sheet</p>
+    <h3>{title}</h3>
+    <p class="fields">
+      <span>Name <i /></span>
+      <span>Started <i /></span>
+      <span>Finished <i /></span>
+    </p>
+  </header>
+
+  <p class="what">Sessions — tick the day it is worked through</p>
+  <ol class="ticks">
+    {sessions.map((s) => (
+      <li>
+        <span class="box" aria-hidden="true" />
+        <span class="n">{s.number}</span>
+        <span class="label">{s.title}</span>
+        <span class="date">Date <i /></span>
+      </li>
+    ))}
+  </ol>
+
+  <p class="what">Can-dos — tick only when it is true without prompting</p>
+  <ul class="ticks candos">
+    {canDos.map((c) => (
+      <li>
+        <span class="box" aria-hidden="true" />
+        <span class="label">{c}</span>
+        <span class="date">Date <i /></span>
+      </li>
+    ))}
+  </ul>
+
+  <p class="rulefoot">
+    Move on to Unit {number + 1} when every can-do is ticked — not when the
+    sessions are.
+  </p>
+
+</section>
+
+<style>
+  .sheet {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: var(--card);
+    padding: 1.4rem 1.5rem 1.2rem;
+    margin: 0 0 1.8rem;
+    max-width: 44rem;
+  }
+
+  .sheet header { border-bottom: 2px solid var(--accent-line); padding-bottom: 0.9rem; }
+  .kicker {
+    font-family: var(--sans); font-size: 0.68rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-faint); margin: 0;
+  }
+  /* The house h3 is a small uppercase label; on a sheet this is its title. */
+  .sheet h3 {
+    font-family: var(--serif); font-size: 1.32rem; font-weight: 600;
+    letter-spacing: 0; text-transform: none; color: var(--ink);
+    margin: 0.2rem 0 0.9rem;
+  }
+
+  .fields {
+    display: flex; flex-wrap: wrap; gap: 0.5rem 1.6rem;
+    font-family: var(--sans); font-size: 0.76rem; color: var(--ink-faint);
+    margin: 0;
+  }
+  .fields span { display: flex; align-items: baseline; gap: 0.4rem; flex: 1 1 8rem; }
+  .fields i { flex: 1 1 4rem; border-bottom: 1px solid var(--rule); height: 0.9rem; }
+
+  .what {
+    font-family: var(--sans); font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin: 1.3rem 0 0.2rem; max-width: none;
+  }
+
+  .ticks { list-style: none; padding: 0; margin: 0; counter-reset: none; }
+  .ticks li {
+    display: flex; align-items: baseline; gap: 0.7rem;
+    padding: 0.5rem 0; border-bottom: 1px solid var(--rule);
+    max-width: none;
+  }
+  .box {
+    flex: none; width: 0.95rem; height: 0.95rem;
+    border: 1px solid var(--ink-faint); border-radius: 2px;
+    align-self: center;
+  }
+  .n {
+    flex: none; width: 1rem;
+    font-family: var(--sans); font-size: 0.78rem; color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .label { flex: 1 1 auto; }
+  .candos .label { font-size: 0.98rem; }
+  .date {
+    flex: none; display: flex; align-items: baseline; gap: 0.35rem;
+    font-family: var(--sans); font-size: 0.7rem; color: var(--ink-faint);
+  }
+  .date i { display: block; width: 4.5rem; border-bottom: 1px solid var(--rule); height: 0.85rem; }
+
+  .rulefoot {
+    font-family: var(--sans); font-size: 0.78rem; color: var(--ink-soft);
+    margin: 1rem 0 0; max-width: none;
+  }
+
+  /* On a phone the label needs the whole row. The date rule is for paper, so
+     it goes rather than being squeezed into nothing. */
+  @media (max-width: 32rem) {
+    .date { display: none; }
+    .box { align-self: flex-start; position: relative; top: 0.2rem; }
+    .sheet { padding: 1.1rem 1rem 1rem; }
+    .fields span { flex: 1 1 100%; }
+  }
+
+  /* One unit to a page, and never a list split across the fold. */
+  @media print {
+    .date { display: flex; }
+    .box { align-self: center; top: 0; }
+    /* The guide prints as page one; every sheet starts a page of its own. */
+    .sheet {
+      border: none; padding: 0; margin: 0;
+      break-before: page; page-break-before: always;
+    }
+    .ticks li { break-inside: avoid; page-break-inside: avoid; padding: 0.42rem 0; }
+    .box { border-color: #000; }
+  }
+</style>

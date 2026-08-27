@@ -1,0 +1,8 @@
+---
+interface Props { lead?: string; }
+const { lead } = Astro.props;
+---
+<div class="warn">
+  {lead && <span class="lead" set:html={lead} />}
+  <slot />
+</div>

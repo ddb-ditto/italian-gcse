@@ -1,0 +1,14 @@
+---
+/** An exchange to be spoken, both parts written out. */
+export interface Line { who: string; said: string; }
+interface Props { lines: Line[]; }
+const { lines } = Astro.props;
+---
+<div class="script">
+  {lines.map((l) => (
+    <div class="line">
+      <span class="who">{l.who}</span>
+      <span class="said" set:html={l.said} />
+    </div>
+  ))}
+</div>

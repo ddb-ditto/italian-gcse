@@ -1,0 +1,9 @@
+---
+interface Props { left?: string; }
+const { left = "Edexcel GCSE Italian 1IN0" } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+<footer>
+  <span>{left}</span>
+  <span class="noprint"><a href={`${base}/`}>← Contents</a></span>
+</footer>

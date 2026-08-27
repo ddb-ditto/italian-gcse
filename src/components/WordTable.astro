@@ -1,0 +1,20 @@
+---
+/**
+ * Word, how to say it, what it means. Pronunciation goes wherever a new word
+ * appears — the teacher is reading this aloud.
+ */
+export interface Word { term: string; say?: string; gloss?: string; }
+interface Props { words: Word[]; pairs?: boolean; }
+const { words, pairs = false } = Astro.props;
+---
+<table class:list={["words", pairs && "pairs"]}>
+  <tbody>
+    {words.map((w) => (
+      <tr>
+        <td class="term" set:html={w.term} />
+        {w.say !== undefined && <td class="say" set:html={w.say} />}
+        {w.gloss !== undefined && <td class="gloss" set:html={w.gloss} />}
+      </tr>
+    ))}
+  </tbody>
+</table>

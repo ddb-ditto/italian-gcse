@@ -1,0 +1,50 @@
+---
+/**
+ * A session's deck. Every session gets one, produced at the same time as the
+ * page: a session is not finished until its deck exists.
+ */
+import { getCollection, getEntry } from "astro:content";
+import Base from "../../../../../../layouts/Base.astro";
+import Flashcards from "../../../../../../components/Flashcards.astro";
+import SiteFooter from "../../../../../../components/SiteFooter.astro";
+
+export async function getStaticPaths() {
+  const decks = await getCollection("decks");
+  return decks.map((deck) => ({
+    params: { unit: String(deck.data.unit), session: String(deck.data.session) },
+    props: { deck },
+  }));
+}
+
+const { deck } = Astro.props;
+const u = deck.data.unit;
+const n = deck.data.session;
+const session = await getEntry("sessions", `${String(u).padStart(2, "0")}-${n}`);
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+<Base
+  title={`Session ${n} flashcards — ${session?.data.title ?? ""}`}
+  eyebrow={`Unit ${String(u).padStart(2, "0")} · Session ${n}`}
+  heading={`Flashcards — ${session?.data.title ?? ""}`}
+  standfirst={session?.data.deckStandfirst}
+>
+
+  {deck.data.notes.length > 0 && (
+    <details class="teachernotes noprint">
+      <summary>Notes for whoever is teaching</summary>
+      {deck.data.notes.map((note) => (
+        <div class="note noprint">
+          <span class="lead">{note.lead}</span>
+          <p>{note.body}</p>
+        </div>
+      ))}
+    </details>
+  )}
+
+  <Flashcards cards={deck.data.cards} />
+
+  <footer class="noprint" slot="footer">
+    <span>{`Edexcel GCSE Italian 1IN0 · Unit ${String(u).padStart(2, "0")} · Session ${n}`}</span>
+    <span><a href={`${base}/units/${u}/sessions/${n}/`}>← Session {n}</a></span>
+  </footer>
+</Base>

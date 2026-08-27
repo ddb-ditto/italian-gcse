@@ -1,0 +1,82 @@
+import { defineCollection, z } from "astro:content";
+import { glob, file } from "astro/loaders";
+
+/**
+ * The course, as data.
+ *
+ * A unit is a chunk of material, not a length of time, and it is split into
+ * sessions of one sitting each. Every session has a matching deck; a session
+ * is not finished until its deck exists, which is why `deck` is required and
+ * the decks are a collection in their own right rather than a loose file.
+ */
+
+const units = defineCollection({
+  loader: glob({ pattern: "**/*.mdx", base: "./src/content/units" }),
+  schema: z.object({
+    number: z.number().int().positive(),
+    title: z.string(),
+    /** One line under the title: what this unit is for. */
+    standfirst: z.string(),
+    /** Move on when these are true, not when the material has been covered. */
+    canDos: z.array(z.string()).min(1),
+  }),
+});
+
+const sessions = defineCollection({
+  loader: glob({ pattern: "**/*.mdx", base: "./src/content/sessions" }),
+  schema: z.object({
+    unit: z.number().int().positive(),
+    number: z.number().int().positive(),
+    title: z.string(),
+    standfirst: z.string(),
+    /** How it reads on the unit's contents list. */
+    summary: z.string(),
+    /** One sitting. Longer than 40 on paper means it should be two sessions. */
+    minutes: z.number().int().min(15).max(45),
+    /** What the deck page says about itself. */
+    deckStandfirst: z.string(),
+  }),
+});
+
+const decks = defineCollection({
+  loader: file("./src/data/decks.json", {
+    parser: (text) => JSON.parse(text) as Record<string, unknown>,
+  }),
+  schema: z.object({
+    id: z.string(),
+    unit: z.number().int().positive(),
+    session: z.number().int().positive(),
+    /**
+     * Notes shown above the deck, collapsed. Every deck says what it cannot
+     * do: anything resting on hearing or producing a sound cannot be tested by
+     * a card, and the teacher needs to know which decks need them in the room.
+     */
+    notes: z.array(z.object({ lead: z.string(), body: z.string() })),
+    cards: z.array(
+      z.object({
+        /** Deck name. Decks run in teaching order, most fundamental first. */
+        d: z.string(),
+        /** A rule card is a question and is never reversed. */
+        t: z.enum(["word", "rule"]),
+        f: z.string(),
+        s: z.string().optional(),
+        m: z.string(),
+      }),
+    ).min(1),
+  }),
+});
+
+const reference = defineCollection({
+  loader: glob({ pattern: "**/*.mdx", base: "./src/content/reference" }),
+  schema: z.object({
+    title: z.string(),
+    standfirst: z.string(),
+    /** Position on the contents page. */
+    order: z.number().int(),
+    /** The one-word label on its card. */
+    kind: z.string(),
+    blurb: z.string(),
+  }),
+});
+
+export const collections = { units, sessions, decks, reference };

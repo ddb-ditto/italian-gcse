@@ -1,0 +1,62 @@
+---
+unit: 1
+number: 1
+title: "The five vowels"
+standfirst: "Five sounds, always the same, never swallowed."
+summary: "Five sounds, always the same, never swallowed. The one thing that makes a learner sound Italian rather than English-speaking-Italian."
+minutes: 30
+deckStandfirst: "15 cards in three decks. Tap a card to turn it over. Print this page for fold-over cards, 8 to a sheet."
+---
+
+import DoneWhen from "../../components/DoneWhen.astro";
+import Grid from "../../components/Grid.astro";
+import Note from "../../components/Note.astro";
+import Notebook from "../../components/Notebook.astro";
+import Rule from "../../components/Rule.astro";
+import Section from "../../components/Section.astro";
+import Steps from "../../components/Steps.astro";
+import WordTable from "../../components/WordTable.astro";
+
+<Section kicker={"Session 1"}>The point</Section>
+
+<p>Italian has five vowel sounds. Five. They are always the same, they are never swallowed, and they
+never turn into the lazy "uh" that English does at the end of words. This is the single biggest thing
+that makes a learner sound Italian rather than English-speaking-Italian.</p>
+
+<Rule lead={"The five, and what they are not"}>
+<WordTable words={[{"term": "a", "say": "ah", "gloss": "as in <em>father</em> — never as in <em>cat</em>"}, {"term": "e", "say": "eh", "gloss": "as in <em>bet</em>, or the vowel in <em>day</em> without the y-glide at the end"}, {"term": "i", "say": "ee", "gloss": "as in <em>machine</em> — never as in <em>bit</em>"}, {"term": "o", "say": "oh", "gloss": "as in <em>pot</em> or <em>for</em> — never the English \"oh\" with a w on the end"}, {"term": "u", "say": "oo", "gloss": "as in <em>boot</em> — never as in <em>but</em>, never the English \"you\" sound"}]} />
+</Rule>
+
+<h3>How to teach it</h3>
+<Steps>
+<li>Say each vowel five times slowly. Have them copy. Exaggerate.</li>
+  <li>The critical instruction: <strong>the mouth doesn't move while the sound is happening.</strong> English vowels slide — say "no" slowly and you will hear it become "now". Italian vowels are held in one position. Get them to hold a hand under the jaw to feel whether it is moving.</li>
+  <li>Drill these words, which contain nothing but clean vowels. Every letter is pronounced; there are no silent letters in Italian. <Grid words={["casa", "vino", "luna", "sole", "mare", "pane", "nome", "vita"]} /></li>
+  <li>Say each word wrong (English-style) and right, and ask them which is which. Making them the judge is more effective than making them the imitator.</li>
+</Steps>
+
+<Notebook lead={"In the notebook"}>
+<p>Date the page, then rule three columns and copy this out. It becomes the reference page they come
+  back to for the next two years, so it is worth doing neatly.</p>
+  <WordTable words={[{"term": "a", "say": "like father", "gloss": "never like cat"}, {"term": "e", "say": "like bet", "gloss": "never like day"}, {"term": "i", "say": "like machine", "gloss": "never like bit"}, {"term": "o", "say": "like pot", "gloss": "never like oh"}, {"term": "u", "say": "like boot", "gloss": "never like but"}]} />
+  <p>Underneath, copy the eight words — <em>casa, vino, luna, sole, mare, pane, nome, vita</em> — saying
+  each one aloud as they write it, not before or after. Then <strong>underline the last letter of every
+  word</strong>. That underline is the whole point: the final vowel is the one English speakers swallow,
+  and they will see it on the page every time they look back.</p>
+</Notebook>
+
+<Note lead={"Common problem"}>
+<p>The final vowel gets swallowed — <em>casa</em> becomes "cas-uh". Insist the final vowel is as
+  strong as the first. Overcorrect at this stage; it will settle.</p>
+</Note>
+
+<Note lead={"If a child is working on clarity of speech"} child>
+<p>This session plays directly into that. Holding a vowel steady and finishing a word properly is the
+  same physical skill drama and speech exams ask for. Worth saying so out loud — it makes the drill feel
+  less arbitrary.</p>
+</Note>
+
+<DoneWhen lead={"Done when"}>
+<p>They can say all five vowels without the sound sliding, and finish <em>casa</em>, <em>mare</em> and
+  <em>pane</em> with the final vowel as strong as the first.</p>
+</DoneWhen>

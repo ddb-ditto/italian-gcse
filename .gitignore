@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# The children's names, for tools/check_private.py to scan for.
+# Never committed. In CI they come from the PRIVATE_NAMES secret instead.
+tools/private-names.txt
+
+# Astro
+node_modules/
+dist/
+.astro/

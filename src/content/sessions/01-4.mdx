@@ -1,0 +1,58 @@
+---
+unit: 1
+number: 4
+title: "Where the stress falls"
+standfirst: "Second-to-last syllable by default, and a written accent whenever it isn't."
+summary: "Second-to-last syllable by default, and a written accent whenever it isn't."
+minutes: 25
+deckStandfirst: "18 cards in two decks. Tap a card to turn it over. Print this page for fold-over cards, 8 to a sheet."
+---
+
+import DoneWhen from "../../components/DoneWhen.astro";
+import Grid from "../../components/Grid.astro";
+import Note from "../../components/Note.astro";
+import Notebook from "../../components/Notebook.astro";
+import Section from "../../components/Section.astro";
+import Steps from "../../components/Steps.astro";
+import WriteOut from "../../components/WriteOut.astro";
+
+<Section kicker={"Session 4"}>The point</Section>
+
+<p>Most Italian words are stressed on the second-to-last syllable.</p>
+<Grid words={["ca-SA", "a-MI-co", "si-GNO-re", "bi-ci-CLET-ta", "spa-GHET-ti"]} />
+
+<p>When a word is stressed on the final syllable, it carries a written accent so you always know:</p>
+<Grid words={["città", "perché", "caffè", "università", "papà", "lunedì"]} />
+
+<p>A minority are stressed earlier and have no marking. These just have to be learned:</p>
+<Grid words={["TA-vo-lo", "ME-di-co", "SA-ba-to", "TE-le-fo-no", "dif-FI-ci-le"]} />
+
+<h3>How to teach it</h3>
+<Steps>
+<li>Clap the syllables of words from the previous sessions, clapping harder on the stressed one.</li>
+  <li>Give them a list of unfamiliar words and have them predict the stress before you say it. They should be right most of the time, which is the point — the default is reliable.</li>
+  <li>Note that stress can distinguish meaning: <em>PARlo</em> (I speak) versus <em>parLÒ</em> (he spoke). Don't explain the tenses; just show that it matters.</li>
+</Steps>
+
+<Notebook lead={"In the notebook"}>
+<p>This session is mostly writing, and the writing <em>is</em> the exercise. Three headed lists. In
+  each, they copy the word, break it into syllables with hyphens, and capitalise the stressed one.</p>
+  <WriteOut>
+<strong>The normal way</strong> — ca-SA, a-MI-co, si-GNO-re, bi-ci-CLET-ta, spa-GHET-ti<br />
+    <strong>Marked with an accent</strong> — cit-TÀ, per-CHÉ, caf-FÈ, u-ni-ver-si-TÀ, pa-PÀ, lu-ne-DÌ<br />
+    <strong>Just learn these</strong> — TA-vo-lo, ME-di-co, SA-ba-to, TE-le-fo-no, dif-FI-ci-le
+</WriteOut>
+  <p>Make them write the accents themselves rather than skipping them. Getting <em>à è é ì ò ù</em> onto
+  paper is worth the fuss now — a missing accent is a spelling mistake in the written papers, and this
+  is the only session where the accent is the subject rather than a detail.</p>
+</Notebook>
+
+<Note lead={"Common problem"}>
+<p>They apply the default to the accented words and say <em>ci-TTA</em> as <em>CIT-ta</em>. The accent
+  is not decoration — it is there precisely because the word breaks the rule.</p>
+</Note>
+
+<DoneWhen lead={"Done when"}>
+<p>Given an unfamiliar word with no accent, they put the stress on the second-to-last syllable
+  without being prompted — and when they see an accent, they move it to the end.</p>
+</DoneWhen>

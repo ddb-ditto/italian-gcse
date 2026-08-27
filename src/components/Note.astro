@@ -1,0 +1,12 @@
+---
+/**
+ * An aside to whoever is teaching. `child` marks the ones about handling a
+ * particular child differently — never by name; the material is shared.
+ */
+interface Props { lead?: string; child?: boolean; }
+const { lead, child = false } = Astro.props;
+---
+<div class:list={["note", child && "child"]}>
+  {lead && <span class="lead" set:html={lead} />}
+  <slot />
+</div>

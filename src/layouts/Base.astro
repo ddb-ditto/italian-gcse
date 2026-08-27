@@ -1,0 +1,52 @@
+---
+/**
+ * Every page on the site. The house stylesheet is imported here and bundled
+ * once, so a page costs its own markup and nothing else.
+ */
+import "../styles/house.css";
+
+interface Props {
+  title: string;
+  eyebrow?: string;
+  heading?: string;
+  standfirst?: string;
+  description?: string;
+}
+
+const { title, eyebrow, heading, standfirst, description } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  {description && <meta name="description" content={description} />}
+  <link rel="icon" href={`${base}/icon-192.png`} type="image/png" />
+  <link rel="apple-touch-icon" href={`${base}/apple-touch-icon.png`} />
+  <link rel="manifest" href={`${base}/manifest.webmanifest`} />
+  <meta name="theme-color" content="#7a2e1e" />
+  <meta name="mobile-web-app-capable" content="yes" />
+</head>
+<body>
+
+{heading && (
+  <header class="masthead">
+    <div class="masthead-inner">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{heading}</h1>
+      {standfirst && <p class="standfirst" set:html={standfirst} />}
+    </div>
+  </header>
+)}
+
+<slot name="nav" />
+
+<main>
+  <slot />
+  <slot name="footer" />
+</main>
+
+</body>
+</html>

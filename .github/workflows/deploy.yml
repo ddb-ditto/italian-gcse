@@ -1,0 +1,65 @@
+name: Deploy site
+
+# Build the site and publish it. Every push is checked first: if a child's name,
+# a local file path or the progress tracker's filename is anywhere in the
+# repository, the run fails and nothing is deployed.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+# The checks run on every branch. Only the default branch is published — gated on
+# the repository's own default rather than a branch name written down here.
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Check and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check nothing private is being published
+        run: python3 tools/check_private.py
+        env:
+          PRIVATE_NAMES: ${{ secrets.PRIVATE_NAMES }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Publish to GitHub Pages
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # `enablement: true` was tried here and does not work: GITHUB_TOKEN gets
+      # "Resource not accessible by integration" when it tries to create the
+      # Pages site. Turning Pages on is a one-time repository setting — see the
+      # README. Once it is on, this step just reads the configuration.
+      - uses: actions/configure-pages@v5
+      - id: deployment
+        uses: actions/deploy-pages@v4

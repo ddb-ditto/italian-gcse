@@ -1,0 +1,76 @@
+---
+unit: 1
+number: 3
+title: "Gli, gn, sc and the double consonant"
+standfirst: "The sounds English does not have, and the length distinction that changes meaning."
+summary: "The sounds English does not have, and the length distinction that changes meaning."
+minutes: 30
+deckStandfirst: "15 cards in three decks. Tap a card to turn it over. Print this page for fold-over cards, 8 to a sheet."
+---
+
+import DoneWhen from "../../components/DoneWhen.astro";
+import Grid from "../../components/Grid.astro";
+import Note from "../../components/Note.astro";
+import Notebook from "../../components/Notebook.astro";
+import Rule from "../../components/Rule.astro";
+import Section from "../../components/Section.astro";
+import WordTable from "../../components/WordTable.astro";
+import WriteOut from "../../components/WriteOut.astro";
+
+<Section kicker={"Session 3"}>Three combinations</Section>
+
+<Rule lead={"gn — like the \"ny\" in <em>canyon</em>. One sound, not two."}>
+<Grid words={["gnocchi", "signore", "bagno", "lasagne", "insegnante"]} />
+</Rule>
+
+<Rule lead={"gli — like the \"lli\" in <em>million</em>, but softer and further back"}>
+<Grid words={["gli", "famiglia", "figlio", "meglio", "aglio"]} />
+  <p>This is the hardest sound in Italian for English speakers and it does not need to be perfect.
+  Aim for recognisable. Trick that helps: start from "million", then try to make the L disappear into
+  the Y.</p>
+</Rule>
+
+<Rule lead={"sc — the same logic as Session 2, so point that out"}>
+<WordTable words={[{"term": "pesce, sciare, uscire", "say": "\"sh\"", "gloss": "soft before e and i"}, {"term": "scuola, scarpa, disco", "say": "\"sk\"", "gloss": "hard before a, o, u"}]} />
+</Rule>
+
+<Section kicker={"The big one"}>Double consonants</Section>
+
+<p>A double consonant in Italian is genuinely a longer sound, not a spelling convention. It changes
+meaning:</p>
+
+<WordTable pairs words={[{"term": "nonno", "say": "grandfather", "gloss": ""}, {"term": "nono", "say": "ninth", "gloss": ""}, {"term": "cane", "say": "dog", "gloss": ""}, {"term": "canne", "say": "reeds", "gloss": ""}, {"term": "sono", "say": "I am", "gloss": ""}, {"term": "sonno", "say": "sleep", "gloss": ""}, {"term": "casa", "say": "house", "gloss": ""}, {"term": "cassa", "say": "crate, till", "gloss": ""}, {"term": "copia", "say": "copy", "gloss": ""}, {"term": "coppia", "say": "couple", "gloss": ""}]} />
+
+<p>How to make it: hold the consonant. For <em>nonno</em>, stop on the N for a beat before releasing.
+For <em>pizza</em>, the ts sound is stretched.</p>
+
+<Notebook lead={"In the notebook"}>
+<p>Three short entries, each with its examples and a note underneath in their own words:</p>
+  <WriteOut>
+gn — gnocchi, signore &nbsp;·&nbsp; one sound, like ny in canyon<br />
+    gli — famiglia, figlio &nbsp;·&nbsp; like lli in million<br />
+    sc — pesce (sh), scuola (sk) &nbsp;·&nbsp; same rule as c and g
+</WriteOut>
+  <p>Then the five pairs, written as pairs with their meanings, and the doubled letter
+  <strong>underlined twice</strong>:</p>
+  <WriteOut>
+nonno (grandfather) / nono (ninth)
+</WriteOut>
+  <p>The double underline is the reminder that the letter is <em>held</em>, not merely written twice.
+  It is the difference between a spelling and a sound.</p>
+</Notebook>
+
+<h3>How to teach it</h3>
+<p>Say pairs from the list above and have them tell you which one you said. Then swap — they say, you
+guess.</p>
+
+<Note lead={"For a younger child"} child>
+<p>Run this as a game rather than a drill. Guessing which one you said, and catching you out when
+  they take their turn, holds attention far better than repetition does.</p>
+</Note>
+
+<DoneWhen lead={"Done when"}>
+<p>They can hear the difference between <em>nonno</em> and <em>nono</em> reliably. Recognisable
+  <em>gli</em> is enough — do not stall on it. If the double consonants are not landing, repeat this
+  session before moving on; everything downstream depends on hearing that distinction.</p>
+</DoneWhen>

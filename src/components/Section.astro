@@ -1,0 +1,6 @@
+---
+/** A section heading with its small-caps kicker. */
+interface Props { kicker: string; id?: string; }
+const { kicker, id } = Astro.props;
+---
+<h2 id={id}><span class="num">{kicker}</span><slot /></h2>

@@ -1,0 +1,29 @@
+---
+/** The session rows on a unit's introduction page. */
+export interface Row {
+  number: number;
+  title: string;
+  href: string;
+  cardsHref: string;
+  cardCount: number;
+  minutes: number;
+  summary: string;
+}
+interface Props { sessions: Row[]; }
+const { sessions } = Astro.props;
+---
+<div class="sessions">
+  {sessions.map((s) => (
+    <div class="sessionrow">
+      <span class="n">{String(s.number).padStart(2, "0")}</span>
+      <div class="body">
+        <a href={s.href}>{s.title}</a>
+        <p>{s.summary}</p>
+      </div>
+      <div class="aside">
+        <span class="dur">~{s.minutes} min</span>
+        <a href={s.cardsHref}>{s.cardCount} cards</a>
+      </div>
+    </div>
+  ))}
+</div>

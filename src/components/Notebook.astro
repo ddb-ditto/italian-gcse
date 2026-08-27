@@ -1,0 +1,12 @@
+---
+/**
+ * What the child physically writes down. Deliberately a different hue from the
+ * teacher notes — this one is addressed to the page in front of them.
+ */
+interface Props { lead?: string; }
+const { lead = "In the notebook" } = Astro.props;
+---
+<div class="notebook">
+  <span class="lead" set:html={lead} />
+  <slot />
+</div>

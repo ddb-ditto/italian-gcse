@@ -1,0 +1,64 @@
+---
+/** One session: one sitting, 20–40 minutes, with its own deck. */
+import { getCollection, render } from "astro:content";
+import Base from "../../../../../layouts/Base.astro";
+import PageNav from "../../../../../components/PageNav.astro";
+import SiteFooter from "../../../../../components/SiteFooter.astro";
+import decks from "../../../../../data/decks.json";
+
+export async function getStaticPaths() {
+  const sessions = await getCollection("sessions");
+  const units = await getCollection("units");
+  return sessions.map((session) => {
+    const siblings = sessions
+      .filter((s) => s.data.unit === session.data.unit)
+      .sort((a, b) => a.data.number - b.data.number);
+    const at = siblings.findIndex((s) => s.id === session.id);
+    return {
+      params: {
+        unit: String(session.data.unit),
+        session: String(session.data.number),
+      },
+      props: {
+        session,
+        unit: units.find((u) => u.data.number === session.data.unit)!,
+        prev: siblings[at - 1],
+        next: siblings[at + 1],
+      },
+    };
+  });
+}
+
+const { session, unit, prev, next } = Astro.props;
+const { Content } = await render(session);
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const u = session.data.unit;
+const n = session.data.number;
+const at = (s: number) => `${base}/units/${u}/sessions/${s}/`;
+const cards = decks.find((d) => d.unit === u && d.session === n)?.cards.length ?? 0;
+---
+<Base
+  title={`Session ${n} — ${session.data.title}`}
+  eyebrow={`Unit ${String(u).padStart(2, "0")} · Session ${n} · around ${session.data.minutes} minutes`}
+  heading={session.data.title}
+  standfirst={session.data.standfirst}
+  description={session.data.summary}
+>
+
+  <Content />
+
+  <PageNav
+    prev={prev
+      ? { kicker: "Previous", label: prev.data.title, href: at(prev.data.number) }
+      : { kicker: `Unit ${String(u).padStart(2, "0")}`, label: "Introduction", href: `${base}/units/${u}/` }}
+    cards={{ kicker: "Drill this session", label: `${cards} flashcards`, href: `${at(n)}cards/` }}
+    next={next
+      ? { kicker: "Next session", label: next.data.title, href: at(next.data.number) }
+      : { kicker: "Finish the unit", label: "Can-do check", href: `${base}/units/${u}/` }}
+  />
+
+  <SiteFooter
+    slot="footer"
+    left={`Edexcel GCSE Italian 1IN0 · Unit ${String(u).padStart(2, "0")} · Session ${n}`}
+  />
+</Base>

@@ -1,0 +1,25 @@
+{
+  "name": "Italian at home — Edexcel GCSE Italian 1IN0",
+  "short_name": "Italian",
+  "description": "A two-year GCSE Italian course taught at home: lesson pages and flashcards, free to read, no account needed.",
+  "start_url": "/italian-gcse/",
+  "scope": "/italian-gcse/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fbf9f7",
+  "theme_color": "#7a2e1e",
+  "icons": [
+    {
+      "src": "/italian-gcse/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/italian-gcse/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

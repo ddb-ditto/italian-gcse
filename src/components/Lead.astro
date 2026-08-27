@@ -1,0 +1,10 @@
+---
+/** A sub-heading inside a rule box or a note. */
+interface Props { spaced?: boolean; }
+const { spaced = false } = Astro.props;
+---
+<p class:list={["lead", spaced && "spaced"]}><slot /></p>
+
+<style>
+  .spaced { margin-top: 1rem; }
+</style>

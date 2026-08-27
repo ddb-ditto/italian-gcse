@@ -1,0 +1,14 @@
+---
+/**
+ * Previous session, this session's cards, next session. The last session of a
+ * unit points back to the introduction for the can-do check.
+ */
+export interface NavLink { kicker: string; label: string; href: string; }
+interface Props { prev?: NavLink; cards?: NavLink; next?: NavLink; }
+const { prev, cards, next } = Astro.props;
+---
+<div class="pagenav">
+  {prev && <a href={prev.href}><span class="k">{prev.kicker}</span><span class="v">← {prev.label}</span></a>}
+  {cards && <a class="cards" href={cards.href}><span class="k">{cards.kicker}</span><span class="v">{cards.label}</span></a>}
+  {next && <a class="next" href={next.href}><span class="k">{next.kicker}</span><span class="v">{next.label} →</span></a>}
+</div>

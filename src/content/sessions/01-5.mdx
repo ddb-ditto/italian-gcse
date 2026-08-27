@@ -1,0 +1,65 @@
+---
+unit: 1
+number: 5
+title: "Putting it to work"
+standfirst: "The only vocabulary in the unit, and the recording everything afterwards is measured against. This session has an output."
+summary: "The only vocabulary in the unit, and the recording everything afterwards is measured against."
+minutes: 35
+deckStandfirst: "21 cards in two decks, including a review set from Sessions 1–4. Tap a card to turn it over. Print this page for fold-over cards, 8 to a sheet."
+---
+
+import DoneWhen from "../../components/DoneWhen.astro";
+import Grid from "../../components/Grid.astro";
+import Note from "../../components/Note.astro";
+import Notebook from "../../components/Notebook.astro";
+import Script from "../../components/Script.astro";
+import Section from "../../components/Section.astro";
+import WordTable from "../../components/WordTable.astro";
+
+<Section kicker={"First"}>The only vocabulary in the unit</Section>
+
+<WordTable words={[{"term": "ciao", "say": "chow", "gloss": "hi / bye (informal, to friends)"}, {"term": "buongiorno", "say": "bwon-JOR-no", "gloss": "good morning / good day"}, {"term": "buonasera", "say": "bwo-na-SEH-ra", "gloss": "good evening"}, {"term": "buonanotte", "say": "bwo-na-NOT-te", "gloss": "goodnight — only when leaving or going to bed"}, {"term": "arrivederci", "say": "ar-ri-ve-DER-chee", "gloss": "goodbye (neutral to formal)"}, {"term": "come ti chiami?", "say": "KO-me tee KYA-mee", "gloss": "what's your name? (informal)"}, {"term": "mi chiamo…", "say": "mee KYA-mo", "gloss": "my name is…"}, {"term": "come stai?", "say": "KO-me STAI", "gloss": "how are you? (informal)"}, {"term": "bene / molto bene", "say": "BEH-ne", "gloss": "well / very well"}, {"term": "non c'è male", "say": "non che MA-le", "gloss": "not bad"}, {"term": "e tu?", "say": "e TOO", "gloss": "and you?"}, {"term": "per favore", "say": "per fa-VO-re", "gloss": "please"}, {"term": "grazie", "say": "GRA-tsye", "gloss": "thank you"}, {"term": "prego", "say": "PREH-go", "gloss": "you're welcome / after you / go ahead"}, {"term": "sì / no", "say": "see / no", "gloss": "yes / no"}]} />
+
+<p>Teach these as sound first, meaning second. Every one of them exercises something from Sessions 1–4:
+<em>ciao</em> (silent i), <em>buongiorno</em> (soft g, gn), <em>chiamo</em> (hard ch), <em>grazie</em>
+(the ts sound), <em>arrivederci</em> (soft ci, double r). Point that out as you go.</p>
+
+<Notebook lead={"In the notebook"}>
+<p>Copy the fifteen greetings with their meanings. This is the first Italian vocabulary they write
+  down all course, so set the habit here: Italian on the left, English on the right, and the
+  pronunciation only where it surprises them.</p>
+  <p>Then write the exchange out in full, both parts, as a dialogue with a dash for each speaker — the
+  way it is set out below. Writing it before saying it makes the recording steadier, and it is the first
+  Italian conversation they have ever put on paper.</p>
+  <p><strong>Do this before the recording, not after.</strong> The sixteen-word list in Part 1 is never
+  written down — reading it unseen is the entire point of it.</p>
+</Notebook>
+
+<Section kicker={"Then"}>The baseline recording</Section>
+
+<p>Record each child separately. Two parts, three or four minutes in total.</p>
+
+<h3>Part 1 — reading unfamiliar words</h3>
+
+<p>Give them this list cold, with no preparation, and record them reading it aloud. These sixteen words
+are deliberately not in any flashcard deck — they are the diagnostic, and you will use the same list
+again in six months.</p>
+
+<Grid words={["figlio", "chiesa", "gnocchi", "cinquanta", "scuola", "ghiaccio", "uccello", "famiglia", "bicchiere", "sciarpa", "coniglio", "pizzeria", "città", "azzurro", "cucchiaio", "paesaggio"]} />
+
+<h3>Part 2 — the greetings exchange</h3>
+
+<p>You take one part, they take the other:</p>
+
+<Script lines={[{"who": "You", "said": "Ciao! Come ti chiami?"}, {"who": "Child", "said": "Mi chiamo [name]. E tu?"}, {"who": "You", "said": "Mi chiamo Papà. Come stai?"}, {"who": "Child", "said": "Bene, grazie. E tu?"}, {"who": "You", "said": "Molto bene, grazie. Arrivederci!"}, {"who": "Child", "said": "Arrivederci!"}]} />
+
+<Note lead={"Save both files"}>
+<p>Wherever you keep recordings, named with the child and the date, and logged in the progress
+  tracker so you can find them again. Do not correct or re-record for a better take. The value of this recording is entirely in it being honest. In six months you will play it back
+  and the difference will be obvious to them, which is worth more than any mark.</p>
+</Note>
+
+<DoneWhen lead={"Done when"}>
+<p>Both recordings are saved and dated, and each child can hold the greetings exchange without
+  prompting. Then go back to the introduction and work through the can-do check before starting Unit 2.</p>
+</DoneWhen>

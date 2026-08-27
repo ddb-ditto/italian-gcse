@@ -1,0 +1,14 @@
+---
+/**
+ * One card in that grid. Without an href it renders as a card that is not a
+ * link — which is how a unit that has not been built yet appears.
+ */
+interface Props { title: string; href?: string; note?: string; pending?: boolean; }
+const { title, href, note, pending = false } = Astro.props;
+const Tag = href ? "a" : "div";
+---
+<Tag class:list={["cardlink", pending && "pending"]} href={href}>
+  <span class="t">{title}</span>
+  <span class="d"><slot /></span>
+  {note && <span class="s">{note}</span>}
+</Tag>

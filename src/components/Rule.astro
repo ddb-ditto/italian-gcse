@@ -1,0 +1,9 @@
+---
+/** A boxed rule — the thing the session turns on. */
+interface Props { lead?: string; }
+const { lead } = Astro.props;
+---
+<div class="rule">
+  {lead && <p class="lead" set:html={lead} />}
+  <slot />
+</div>

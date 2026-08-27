@@ -1,0 +1,24 @@
+---
+/** The reference pages: teaching plan, unit list, grammar checklist. */
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("reference");
+  return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+<Base
+  title={`${page.data.title} — Edexcel GCSE Italian 1IN0`}
+  eyebrow="Edexcel GCSE Italian 1IN0"
+  heading={page.data.title}
+  standfirst={page.data.standfirst}
+  description={page.data.blurb}
+>
+  <Content />
+  <SiteFooter slot="footer" left={`Edexcel GCSE Italian 1IN0 · ${page.data.title}`} />
+</Base>

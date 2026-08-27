@@ -1,0 +1,75 @@
+---
+unit: 1
+number: 2
+title: "The hard and soft rule"
+standfirst: "The most important session in the unit."
+summary: "C and g change sound depending on what follows. The most important session in the unit, and the one that explains verb spellings two units from now."
+minutes: 30
+deckStandfirst: "20 cards in two decks. Tap a card to turn it over. Print this page for fold-over cards, 8 to a sheet."
+---
+
+import Answers from "../../components/Answers.astro";
+import DoneWhen from "../../components/DoneWhen.astro";
+import Grid from "../../components/Grid.astro";
+import Lead from "../../components/Lead.astro";
+import Note from "../../components/Note.astro";
+import Notebook from "../../components/Notebook.astro";
+import Rule from "../../components/Rule.astro";
+import Section from "../../components/Section.astro";
+import Steps from "../../components/Steps.astro";
+import WordTable from "../../components/WordTable.astro";
+import WriteOut from "../../components/WriteOut.astro";
+
+<Section kicker={"Session 2"}>The point</Section>
+
+<p><em>C</em> and <em>g</em> change sound depending on the letter that follows.</p>
+
+<Rule lead={"Before a, o, u → hard"}>
+<WordTable words={[{"term": "casa", "say": "KA-za", "gloss": "hard c"}, {"term": "gatto", "say": "GAT-to", "gloss": "hard g"}, {"term": "cura, gusto", "say": "KU-ra, GUS-to", "gloss": "same again"}]} />
+  <Lead spaced>Before e, i → soft</Lead>
+  <WordTable words={[{"term": "cena", "say": "CHE-na", "gloss": "c becomes \"ch\" as in <em>chair</em>"}, {"term": "cinema", "say": "CHEE-ne-ma", "gloss": ""}, {"term": "gelato", "say": "je-LA-to", "gloss": "g becomes \"j\" as in <em>jam</em>"}, {"term": "giro", "say": "JEE-ro", "gloss": ""}]} />
+  <Lead spaced>H forces it back to hard</Lead>
+  <WordTable words={[{"term": "chi, che", "say": "kee, kay", "gloss": "the h is never pronounced"}, {"term": "spaghetti", "say": "spa-GET-tee", "gloss": "its only job is to keep c and g hard"}]} />
+  <Lead spaced>I forces it soft before a, o, u — and is not itself pronounced</Lead>
+  <WordTable words={[{"term": "ciao", "say": "chow", "gloss": "not \"chee-ow\""}, {"term": "giornale", "say": "jor-NA-le", "gloss": ""}]} />
+</Rule>
+
+<h3>How to teach it</h3>
+<Steps>
+<li>Write the rule out as a simple table and have them copy it. This one is worth writing down.</li>
+  <li>Sort these words into hard or soft, out loud, one at a time: <Grid words={["cane", "cena", "gatto", "gelato", "chiesa", "ciao", "cinque", "cosa", "giovane", "gonna", "ghiaccio", "chilo", "cucina", "cioccolato", "magico", "spaghetti"]} /></li>
+  <li>Explain <em>ciao</em> properly. They already know the word; they have probably never noticed the i is silent. That is a nice moment.</li>
+</Steps>
+
+<Notebook lead={"In the notebook"}>
+<p>The rule goes in first, at the top of a fresh page, in their own handwriting:</p>
+  <WriteOut>
+c and g are <strong>hard</strong> before a, o, u<br />
+    c and g are <strong>soft</strong> before e, i<br />
+    <strong>h</strong> after c or g forces it hard — and is never pronounced<br />
+    <strong>i</strong> after c or g forces it soft — and is not pronounced either
+</WriteOut>
+  <p>Then rule two columns, headed <strong>HARD</strong> and <strong>SOFT</strong>, and sort the sixteen
+  words into them — writing each word out in full rather than listing it, and
+  <strong>circling the letter that decides</strong>: the vowel after the c or g, or the h that overrides
+  it.</p>
+  <p><em>Cucina</em> belongs in both columns. Don't tell them — let them get stuck on it and work out
+  why. That one word does more for the rule than the other fifteen together.</p>
+</Notebook>
+
+<Answers lead={"Answers"}>
+<p><strong>Hard</strong> — cane, gatto, chiesa, cinque, cosa, gonna, ghiaccio, chilo, cucina, spaghetti.<br />
+  <strong>Soft</strong> — cena, gelato, ciao, giovane, cioccolato, magico.<br />
+  Note <em>cucina</em> has both: hard <em>cu</em>, soft <em>ci</em>.</p>
+</Answers>
+
+<Note lead={"Why it matters later"}>
+<p>This rule is why verb spellings change — <em>cerco</em> but <em>cerchi</em>, <em>pago</em> but
+  <em>paghi</em>. When that comes up in Unit 6 you will be able to point back here rather than teaching
+  it as an arbitrary exception.</p>
+</Note>
+
+<DoneWhen lead={"Done when"}>
+<p>They can state the rule in their own words — not just follow it when reminded — and sort the
+  sixteen words without help. This is the can-do the whole unit turns on.</p>
+</DoneWhen>

@@ -1,0 +1,648 @@
+/* =============================================================================
+   Italian at home — house style
+   One stylesheet for the whole site. Screen: readable while teaching.
+   Print: A4, clean, no interface.
+   ========================================================================== */
+
+/* ==========================================================================
+   Italian GCSE (Edexcel 1IN0) — house style
+   Shared by lesson-plan pages and flashcard pages.
+   Screen: readable while teaching. Print: A4, clean, no interface.
+   ========================================================================== */
+
+:root {
+  --accent:      #7a2e1e;
+  --accent-soft: #f4ece9;
+  --accent-line: #e0cdc7;
+  --ink:         #1c1a19;
+  --ink-soft:    #5b5451;
+  --ink-faint:   #8b8380;
+  --paper:       #fbf9f7;
+  --card:        #ffffff;
+  --rule:        #e4dedb;
+  --note-bg:     #f3f1ec;
+  --note-line:   #cfc8bb;
+  --answer-bg:   #eef2ee;
+  --answer-line: #b9c9b9;
+  --serif:  "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --sans:   "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+  --measure: 34rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent:      #e08a72;
+    --accent-soft: #2e2320;
+    --accent-line: #4a3630;
+    --ink:         #ece7e4;
+    --ink-soft:    #b3aaa5;
+    --ink-faint:   #8a807b;
+    --paper:       #171615;
+    --card:        #201e1d;
+    --rule:        #35312f;
+    --note-bg:     #232120;
+    --note-line:   #423d39;
+    --answer-bg:   #1e231e;
+    --answer-line: #3a463a;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------- masthead ---------------------------------------------------- */
+
+.masthead {
+  border-bottom: 3px solid var(--accent);
+  background: var(--card);
+}
+.masthead-inner {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1.6rem 1.5rem 1.3rem;
+}
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+}
+h1 {
+  font-family: var(--sans);
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  line-height: 1.15;
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.01em;
+}
+.standfirst {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+/* ---------- section nav ------------------------------------------------- */
+
+.sessionnav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+}
+.sessionnav ol {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0.55rem 1.5rem;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+}
+.sessionnav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+}
+.sessionnav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ---------- layout ------------------------------------------------------ */
+
+main {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+p, li { max-width: var(--measure); }
+p { margin: 0 0 0.9rem; }
+
+h2 {
+  font-family: var(--sans);
+  font-size: 1.28rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 2.8rem 0 0.2rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--rule);
+}
+h2:first-of-type { margin-top: 1rem; }
+h2 .num {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+h3 {
+  font-family: var(--sans);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin: 1.6rem 0 0.5rem;
+}
+.duration {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin: 0.35rem 0 1.2rem;
+}
+
+it, .it { font-style: italic; }
+strong { font-weight: 600; }
+
+/* ---------- word tables ------------------------------------------------- */
+
+.words {
+  width: 100%;
+  max-width: 42rem;
+  border-collapse: collapse;
+  margin: 0.6rem 0 1.3rem;
+  font-size: 0.95rem;
+}
+.words td {
+  padding: 0.34rem 0.7rem 0.34rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+.words tr:last-child td { border-bottom: none; }
+.words .term { font-style: italic; white-space: nowrap; width: 30%; }
+.words .say  { font-family: var(--sans); font-size: 0.82rem; color: var(--accent); white-space: nowrap; width: 28%; }
+.words .gloss { color: var(--ink-soft); font-size: 0.92rem; }
+
+.pairs { max-width: 30rem; }
+.pairs .term { width: 42%; }
+
+/* ---------- rule box ---------------------------------------------------- */
+
+.rule {
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-line);
+  border-radius: 3px;
+  padding: 1rem 1.2rem 0.6rem;
+  margin: 1.1rem 0 1.4rem;
+  max-width: 42rem;
+}
+.rule p:last-child { margin-bottom: 0.4rem; }
+.rule .lead {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- notes: teacher, child-specific, warning --------------------- */
+
+.note {
+  background: var(--note-bg);
+  border-left: 3px solid var(--note-line);
+  padding: 0.85rem 1.1rem;
+  margin: 1.1rem 0 1.4rem;
+  max-width: 42rem;
+  font-size: 0.95rem;
+}
+.note p:last-child { margin-bottom: 0; }
+.note .lead {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin-bottom: 0.35rem;
+}
+.note.child { border-left-color: var(--accent); }
+.note.child .lead { color: var(--accent); }
+
+.answers {
+  background: var(--answer-bg);
+  border-left: 3px solid var(--answer-line);
+  padding: 0.85rem 1.1rem;
+  margin: 1.1rem 0 1.4rem;
+  max-width: 42rem;
+  font-size: 0.95rem;
+}
+.answers p:last-child { margin-bottom: 0; }
+.answers .lead {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #4a6b4a;
+  margin-bottom: 0.35rem;
+}
+@media (prefers-color-scheme: dark) { .answers .lead { color: #8fb98f; } }
+
+/* ---------- ordered steps ----------------------------------------------- */
+
+ol.steps { padding-left: 1.15rem; margin: 0.5rem 0 1.2rem; }
+ol.steps > li { margin-bottom: 0.7rem; padding-left: 0.2rem; }
+ul.plain { padding-left: 1.15rem; margin: 0.5rem 0 1.2rem; }
+ul.plain > li { margin-bottom: 0.4rem; }
+
+/* ---------- exchange / script ------------------------------------------- */
+
+.script {
+  border-left: 3px solid var(--accent-line);
+  padding: 0.3rem 0 0.3rem 1.1rem;
+  margin: 0.9rem 0 1.4rem;
+  max-width: 34rem;
+}
+.script .line { display: flex; gap: 0.6rem; margin-bottom: 0.4rem; align-items: baseline; }
+.script .who {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  min-width: 3.6rem;
+  flex: none;
+}
+.script .said { font-style: italic; }
+.script .said .en { font-style: normal; color: var(--ink-faint); font-size: 0.85rem; }
+
+/* ---------- word grid ---------------------------------------------------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.4rem 1rem;
+  max-width: 42rem;
+  margin: 0.7rem 0 1.4rem;
+  font-style: italic;
+  font-size: 1.02rem;
+}
+
+/* ---------- footer ------------------------------------------------------ */
+
+footer {
+  border-top: 1px solid var(--rule);
+  margin-top: 3rem;
+  padding-top: 1rem;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+footer a { color: var(--ink-faint); }
+
+/* ==========================================================================
+   PRINT — A4, no interface
+   ========================================================================== */
+
+@page { size: A4; margin: 18mm 20mm 16mm; }
+
+@media print {
+  :root {
+    --accent: #7a2e1e; --accent-soft: #f6f1ef; --accent-line: #d8c7c1;
+    --ink: #000; --ink-soft: #333; --ink-faint: #555;
+    --paper: #fff; --card: #fff; --rule: #ccc;
+    --note-bg: #f2f2f0; --note-line: #999;
+    --answer-bg: #f2f5f2; --answer-line: #999;
+  }
+  body { font-size: 10.5pt; line-height: 1.42; background: #fff; }
+  .sessionnav, .noprint { display: none !important; }
+  .masthead { border-bottom-width: 2pt; }
+  .masthead-inner, main { max-width: none; padding: 0; margin: 0; }
+  .masthead-inner { padding-bottom: 8pt; }
+  main { padding-top: 10pt; }
+  h2 { break-after: avoid; page-break-after: avoid; margin-top: 18pt; padding-top: 10pt; }
+  h3 { break-after: avoid; page-break-after: avoid; }
+  .note, .answers, .script, .grid {
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .rule, table { break-inside: auto; page-break-inside: auto; }
+  .rule .lead, h3 + p { break-after: avoid; page-break-after: avoid; }
+  p, li { max-width: none; }
+  a { text-decoration: none; color: inherit; }
+}
+
+/* ==========================================================================
+   Components used by the reference pages
+   ========================================================================== */
+
+/* ---- tier badges (grammar checklist) ---------------------------------- */
+
+.badge {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 0.3em 0.5em;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  vertical-align: 0.08em;
+}
+.badge.f  { background: var(--accent); color: #fff; }
+.badge.h  { background: transparent; color: var(--accent); border-color: var(--accent); }
+.badge.r  { background: var(--note-bg); color: var(--ink-faint); border-color: var(--note-line); }
+.badge.fh { background: var(--accent-soft); color: var(--accent); border-color: var(--accent-line); }
+
+.key { display: flex; flex-wrap: wrap; gap: 0.5rem 1.4rem; margin: 0.9rem 0 1.8rem; }
+.key .keyitem { display: flex; align-items: center; gap: 0.45rem; font-size: 0.88rem; color: var(--ink-soft); }
+
+/* ---- specification list ------------------------------------------------ */
+
+.spec { margin: 0.6rem 0 1.6rem; max-width: 44rem; }
+.spec .row {
+  display: grid;
+  grid-template-columns: 5.6rem 1fr;
+  gap: 0.2rem 0.9rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+.spec .row:last-child { border-bottom: none; }
+.spec .row > .badges { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+.spec .row > div:last-child { max-width: none; }
+.spec .row .sub { display: block; color: var(--ink-soft); font-size: 0.88rem; margin-top: 0.15rem; }
+.spec h4 {
+  font-family: var(--sans); font-size: 0.74rem; letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 700; color: var(--accent);
+  margin: 1.5rem 0 0.2rem;
+}
+
+/* ---- exam paper blocks -------------------------------------------------- */
+
+.paper {
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: 3px;
+  background: var(--card);
+  padding: 1rem 1.2rem;
+  margin: 0 0 1rem;
+  max-width: 44rem;
+}
+.paper h4 {
+  font-family: var(--sans); font-size: 1rem; font-weight: 600;
+  margin: 0 0 0.15rem;
+}
+.paper .timing {
+  font-family: var(--sans); font-size: 0.78rem; color: var(--ink-faint);
+  margin: 0 0 0.7rem;
+}
+.paper p:last-child { margin-bottom: 0; }
+.paper .task { margin: 0.55rem 0; padding-left: 0.9rem; border-left: 2px solid var(--rule); }
+.paper .task .tname { font-family: var(--sans); font-size: 0.82rem; font-weight: 600; }
+
+/* ---- timeline ----------------------------------------------------------- */
+
+.timeline { margin: 0.8rem 0 1.6rem; max-width: 44rem; }
+.timeline .when {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 0.9rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.timeline .when:last-child { border-bottom: none; }
+.timeline .when > div:last-child { max-width: none; }
+.timeline .date {
+  font-family: var(--sans); font-size: 0.8rem; font-weight: 600;
+  color: var(--accent); line-height: 1.4;
+}
+
+/* ---- index cards -------------------------------------------------------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0 2rem;
+}
+.cardlink {
+  display: block;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 0.95rem 1.1rem;
+  text-decoration: none;
+  color: inherit;
+}
+.cardlink:hover { border-color: var(--accent); }
+.cardlink .t {
+  font-family: var(--sans); font-weight: 600; font-size: 0.96rem;
+  display: block; margin-bottom: 0.2rem;
+}
+.cardlink .d { color: var(--ink-soft); font-size: 0.85rem; display: block; line-height: 1.4; }
+.cardlink .s {
+  font-family: var(--sans); font-size: 0.66rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-faint); display: block; margin-top: 0.5rem;
+}
+.cardlink.pending { opacity: 0.55; }
+
+/* ---- misc --------------------------------------------------------------- */
+
+.lede { font-size: 1.05rem; color: var(--ink-soft); max-width: 38rem; }
+.warn {
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  padding: 0.85rem 1.1rem;
+  margin: 1.1rem 0 1.4rem;
+  max-width: 42rem;
+  font-size: 0.95rem;
+}
+.warn p:last-child { margin-bottom: 0; }
+.warn .lead {
+  display: block; font-family: var(--sans); font-size: 0.7rem;
+  letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+  color: var(--accent); margin-bottom: 0.35rem;
+}
+
+@media print {
+  .paper, .cardlink, .warn, .spec .row, .timeline .when {
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .cardlink { border-color: #ccc; }
+}
+
+/* neutral row label — must not be confused with the F/H/R tier badges */
+.rowlbl {
+  font-family: var(--sans);
+  font-size: 0.64rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-faint);
+  line-height: 1.3;
+  display: block;
+}
+.spec .row.lead-row .rowlbl { color: var(--accent); }
+
+.cardlink .golinks { display: flex; gap: 0.55rem; align-items: baseline; flex-wrap: wrap; }
+.cardlink .golinks a {
+  color: var(--accent); text-decoration: none;
+  border-bottom: 1px solid var(--accent-line); padding-bottom: 1px;
+}
+.cardlink .golinks a:hover { border-bottom-color: var(--accent); }
+.cardlink .golinks i { font-style: normal; color: var(--ink-faint); }
+
+/* ---- collapsible teacher notes ------------------------------------------ */
+
+.teachernotes { margin: 0 0 1.4rem; max-width: 44rem; }
+.teachernotes > summary {
+  font-family: var(--sans); font-size: 0.78rem;
+  letter-spacing: 0.09em; text-transform: uppercase; font-weight: 700;
+  color: var(--ink-soft); cursor: pointer; list-style: none;
+  padding: 0.6rem 0; border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.teachernotes > summary::-webkit-details-marker { display: none; }
+.teachernotes > summary::before {
+  content: "+"; font-size: 1rem; line-height: 1; color: var(--accent);
+  font-weight: 400; width: 0.8rem;
+}
+.teachernotes[open] > summary::before { content: "\2013"; }
+.teachernotes > summary:hover { color: var(--accent); }
+.teachernotes .note:first-of-type { margin-top: 1.1rem; }
+
+@media print {
+  .teachernotes { display: block !important; }
+  .teachernotes > summary { display: none; }
+  .teachernotes .note { display: block !important; }
+}
+
+/* ---- session navigation -------------------------------------------------- */
+
+.pagenav {
+  display: flex; flex-wrap: wrap; gap: 0.6rem;
+  margin: 2.6rem 0 0; padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+}
+.pagenav a {
+  flex: 1 1 12rem;
+  display: block; text-decoration: none; color: inherit;
+  border: 1px solid var(--rule); border-radius: 5px;
+  background: var(--card); padding: 0.8rem 1rem;
+}
+.pagenav a:hover { border-color: var(--accent); }
+.pagenav a .k {
+  display: block; font-family: var(--sans); font-size: 0.64rem;
+  letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-faint);
+  margin-bottom: 0.25rem;
+}
+.pagenav a .v { display: block; font-family: var(--sans); font-size: 0.9rem; font-weight: 600; }
+.pagenav a.cards { border-left: 3px solid var(--accent); }
+.pagenav a.next { text-align: right; }
+
+/* ---- session list on the introduction page ------------------------------- */
+
+.sessions { margin: 1rem 0 2rem; }
+.sessionrow {
+  display: grid; grid-template-columns: 2.6rem 1fr auto;
+  gap: 0.2rem 1rem; align-items: baseline;
+  padding: 0.85rem 0; border-bottom: 1px solid var(--rule);
+}
+.sessionrow:first-child { border-top: 1px solid var(--rule); }
+.sessionrow .n {
+  font-family: var(--sans); font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+}
+.sessionrow .body > a {
+  font-family: var(--sans); font-size: 1rem; font-weight: 600;
+  color: inherit; text-decoration: none;
+  border-bottom: 1px solid var(--accent-line); padding-bottom: 1px;
+}
+.sessionrow .body > a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.sessionrow .body p { margin: 0.25rem 0 0; color: var(--ink-soft); font-size: 0.92rem; max-width: 34rem; }
+.sessionrow .aside {
+  font-family: var(--sans); font-size: 0.76rem; color: var(--ink-faint);
+  text-align: right; white-space: nowrap;
+}
+.sessionrow .aside a { color: var(--accent); text-decoration: none; }
+.sessionrow .aside a:hover { text-decoration: underline; }
+.sessionrow .aside .dur { display: block; }
+
+/* ---- "done when" strip --------------------------------------------------- */
+
+.donewhen {
+  border: 1px solid var(--accent-line); border-left: 3px solid var(--accent);
+  background: var(--accent-soft); border-radius: 3px;
+  padding: 0.9rem 1.1rem; margin: 1.6rem 0 0; max-width: 42rem;
+}
+.donewhen .lead {
+  display: block; font-family: var(--sans); font-size: 0.7rem;
+  letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+  color: var(--accent); margin-bottom: 0.35rem;
+}
+.donewhen p { margin: 0; }
+
+@media print {
+  .pagenav { display: none; }
+  .sessionrow, .donewhen { break-inside: avoid; page-break-inside: avoid; }
+}
+
+/* ---- notebook block ------------------------------------------------------
+   Deliberately a different hue from the warm teacher notes: this one is
+   addressed to what the child physically writes down.                       */
+
+:root { --pen: #33556f; --pen-bg: #eef2f6; --pen-line: #c3d2de; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --pen: #9dc0da; --pen-bg: #1b2229; --pen-line: #33475a; }
+}
+
+.notebook {
+  background: var(--pen-bg);
+  border: 1px solid var(--pen-line);
+  border-left: 3px solid var(--pen);
+  border-radius: 3px;
+  padding: 0.95rem 1.2rem;
+  margin: 1.2rem 0 1.5rem;
+  max-width: 42rem;
+  font-size: 0.96rem;
+}
+.notebook p:last-child { margin-bottom: 0; }
+.notebook .lead {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--pen);
+  margin-bottom: 0.45rem;
+}
+.notebook ul, .notebook ol { padding-left: 1.1rem; margin: 0.4rem 0 0.7rem; }
+.notebook li { margin-bottom: 0.35rem; max-width: none; }
+.notebook .writeout {
+  font-style: italic;
+  background: transparent;
+  border-left: 2px solid var(--pen-line);
+  padding: 0.15rem 0 0.15rem 0.8rem;
+  margin: 0.5rem 0 0.7rem;
+}
+
+@media print {
+  :root { --pen: #33556f; --pen-bg: #f2f5f8; --pen-line: #aabbc8; }
+  .notebook { break-inside: avoid; page-break-inside: avoid; }
+}

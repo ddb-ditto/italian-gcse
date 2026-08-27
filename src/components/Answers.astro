@@ -1,0 +1,12 @@
+---
+/**
+ * The answers to every exercise set. Not optional: the teacher is not an
+ * Italian speaker and cannot mark from knowledge.
+ */
+interface Props { lead?: string; }
+const { lead = "Answers" } = Astro.props;
+---
+<div class="answers">
+  <span class="lead" set:html={lead} />
+  <slot />
+</div>
