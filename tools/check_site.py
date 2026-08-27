@@ -91,6 +91,19 @@ with sync_playwright() as pw:
     if not page.locator("a[href$='/progress/']").count():
         fails.append("no link to the progress page from contents")
 
+    # The mark introduces the site once. Above a lesson it would compete with
+    # the material, so it belongs to the contents page and nowhere else.
+    mark = page.locator(".logomark")
+    if mark.count() != 1:
+        fails.append(f"contents page has {mark.count()} logos, expected 1")
+    else:
+        box = mark.bounding_box()
+        notes.append(f"logo: {round(box['width'])}x{round(box['height'])}px")
+        if not (mark.get_attribute("alt") or "").strip():
+            fails.append("the logo has no alt text")
+        if box["width"] < 80:
+            fails.append(f"the logo renders at {round(box['width'])}px wide")
+
     # --- the record sheets -------------------------------------------------
     page.goto(f"{ROOT}/progress/")
     sheets = page.locator(".sheet").count()
@@ -262,13 +275,22 @@ with sync_playwright() as pw:
         fails.append("print sheets not built")
     page.emulate_media(media="screen")
 
-    # --- the icons and manifest resolve under the base path ----------------
-    for sel, attr in (("link[rel=manifest]", "href"), ("link[rel=icon]", "href")):
-        href = page.get_attribute(sel, attr)
+    # --- every icon and the manifest resolve under the base path ------------
+    for sel in ("link[rel=manifest]", "link[rel=icon][sizes='32x32']",
+                "link[rel=icon][sizes='16x16']", "link[rel=apple-touch-icon]"):
+        href = page.get_attribute(sel, "href")
+        if not href:
+            fails.append(f"no {sel} on the page")
+            continue
         got = page.request.get(f"http://127.0.0.1:{httpd.server_address[1]}{href}")
-        notes.append(f"{sel}: {href!r} → {got.status}")
+        notes.append(f"{sel.split('[')[0]} {href.rsplit('/',1)[-1]} → {got.status}")
         if got.status != 200:
             fails.append(f"{sel} does not resolve ({href})")
+
+    # The logo belongs to one page.
+    page.goto(f"{ROOT}/units/1/sessions/2/")
+    if page.locator(".logomark").count():
+        fails.append("the logo is on a lesson page, not just the contents page")
 
     b.close()
 

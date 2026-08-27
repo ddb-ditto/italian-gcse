@@ -90,6 +90,22 @@ is.
 - **Check a claim against the rest of the page.** "Nothing but a recorder and
   these pages" sat directly above a box demanding a notebook for every session.
 
+## The logo
+
+`public/logo.png` is the mark, and it appears on the contents page and nowhere
+else — above a lesson it competes with the material rather than introducing it.
+`tools/make_icons.py` derives every icon from it and needs Pillow.
+
+It is a circular mark with a ring, three lines of text and a drawing inside it.
+That reads down to about 64px and no further: at 32px only the word "Italian"
+survives and at 16px it is a smear, so the two small favicons are a drawn serif
+I in the logo's own navy on its own cream rather than the logo shrunk. If the
+logo is replaced, look at `favicon-32.png` before assuming the new one scales.
+
+The file arrived as RGB on white, which renders as a glaring square on the dark
+palette. `make_icons.transparent()` cuts the background by filling inward from
+the border, which stops at the ring and so leaves the cream inside it intact.
+
 ## House rules for code
 
 - **Scoped styles do not reach elements JavaScript creates.** Astro scopes a

@@ -554,6 +554,16 @@ footer a { color: var(--ink-faint); }
 .pagenav a .v { display: block; font-family: var(--sans); font-size: 0.9rem; font-weight: 600; }
 .pagenav a.deck { border-left: 3px solid var(--accent); }
 
+/* ---- the mark, on the contents page only -------------------------------- */
+
+.logomark {
+  display: block;
+  width: 150px; height: auto;
+  margin: 0 0 1.1rem -0.35rem;   /* the ring has air in it; pull it back to the text */
+}
+@media (max-width: 34rem) { .logomark { width: 116px; } }
+@media print { .logomark { display: none; } }
+
 /* ---- breadcrumbs -------------------------------------------------------- */
 
 .crumbs {

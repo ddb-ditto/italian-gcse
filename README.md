@@ -42,7 +42,7 @@ tools/
   check_vocab.py     every taught word is on the examined list
   vocab.py           reads the specification's vocabulary appendix
   check_site.py      open the built site in a browser and use it
-  make_icons.py      regenerate the home-screen icons
+  make_icons.py      icons, from public/logo.png — needs Pillow
 ```
 
 Content is data. A session is an `.mdx` file with frontmatter; its schema is in
