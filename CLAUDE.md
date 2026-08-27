@@ -38,10 +38,13 @@ The list is Pearson's copyright and is not in this repository. Produce it once,
 per machine, from the specification PDF:
 
 ```
-pdftotext -layout specification-gcse2017-l12-italian-issue5.pdf tools/spec.txt
+python3 tools/check_vocab.py path/to/specification-....pdf
 python3 tools/vocab.py --selftest    # the parser still reads it correctly
-python3 tools/check_vocab.py
 ```
+
+Point it at the PDF and it extracts the text itself, caching it as
+`tools/spec.txt` so later runs are instant. It needs `pdftotext` on PATH
+(poppler) and says how to get one if it is missing.
 
 `tools/spec.txt` is gitignored. Without it the check exits non-zero and says so
 rather than passing quietly — a vocabulary check with no vocabulary list looks

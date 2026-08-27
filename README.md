@@ -56,9 +56,10 @@ unit's record sheet — with no change to any template.
    frontmatter is checked, so a mistake is a build error rather than a bad page.
 2. Write its deck at `src/data/decks/<unit>-<n>.json` — same name as the
    session. A session is not finished until its deck exists.
-3. `python3 tools/check_vocab.py` — every Italian word it teaches is on the
-   specification's vocabulary list, or declared in `src/data/off-syllabus.json`
-   with a reason. This needs the specification; see `CLAUDE.md`.
+3. `python3 tools/check_vocab.py <specification>.pdf` — every Italian word it
+   teaches is on the specification's vocabulary list, or declared in
+   `src/data/off-syllabus.json` with a reason. Point it at Pearson's PDF and it
+   reads the list itself; see `CLAUDE.md`.
 4. `npm run build`, then `python3 tools/check_site.py`.
 
 A new unit is the same, plus `src/content/units/unit-<nn>.mdx`. Its body is the

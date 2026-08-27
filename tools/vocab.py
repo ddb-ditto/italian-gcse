@@ -2,6 +2,7 @@
 """Read Appendix 3 of the specification — the examined vocabulary list.
 
     python3 tools/vocab.py            # parse tools/spec.txt and report on it
+    python3 tools/vocab.py <spec>.pdf # extract from the PDF first, then parse
     python3 tools/vocab.py --selftest # known genders, and no parsing debris
     python3 tools/vocab.py --gender casa libro camera
 
@@ -25,10 +26,46 @@ would poison a unit about gender while looking perfectly reasonable.
 """
 import pathlib
 import re
+import shutil
+import subprocess
 import sys
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 DEFAULT_SPEC = REPO / "tools/spec.txt"
+
+
+def as_text(given: pathlib.Path) -> pathlib.Path | None:
+    """The specification as text, extracting it from the PDF if that is what
+    was handed over.
+
+    Taking the PDF directly means one command rather than remembering the
+    pdftotext incantation, and the extracted copy is cached beside it so the
+    second run is instant. -layout matters: without it the two columns
+    interleave and nothing parses.
+    """
+    if given.suffix.lower() != ".pdf":
+        return given if given.exists() else None
+    if not given.exists():
+        return None
+
+    cached = DEFAULT_SPEC
+    if cached.exists() and cached.stat().st_mtime >= given.stat().st_mtime:
+        return cached
+
+    pdftotext = shutil.which("pdftotext")
+    if not pdftotext:
+        print("That is a PDF, and pdftotext is not installed to read it.\n")
+        print("  macOS          brew install poppler")
+        print("  Debian/Ubuntu  sudo apt install poppler-utils")
+        print("  Windows        install Poppler for Windows, or the Xpdf tools,")
+        print("                 and put the folder holding pdftotext.exe on PATH\n")
+        print("Then run this again, or extract it once by hand:")
+        print(f"  pdftotext -layout \"{given}\" tools/spec.txt")
+        return None
+
+    print(f"extracting {given.name} -> {cached.relative_to(REPO)}")
+    subprocess.run([pdftotext, "-layout", str(given), str(cached)], check=True)
+    return cached
 
 GENDERS = ("m", "f", "mpl", "fpl", "m/f", "f/m")
 
@@ -302,7 +339,8 @@ def main() -> int:
     spec = DEFAULT_SPEC
     if args and args[0] not in ("--gender", "--selftest"):
         spec = pathlib.Path(args.pop(0))
-    if not spec.exists():
+    spec = as_text(spec) or spec
+    if not spec.exists() or spec.suffix.lower() == ".pdf":
         print(f"No vocabulary list at {spec}. See CLAUDE.md.")
         return 2
 

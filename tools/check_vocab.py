@@ -2,8 +2,8 @@
 """Every Italian word taught is on the examined vocabulary list, or is a
 deliberate exception with a reason.
 
-    python3 tools/check_vocab.py                # uses tools/spec.txt
-    python3 tools/check_vocab.py path/to/spec.txt
+    python3 tools/check_vocab.py                       # uses tools/spec.txt
+    python3 tools/check_vocab.py path/to/spec.pdf      # or the PDF itself
 
 The list is Appendix 3 of the Pearson Edexcel GCSE Italian (1IN0) specification.
 It is Pearson's copyright and is **not in this repository**, so this does not run
@@ -102,7 +102,8 @@ def exceptions() -> dict[str, str]:
 
 def main() -> int:
     given = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else REPO / "tools/spec.txt"
-    if not given.exists():
+    given = vocab.as_text(given) or given
+    if not given.exists() or given.suffix.lower() == ".pdf":
         print(f"No vocabulary list at {given}.\n")
         print("It is Appendix 3 of the specification, which is Pearson's copyright")
         print("and is not in this repository. Produce it once, per machine:\n")
