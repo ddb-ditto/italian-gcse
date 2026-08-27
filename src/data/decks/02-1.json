@@ -83,6 +83,13 @@
       "m": "the desk"
     },
     {
+      "d": "il",
+      "t": "word",
+      "f": "il cane",
+      "s": "eel KA-ne",
+      "m": "the dog — ends in -e, so the rule cannot help you"
+    },
+    {
       "d": "la",
       "t": "word",
       "f": "la sedia",
@@ -137,6 +144,13 @@
       "f": "la porta",
       "s": "la POR-ta",
       "m": "the door"
+    },
+    {
+      "d": "la",
+      "t": "word",
+      "f": "la classe",
+      "s": "la KLAS-se",
+      "m": "the class — ends in -e, so the rule cannot help you"
     }
   ]
 }

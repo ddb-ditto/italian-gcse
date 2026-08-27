@@ -140,6 +140,30 @@ def exceptions() -> dict[str, str]:
     return {k.lower(): v for k, v in listed.items()}
 
 
+def check_stress() -> list[str]:
+    """A card teaching the default stress must be stressed on that syllable.
+
+    Unit 1's stress deck opened with casa written "ca-SA" — the final syllable
+    — on a card whose own answer says the default is the second to last, and
+    with Session 1 elsewhere giving KA-za. Nothing catches that by reading.
+    """
+    wrong = []
+    for f in sorted(DECKS.glob("*.json")):
+        for card in json.loads(f.read_text(encoding="utf-8"))["cards"]:
+            guide, answer = card.get("s", ""), card.get("m", "")
+            if "second-to-last" not in answer or "-" not in guide:
+                continue
+            syllables = guide.split("-")
+            stressed = [i for i, s in enumerate(syllables) if s.isupper()]
+            want = len(syllables) - 2
+            if stressed != [want]:
+                where = stressed[0] + 1 if stressed else "none"
+                wrong.append(f"{f.stem}: {card['f']!r} written {guide!r} — stress on "
+                             f"{where}, but the card says second-to-last "
+                             f"({want + 1} of {len(syllables)})")
+    return wrong
+
+
 def main() -> int:
     given = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else REPO / "tools/spec.txt"
     given = vocab.as_text(given) or given
@@ -198,9 +222,9 @@ def main() -> int:
         print(f"  {mark}{deck}  {term:24} {', '.join(absent)}"
               + (f"   — {why}" if why else ""))
 
-    disagreeing = check_articles(nouns)
+    disagreeing = check_articles(nouns) + check_stress()
     if disagreeing:
-        print(f"\narticles that do not agree with the list ({len(disagreeing)}):")
+        print(f"\nItalian that does not agree with itself ({len(disagreeing)}):")
         for w in disagreeing:
             print(f"  !! {w}")
 
@@ -210,7 +234,7 @@ def main() -> int:
             print(f"Add each to {EXCEPTIONS.relative_to(REPO)} with a one-line reason, "
                   "or choose a word that is on the list.")
         if disagreeing:
-            print(f"FAILED — {len(disagreeing)} article(s) disagree with the list.")
+            print(f"FAILED — {len(disagreeing)} disagreement(s).")
         return 1
 
     print("\nevery word is on the examined list, or is a declared exception.")
