@@ -140,6 +140,45 @@ def exceptions() -> dict[str, str]:
     return {k.lower(): v for k, v in listed.items()}
 
 
+TERM = re.compile(r'"term":\s*"([^"]+)"')
+
+
+def undrilled() -> list[str]:
+    """Words a session works with that no card in that unit carries.
+
+    Not a failure, and deliberately not one: Unit 1's hard-and-soft deck is all
+    rule cards by design, and its baseline word list is meant to be unseen. But
+    il cane, la classe and un amico were each taught in prose and never drilled,
+    and only reading the unit found them. This puts the candidates in front of
+    whoever is doing the reading rather than deciding for them.
+    """
+    unit_cards: dict[str, str] = {}
+    for f in sorted(DECKS.glob("*.json")):
+        unit = f.stem.split("-")[0]
+        cards = json.loads(f.read_text(encoding="utf-8"))["cards"]
+        # Every front, not only the word cards: the hard-and-soft deck puts
+        # the word on the front of a rule card ("cane" -> "Hard, c before a"),
+        # and reading only word cards reported all sixteen as undrilled.
+        unit_cards[unit] = unit_cards.get(unit, "") + " " + " ".join(
+            c["f"].lower() for c in cards)
+
+    out = []
+    for f in sorted(SESSIONS.glob("*.mdx")):
+        text = f.read_text(encoding="utf-8")
+        carded = unit_cards.get(f.stem.split("-")[0], "")
+        words = []
+        for block in GRID.findall(text):
+            words += QUOTED.findall(block)
+        words += TERM.findall(text)
+        loose = [w for w in dict.fromkeys(words)
+                 if len(w) > 2 and not SYLLABLES.search(w)
+                 and "→" not in w and "," not in w and " " not in w
+                 and w.lower().strip("'") not in carded]
+        if loose:
+            out.append(f"{f.stem}: {', '.join(loose)}")
+    return out
+
+
 def check_stress() -> list[str]:
     """A card teaching the default stress must be stressed on that syllable.
 
@@ -221,6 +260,12 @@ def main() -> int:
         mark = "ok " if why else "!! "
         print(f"  {mark}{deck}  {term:24} {', '.join(absent)}"
               + (f"   — {why}" if why else ""))
+
+    loose = undrilled()
+    if loose:
+        print("\nworked with in a session, on no card in that unit — judge each:")
+        for line in loose:
+            print(f"  ?  {line}")
 
     disagreeing = check_articles(nouns) + check_stress()
     if disagreeing:

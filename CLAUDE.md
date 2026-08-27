@@ -74,6 +74,39 @@ reason. Prefer fixing to declaring: the check found the stress deck teaching
 *medico*, which is not on the list, where *musica* makes the identical point and
 is.
 
+## Read the unit before it ships
+
+**A unit is not finished when the checks pass. It is finished when it has been
+read end to end, against this list, and the reading is done before it ships and
+not after.**
+
+That is not a general exhortation to be careful. Units 1 and 2 passed every
+check and were shipped, and reading them afterwards found nine problems, of
+which the tools had caught none — including the stress deck's first card
+teaching the opposite of its own rule. These are the classes that only reading
+finds, each one written here because it actually happened:
+
+1. **Check every claim against the rest of the course, not the page.** Session 1
+   said there are no silent letters in Italian; Session 2 teaches two of them.
+2. **Check every promise the introduction makes against the sessions.** The unit
+   intro said a dozen rules let you pronounce any word on sight; Session 4
+   spends half an hour showing that unmarked stress does not work that way.
+3. **Trace every fact about the exam to the specification, or weaken it until
+   you can.** "Examined in two of the four papers" was asserted twice about
+   handwriting and the specification does not support it.
+4. **Every rule must cover every word the unit teaches.** Session 1's gender
+   rule handled -o, -a and -e; Session 3 drilled *lo sport* and *lo yogurt*,
+   which are none of those.
+5. **Every word taught in prose or in the notebook needs a card.** *il cane*,
+   *la classe* and *un amico* were each taught and never drilled — the last is
+   half of the trap its session turns on. `check_vocab.py` lists the candidates
+   under "on no card in that unit"; it does not decide, because some are meant
+   to be uncarded.
+6. **Read every pronunciation guide as an English speaker would read it.**
+   *STAI* reads as "stay", *e TOO* wants to be "eh TOO".
+7. **Measure every number.** "Six nouns in ten" was really seven, which made the
+   rule sound weaker than it is. `tools/vocab.py` can count.
+
 ## House rules for content
 
 - **Nobody real appears.** Where a lesson needs a name it is invented and
@@ -132,7 +165,8 @@ npm run build
 python3 tools/check_all.py
 ```
 
-That runs all four and says which of them did not run — a skipped check and a
+Then read the unit, against the list above. That runs all four and says which
+of them did not run — a skipped check and a
 passing check look identical otherwise. `check_site.py` needs a build and a
 browser; the two vocabulary checks need `tools/spec.txt`. CI has neither the
 specification nor a browser, so it runs `check_text.py` alone and the rest are

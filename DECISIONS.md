@@ -98,6 +98,26 @@ specification itself stays out of the repository — Pearson's copyright — so 
 is an authoring check rather than a CI one, run while a unit is being written,
 which is the only point at which it can change anything.
 
+## A unit is read before it ships, and the tools do not replace that
+
+The checks cover what is mechanical: a word that is not on the examined list, an
+article that disagrees with the gender, a standfirst that has drifted from its
+deck, double-encoded text, a stress guide that contradicts its own card. Every
+one of those was added because it had already gone wrong.
+
+None of them catches a page that contradicts another page. Units 1 and 2 passed
+everything and shipped, and reading them afterwards found nine problems the
+tools had no opinion about — a claim in Session 1 disproved by Session 2, a
+promise in the introduction disproved by Session 4, a rule that did not cover
+words the unit itself taught, and four words taught in prose that no card ever
+drilled. So the reading is a step, it is written down in CLAUDE.md as a list of
+the things that actually went wrong, and it happens before the unit ships.
+
+Where a class of error can be made mechanical it is moved out of that list and
+into a tool. That is what happened to the stress guides, and it is the reason
+the list is short: everything left on it is there because automating it would
+mean guessing.
+
 ## Can-dos, not coverage
 
 A unit's frontmatter carries its can-do list and the unit page says to move on
