@@ -85,7 +85,15 @@ that is not on it must be declared in `src/data/off-syllabus.json` with a
 reason.
 
 It earns its place: on its first run it found the stress deck teaching *medico*,
-which is not on the list, where *musica* makes the same point and is. The
+which is not on the list, where *musica* makes the same point and is.
+
+Reading the list is a parser, `tools/vocab.py`, rather than a regular
+expression, because the first regular expression was wrong in three ways at
+once — it read the gender of *camera da letto (f)* as belonging to *letto*, it
+truncated every noun that begins with an article so *lavagna* was filed under
+*vagna*, and it ate the leading *e* of *età*. None of that was visible in the
+output; it simply produced a plausible table. It has a self-test that asserts
+genders nobody disputes, for the same reason the site has a browser check. The
 specification itself stays out of the repository — Pearson's copyright — so this
 is an authoring check rather than a CI one, run while a unit is being written,
 which is the only point at which it can change anything.

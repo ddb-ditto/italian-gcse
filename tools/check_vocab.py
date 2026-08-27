@@ -28,6 +28,9 @@ import pathlib
 import re
 import sys
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import vocab
+
 REPO = pathlib.Path(__file__).resolve().parent.parent
 DECKS = REPO / "src/data/decks"
 EXCEPTIONS = REPO / "src/data/off-syllabus.json"
@@ -36,9 +39,47 @@ EXCEPTIONS = REPO / "src/data/off-syllabus.json"
 WORD = re.compile(r"[a-zàèéìòóùA-ZÀÈÉÌÒÙ][a-zàèéìòóù'’]+")
 
 
-def spec_words(path: pathlib.Path) -> set[str]:
-    text = path.read_text(encoding="utf-8")
-    return {w.lower().replace("’", "'") for w in WORD.findall(text)}
+# An article and the noun it belongs to, at the start of a card front.
+ARTICLE_NOUN = re.compile(
+    r"^(il|lo|la|l['’]|i|gli|le|un|uno|una|un['’])\s*([A-Za-zÀ-ÖØ-öø-ÿ'’]+)", re.I)
+FEMININE = {"la", "le", "una"}
+MASCULINE = {"il", "lo", "i", "gli", "un", "uno"}
+# lo and uno go before s+consonant, z, gn, ps, pn, x, y and i+vowel; il and un
+# before any other consonant. This is the rule Unit 2 turns on.
+NEEDS_LO = re.compile(r"^(s[^aeiouàèéìòóù]|z|gn|ps|pn|x|y|i[aeou])", re.I)
+VOWEL = re.compile(r"^[aeiouàèéìòóù]", re.I)
+
+
+def check_articles(nouns: dict[str, set[str]]) -> list[str]:
+    """Where a card teaches an article with its noun, the two must agree.
+
+    A unit about gender that ships "la libro" would be teaching the mistake it
+    exists to prevent, and no amount of reading it back catches that reliably.
+    """
+    wrong = []
+    for deck, term in taught_terms():
+        m = ARTICLE_NOUN.match(term.strip())
+        if not m:
+            continue
+        article = m.group(1).lower().replace("’", "'")
+        noun = m.group(2).lower().replace("’", "'")
+        genders = nouns.get(noun)
+        if not genders:
+            continue                     # reported separately as off-list
+        flat = {g[0] for g in genders}   # m, f, mpl, fpl -> m, f
+
+        if article in FEMININE and "f" not in flat:
+            wrong.append(f"{deck}: {term!r} — {noun} is {'/'.join(sorted(genders))}")
+        elif article in MASCULINE and "m" not in flat:
+            wrong.append(f"{deck}: {term!r} — {noun} is {'/'.join(sorted(genders))}")
+
+        if article in ("lo", "uno") and not NEEDS_LO.match(noun):
+            wrong.append(f"{deck}: {term!r} — {noun} does not take lo/uno")
+        if article in ("il", "un") and NEEDS_LO.match(noun):
+            wrong.append(f"{deck}: {term!r} — {noun} takes lo/uno, not il/un")
+        if article in ("il", "un", "la", "una") and VOWEL.match(noun):
+            wrong.append(f"{deck}: {term!r} — {noun} begins with a vowel, so l'/un'")
+    return wrong
 
 
 # A reflexive infinitive drops the final -e: chiamare -> chiamarsi. Matching
@@ -104,13 +145,15 @@ def main() -> int:
         print("Nothing was checked. Fix that before writing a unit.")
         return 2
 
-    listed = spec_words(given)
+    nouns, listed = vocab.parse(given)
+    grammar = vocab.grammar_words(given)
     stems = verb_stems(listed)
     allowed = exceptions()
-    print(f"vocabulary list: {given} ({len(listed)} distinct words, "
-          f"{len(stems)} verb stems)")
+    print(f"vocabulary list: {given} ({len(listed)} words, {len(nouns)} nouns "
+          f"with a gender, {len(stems)} verb stems); grammar appendix: "
+          f"{len(grammar)} words")
 
-    on, inflected, off, undeclared = 0, [], [], []
+    on, inflected, grammar_only, off, undeclared = 0, [], [], [], []
     for deck, term in taught_terms():
         words = [w.lower().replace("’", "'") for w in WORD.findall(term)]
         if not words:
@@ -118,6 +161,9 @@ def main() -> int:
         missing = [w for w in words if w not in listed]
         if not missing:
             on += 1
+            continue
+        if all(w in grammar for w in missing):
+            grammar_only.append((deck, term, missing))
             continue
         forms = {w: looks_inflected(w, stems) for w in missing}
         if all(forms.values()):
@@ -129,7 +175,11 @@ def main() -> int:
             undeclared.append((deck, term, absent))
 
     print(f"word cards: {on} on the list, {len(inflected)} inflected forms of "
-          f"listed words, {len(off)} off it")
+          f"listed words, {len(grammar_only)} named in the grammar appendix, "
+          f"{len(off)} off both")
+
+    for deck, term, words in grammar_only:
+        print(f"  g  {deck}  {term:24} {', '.join(words)} — grammar appendix")
 
     for deck, term, forms in inflected:
         shown = ", ".join(f"{w} → {' / '.join(lemmas)}" for w, lemmas in forms.items())
@@ -141,10 +191,19 @@ def main() -> int:
         print(f"  {mark}{deck}  {term:24} {', '.join(absent)}"
               + (f"   — {why}" if why else ""))
 
-    if undeclared:
-        print(f"\nFAILED — {len(undeclared)} off-list term(s) with no reason given.")
-        print(f"Add each to {EXCEPTIONS.relative_to(REPO)} with a one-line reason, or "
-              "choose a word that is on the list.")
+    disagreeing = check_articles(nouns)
+    if disagreeing:
+        print(f"\narticles that do not agree with the list ({len(disagreeing)}):")
+        for w in disagreeing:
+            print(f"  !! {w}")
+
+    if undeclared or disagreeing:
+        if undeclared:
+            print(f"\nFAILED — {len(undeclared)} off-list term(s) with no reason given.")
+            print(f"Add each to {EXCEPTIONS.relative_to(REPO)} with a one-line reason, "
+                  "or choose a word that is on the list.")
+        if disagreeing:
+            print(f"FAILED — {len(disagreeing)} article(s) disagree with the list.")
         return 1
 
     print("\nevery word is on the examined list, or is a declared exception.")

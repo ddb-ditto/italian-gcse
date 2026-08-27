@@ -39,6 +39,7 @@ per machine, from the specification PDF:
 
 ```
 pdftotext -layout specification-gcse2017-l12-italian-issue5.pdf tools/spec.txt
+python3 tools/vocab.py --selftest    # the parser still reads it correctly
 python3 tools/check_vocab.py
 ```
 
@@ -46,9 +47,23 @@ python3 tools/check_vocab.py
 rather than passing quietly — a vocabulary check with no vocabulary list looks
 exactly like one that found nothing.
 
-It reports three things. Words on the list; words that are inflected forms of
-listed words (*chiamo* → *chiamare*), which are fine and are shown so you can
-see they were understood; and words on neither footing, which fail the run.
+It reports four things. Words on the list; inflected forms of listed words
+(*chiamo* → *chiamare / chiamarsi*), shown so you can see they were understood;
+words named in Appendix 2, the grammar list, which is where the articles,
+pronouns and prepositions live — Unit 2 teaches *il* and *lo*, and neither is
+vocabulary; and words on none of those footings, which fail the run.
+
+It also checks that any card teaching an article with its noun agrees with the
+list: gender, and the *lo/uno* rule, and *l\'* before a vowel. A unit about
+gender that shipped *la libro* would be teaching the mistake it exists to
+prevent, and re-reading does not catch that reliably.
+
+`tools/vocab.py` does the parsing and has a `--selftest` that asserts known
+genders and refuses parsing debris. Run it whenever the specification is
+re-extracted. It is not decoration: the first version of it read the gender in
+*camera da letto (f)* as belonging to *letto*, and separately truncated every
+noun beginning with an article — *lavagna* became *vagna* — so that a unit about
+gender would have been built on a table that was quietly wrong.
 An off-list word is not automatically wrong — Unit 1 teaches *gnocchi* and
 *spaghetti* for their sound in a unit that says not to teach their meaning — but
 it has to be a decision, so each one goes in `src/data/off-syllabus.json` with a
