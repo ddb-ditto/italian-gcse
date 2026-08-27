@@ -186,6 +186,23 @@ Gender is still taught with the noun from Unit 2 onwards. The reason is that it
 is cheap to learn early, expensive to retrofit, and needed by the plurals and
 the agreement that follow — not that it scores.
 
+## Formal register stays at Unit 12
+
+It was worth asking, because the formal question is 28 of 60 marks on the Higher
+writing paper and Unit 12 is late — twelve units of *tu* before the register that
+half the paper is set in.
+
+The mark schemes answered it. Register is one bullet of four in the communication
+and content grid, and it appears in no accuracy grid at all, so getting it wrong
+holds down the larger grid on a question rather than capping the paper. That is a
+real cost and not a cliff. Against it, *Lei* needs the third person of the verb
+and the possessive to be secure first, and pulling it forward would mean teaching
+it twice.
+
+So it stays where it is. Every session involving speaking to someone still marks
+which register it is using, from Unit 1 — the unit is where the distinction is
+taught, not where it starts being noticed.
+
 ## Still open
 
 - Custom domain, or `ddb-ditto.github.io/italian-gcse`? No `CNAME` file yet.
