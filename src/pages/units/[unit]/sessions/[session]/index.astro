@@ -2,6 +2,7 @@
 /** One session: one sitting, 20–40 minutes, with its own deck. */
 import { getCollection, render } from "astro:content";
 import Base from "../../../../../layouts/Base.astro";
+import Breadcrumbs from "../../../../../components/Breadcrumbs.astro";
 import PageNav from "../../../../../components/PageNav.astro";
 import SiteFooter from "../../../../../components/SiteFooter.astro";
 
@@ -46,6 +47,11 @@ const at = (s: number) => `${base}/units/${u}/sessions/${s}/`;
   standfirst={session.data.standfirst}
   description={session.data.summary}
 >
+  <Breadcrumbs slot="nav" trail={[
+    { label: "Contents", href: `${base}/` },
+    { label: `Unit ${String(u).padStart(2, "0")}`, href: `${base}/units/${u}/` },
+    { label: `Session ${n}` },
+  ]} />
 
   <a class="deckcue noprint" href={`${at(n)}cards/`} target="_blank" rel="noopener"
      aria-label={`Flashcards for this session, ${cards} cards — opens in a new tab`}>

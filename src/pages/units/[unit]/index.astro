@@ -6,6 +6,7 @@
  */
 import { getCollection, render } from "astro:content";
 import Base from "../../../layouts/Base.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import Section from "../../../components/Section.astro";
 import SessionList from "../../../components/SessionList.astro";
 import Plain from "../../../components/Plain.astro";
@@ -58,6 +59,10 @@ const next = stage1.find((u) => u.number === n + 1);
   heading={unit.data.title}
   standfirst={unit.data.standfirst}
 >
+  <Breadcrumbs slot="nav" trail={[
+    { label: "Contents", href: `${base}/` },
+    { label: `Unit ${String(n).padStart(2, "0")}` },
+  ]} />
 
   <Content />
 
@@ -73,11 +78,20 @@ const next = stage1.find((u) => u.number === n + 1);
   </Plain>
 
   {unit.data.insist && (
-    <Note lead="The one to insist on"><p>{unit.data.insist}</p></Note>
+    <Note lead="The one to insist on"><p set:html={unit.data.insist} /></Note>
   )}
 
   <p class="noprint">These are the ticks on the <a href={`${base}/progress/#unit-${n}`}>record
   sheet</a> for this unit. Test them cold, on a different day from the last session.</p>
+
+  {unit.data.contingency && (
+    <>
+      <Section kicker="Contingency">If it's going badly</Section>
+      <Plain>
+        {unit.data.contingency.map((c) => <li set:html={c} />)}
+      </Plain>
+    </>
+  )}
 
   <PageNav
     prev={{ kicker: "Back to", label: "Contents", href: `${base}/` }}

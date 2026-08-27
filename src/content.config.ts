@@ -25,6 +25,11 @@ const units = defineCollection({
      * template would be Unit 1's opinion printed on Unit 14.
      */
     insist: z.string().optional(),
+    /**
+     * What to do when the unit goes badly. Inline HTML, like the leads: the
+     * template decides where it goes so every unit's page reads the same way.
+     */
+    contingency: z.array(z.string()).optional(),
   }),
 });
 

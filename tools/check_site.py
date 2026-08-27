@@ -106,6 +106,34 @@ with sync_playwright() as pw:
         if wide() > 390:
             fails.append(f"reference/{slug} scrolls sideways at 390px")
 
+    # --- the trail, on every page below the contents ------------------------
+    # The pages are long, so a link that only exists in the footer is not
+    # navigation: the trail has to still be on screen once you have scrolled.
+    for path, expected in (
+        ("/units/1/", "Contents › Unit 01"),
+        ("/units/1/sessions/2/", "Contents › Unit 01 › Session 2"),
+        ("/units/1/sessions/2/cards/", "Contents › Unit 01 › Session 2 › Flashcards"),
+        ("/progress/", "Contents › Progress"),
+        ("/reference/teaching-plan/", "Contents › Teaching plan"),
+    ):
+        page.goto(f"{ROOT}{path}")
+        crumbs = page.locator(".crumbs li")
+        got = " › ".join(crumbs.all_inner_texts())
+        if got != expected:
+            fails.append(f"{path} trail is {got!r}, expected {expected!r}")
+    notes.append(f"breadcrumb trails checked on 5 pages, deepest: {got!r}")
+
+    page.goto(f"{ROOT}/units/1/sessions/2/")
+    page.evaluate("window.scrollTo(0, 1400)")
+    page.wait_for_timeout(200)
+    stuck = page.locator(".crumbs").bounding_box()
+    if not stuck or round(stuck["y"]) != 0:
+        fails.append("the breadcrumb does not stay on screen when the page scrolls")
+    page.locator(".crumbs a:has-text('Unit 01')").click()
+    page.wait_for_load_state()
+    if "sound of it" not in page.locator("h1").first.inner_text():
+        fails.append("the breadcrumb's unit link does not go to the unit")
+
     # --- a unit, then a lesson ---------------------------------------------
     page.goto(f"{ROOT}/units/1/")
     rows = page.locator(".sessionrow").count()

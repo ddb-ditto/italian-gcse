@@ -9,6 +9,7 @@
  */
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Section from "../../components/Section.astro";
 import Steps from "../../components/Steps.astro";
 import Note from "../../components/Note.astro";
@@ -42,6 +43,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   standfirst="One sheet per child per unit, ticked by hand. Two lists: the sessions worked through, and the can-dos that decide whether to move on."
   description="Printable tick sheets for recording progress through a home-taught Edexcel GCSE Italian course: one per child per unit, sessions and can-do checks."
 >
+  <Breadcrumbs slot="nav" trail={[
+    { label: "Contents", href: `${base}/` },
+    { label: "Progress" },
+  ]} />
 
   <Section kicker="How it works">Paper, on purpose</Section>
 
@@ -69,10 +74,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     on.</p>
   </Note>
 
-  <Note lead="Two children, two sheets" child>
-    <p>Print a sheet each and keep them apart. They will not move at the same
-    speed, and a shared sheet turns the slower one's record into a comparison
-    with the faster one every time it is opened. Same course, separate paper.</p>
+  <Note lead="One sheet each" child>
+    <p>If you are teaching more than one child, print a sheet each and keep them
+    apart. They will not move at the same speed, and a shared sheet turns the
+    slower one's record into a comparison with the faster one every time it is
+    opened. Same course, separate paper.</p>
   </Note>
 
   <Section kicker="The sheets">One per unit</Section>

@@ -5,6 +5,7 @@
  */
 import { getCollection, getEntry } from "astro:content";
 import Base from "../../../../../../layouts/Base.astro";
+import Breadcrumbs from "../../../../../../components/Breadcrumbs.astro";
 import Flashcards from "../../../../../../components/Flashcards.astro";
 import SiteFooter from "../../../../../../components/SiteFooter.astro";
 
@@ -28,6 +29,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   heading={`Flashcards — ${session?.data.title ?? ""}`}
   standfirst={session?.data.deckStandfirst}
 >
+  <Breadcrumbs slot="nav" trail={[
+    { label: "Contents", href: `${base}/` },
+    { label: `Unit ${String(u).padStart(2, "0")}`, href: `${base}/units/${u}/` },
+    { label: `Session ${n}`, href: `${base}/units/${u}/sessions/${n}/` },
+    { label: "Flashcards" },
+  ]} />
 
   {deck.data.notes.length > 0 && (
     <details class="teachernotes noprint">

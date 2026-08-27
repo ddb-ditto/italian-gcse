@@ -1,0 +1,24 @@
+---
+/**
+ * Where you are, and one click back to anywhere above you.
+ *
+ * It sticks to the top of the window so it is still there four screens into a
+ * session — the pages are long, and a link that only exists in the footer is
+ * not navigation. The last crumb is the current page and is not a link.
+ */
+export interface Crumb { label: string; href?: string; }
+
+interface Props { trail: Crumb[]; }
+const { trail } = Astro.props;
+---
+<nav class="crumbs noprint" aria-label="Breadcrumb">
+  <ol>
+    {trail.map((c) => (
+      <li>
+        {c.href
+          ? <a href={c.href}>{c.label}</a>
+          : <span aria-current="page">{c.label}</span>}
+      </li>
+    ))}
+  </ol>
+</nav>
