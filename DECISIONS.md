@@ -96,7 +96,7 @@ material was being copied in and stopped making sense the moment the course was
 written here instead: a real name can now only arrive if someone types it on
 purpose, and a grep is not what stops that.
 
-`tools/check_paths.py` remains, and checks one thing — a local file path pasted
+`tools/check_text.py` remains, and checks one thing — a local file path pasted
 into a file, which names whoever owns the machine and is permanent once the
 repository is public. That one is a genuine slip, so it is worth a net.
 

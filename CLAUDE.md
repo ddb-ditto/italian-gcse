@@ -52,13 +52,17 @@ twice.
   prints the tags.
 - **MDX is JSX.** Void tags self-close, a list item must be on one line, and a
   bare `<` in prose is read as a tag.
+- **Always name the encoding.** `read_text()` and `write_text()` without
+  `encoding="utf-8"` are how the decks came to say *cittÃ* and *â* instead of
+  *città* and an em dash — text already in UTF-8, decoded as Latin-1 and
+  encoded again. It survived a month because nothing throws.
 
 ## Before committing
 
 ```
 npm run build
 python3 tools/check_site.py     # drives the built site in a real browser
-python3 tools/check_paths.py    # no local file paths — CI runs this too
+python3 tools/check_text.py     # paths and encoding — CI runs this too
 ```
 
 `check_site.py` is not decoration. Every failure this project has shipped was

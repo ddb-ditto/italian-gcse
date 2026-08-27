@@ -17,7 +17,7 @@
     {
       "d": "Sound rules",
       "t": "rule",
-      "f": "What does a written accent tell you â cittÃ , caffÃ¨, perchÃ©?",
+      "f": "What does a written accent tell you — città, caffè, perché?",
       "m": "That the stress falls on the final syllable. It is marked so you always know."
     },
     {
@@ -25,77 +25,77 @@
       "t": "word",
       "f": "casa",
       "s": "ca-SA",
-      "m": "Default â second-to-last syllable."
+      "m": "Default — second-to-last syllable."
     },
     {
       "d": "Stress",
       "t": "word",
       "f": "amico",
       "s": "a-MI-co",
-      "m": "Default â second-to-last syllable."
+      "m": "Default — second-to-last syllable."
     },
     {
       "d": "Stress",
       "t": "word",
       "f": "signore",
       "s": "si-GNO-re",
-      "m": "Default â second-to-last syllable."
+      "m": "Default — second-to-last syllable."
     },
     {
       "d": "Stress",
       "t": "word",
       "f": "bicicletta",
       "s": "bi-ci-CLET-ta",
-      "m": "Default â second-to-last syllable."
+      "m": "Default — second-to-last syllable."
     },
     {
       "d": "Stress",
       "t": "word",
       "f": "spaghetti",
       "s": "spa-GHET-ti",
-      "m": "Default â second-to-last syllable."
+      "m": "Default — second-to-last syllable."
     },
     {
       "d": "Stress",
       "t": "word",
-      "f": "cittÃ ",
-      "s": "cit-TÃ",
-      "m": "Accent â stress on the final syllable."
+      "f": "città",
+      "s": "cit-TÀ",
+      "m": "Accent — stress on the final syllable."
     },
     {
       "d": "Stress",
       "t": "word",
-      "f": "perchÃ©",
-      "s": "per-CHÃ",
-      "m": "Accent â stress on the final syllable."
+      "f": "perché",
+      "s": "per-CHÉ",
+      "m": "Accent — stress on the final syllable."
     },
     {
       "d": "Stress",
       "t": "word",
-      "f": "caffÃ¨",
-      "s": "caf-FÃ",
-      "m": "Accent â stress on the final syllable."
+      "f": "caffè",
+      "s": "caf-FÈ",
+      "m": "Accent — stress on the final syllable."
     },
     {
       "d": "Stress",
       "t": "word",
-      "f": "universitÃ ",
-      "s": "u-ni-ver-si-TÃ",
-      "m": "Accent â stress on the final syllable."
+      "f": "università",
+      "s": "u-ni-ver-si-TÀ",
+      "m": "Accent — stress on the final syllable."
     },
     {
       "d": "Stress",
       "t": "word",
-      "f": "papÃ ",
-      "s": "pa-PÃ",
-      "m": "Accent â stress on the final syllable."
+      "f": "papà",
+      "s": "pa-PÀ",
+      "m": "Accent — stress on the final syllable."
     },
     {
       "d": "Stress",
       "t": "word",
-      "f": "lunedÃ¬",
-      "s": "lu-ne-DÃ",
-      "m": "Accent â stress on the final syllable."
+      "f": "lunedì",
+      "s": "lu-ne-DÌ",
+      "m": "Accent — stress on the final syllable."
     },
     {
       "d": "Stress",

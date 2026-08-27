@@ -36,7 +36,7 @@ src/
   scripts/       the flashcard app, bundled once
   styles/        the house stylesheet, loaded once
 tools/
-  check_paths.py     no local file paths — run by CI
+  check_text.py      local paths and double-encoded text — run by CI
   check_site.py      open the built site in a browser and use it
   make_icons.py      regenerate the home-screen icons
 ```
@@ -92,9 +92,11 @@ read by anyone given the link.
 
 ## Before publishing
 
-`python3 tools/check_paths.py` scans every text file for a local file path — the
-one thing that gets pasted in without anyone meaning it to, and permanent once
-the repository is public. CI runs it before the build.
+`python3 tools/check_text.py` scans every text file for the two things that get
+in without anyone meaning them to: a local file path, which names whoever owns
+the machine and is permanent once the repository is public, and double-encoded
+UTF-8, which shipped a deck reading "cittA" for a month of nobody noticing. CI
+runs it before the build.
 
 Where a lesson needs a name it uses an invented Italian one, or a role: the
 dialogue in Unit 1 is between *You* and *Child*, and the one slot for a name is
@@ -103,7 +105,7 @@ written `[name]`.
 ## Checking it before you trust it
 
 ```
-python3 tools/check_paths.py                   # run by CI
+python3 tools/check_text.py                   # run by CI
 npm run build && python3 tools/check_site.py   # opens it and uses it
 ```
 
