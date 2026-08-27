@@ -41,6 +41,39 @@ and they carry only what the syllabus turns on: the sessions worked through, and
 the can-do statements that decide whether to move on. No marks, no scores, no
 minutes — a number there would be invented.
 
+## The template owns the shape of a page; content supplies the material
+
+A unit file's body is its introduction. Its can-do list, the one can-do to
+insist on and what to do if the unit goes badly are frontmatter, and the unit
+page places them. That is not tidiness: while both sides owned the shape, Unit 1
+rendered its can-do list, that heading and its note twice, and the note was
+Unit 1's opinion of Unit 1 sitting in the template where every later unit would
+have inherited it. A unit now supplies material and gets the same page as every
+other unit, for free.
+
+## A deck is a file
+
+`src/data/decks/01-2.json` is the deck for `src/content/sessions/01-2.mdx` —
+same name, so the pair is obvious in a directory listing and the id comes from
+the filename. One file for the whole course would have been a quarter of a
+megabyte by Unit 14 that every session edit had to touch and every merge had to
+reconcile.
+
+## Nothing is dated, and nobody is counted
+
+The course does not start in a particular September, so its timelines run
+Year 1 · autumn to Year 2 · May/June rather than naming years that are wrong for
+everyone who starts later. For the same reason nothing assumes how many children
+are being taught: the material says "a child" or "them", the sheets are one per
+learner, and the places that need more than one say "if you are teaching more
+than one".
+
+## Navigation is on the page, not in the footer
+
+Every page below the contents carries a trail — Contents › Unit 01 › Session 2 ›
+Flashcards — pinned to the top of the window. A session page runs four screens on
+a phone, and a link that only exists at the bottom of that is not navigation.
+
 ## Can-dos, not coverage
 
 A unit's frontmatter carries its can-do list and the unit page says to move on

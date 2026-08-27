@@ -29,7 +29,7 @@ src/
     reference/   teaching plan, the Stage 1 unit list, grammar checklist
   data/
     stage1.json  the fourteen units of Stage 1, built or not
-    decks.json   every flashcard, keyed to a unit and session
+    decks/       one file per session's deck, named for that session
   components/    the blocks the lessons are written out of
   layouts/       the one layout
   pages/         routes; the unit and session pages are generated from content
@@ -50,13 +50,15 @@ unit's record sheet — with no change to any template.
 
 1. Write `src/content/sessions/<unit>-<n>.mdx`. Copy an existing one: the
    frontmatter is checked, so a mistake is a build error rather than a bad page.
-2. Add its deck to `src/data/decks.json` — same `unit` and `session`. A session
-   is not finished until its deck exists.
+2. Write its deck at `src/data/decks/<unit>-<n>.json` — same name as the
+   session. A session is not finished until its deck exists.
 3. `npm run build`, then `python3 tools/check_site.py`.
 
-A new unit is the same, plus `src/content/units/unit-<nn>.mdx` for the
-introduction and its can-do list. Units listed in `stage1.json` with no content
-show as *not built yet*, which is the honest state.
+A new unit is the same, plus `src/content/units/unit-<nn>.mdx`. Its body is the
+introduction only: the can-do list, the one to insist on and what to do if it
+goes badly are frontmatter, because the template decides where those go so
+every unit's page reads the same way. Units listed in `stage1.json` with no
+content show as *not built yet*, which is the honest state.
 
 ## Progress
 
@@ -105,11 +107,12 @@ python3 tools/check_paths.py                   # run by CI
 npm run build && python3 tools/check_site.py   # opens it and uses it
 ```
 
-`check_site.py` drives a real browser at phone width: the contents page, a
-lesson, the progress sheets, and the flashcard app — that it opens on card one
-unshuffled, flips, wraps at both ends, switches decks and builds its print
-sheets. A page that throws a JavaScript error is a broken deck, and the failure
-is silent until a child hits it.
+`check_site.py` drives a real browser at phone width: the contents page, the
+reference pages, a unit, a lesson, the breadcrumb trail on each, the progress
+sheets, and the flashcard app — that it opens on card one unshuffled, flips,
+wraps at both ends, switches decks and builds its print sheets. It asserts
+computed styles as well as text, because the failures that matter here are
+silent: nothing throws, the page just looks wrong.
 
 ## Where it is up to
 
