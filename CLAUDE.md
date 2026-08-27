@@ -74,6 +74,47 @@ reason. Prefer fixing to declaring: the check found the stress deck teaching
 *medico*, which is not on the list, where *musica* makes the identical point and
 is.
 
+## Working practice
+
+These predate the website and were nearly lost with the folder it replaced.
+They are the project's rules, not the site's.
+
+- **One unit at a time.** Build the next unit only after the previous one has
+  been taught, or at least started, so it can be calibrated to how it landed.
+  Do not batch-produce units nobody has tried. This is the rule most likely to
+  be broken by enthusiasm, and it was broken once already — Unit 2 was built
+  without anyone asking whether Unit 1 had been taught.
+- **Ask before assuming prior knowledge.** If it is unclear whether something
+  has been covered, ask rather than guess.
+- **Say when something cannot be done.** Access limits, blocked deletions,
+  format constraints — say so plainly rather than working around them quietly.
+- **Push back where the plan looks wrong.** Sitting this qualification this
+  young is ambitious. If evidence starts to suggest it is not working, say so
+  rather than producing the next unit on schedule.
+- **No progress inflation.** If work is weak, say it is weak and say what to do.
+- **Write decisions down as they are made.** A convention that lives only in a
+  conversation is lost when the session ends.
+
+## What the specification requires
+
+Check these against the specification or a past paper, never from memory.
+
+- **Mark the tier of every grammar point** — F, H, or receptive-only (R). The
+  Foundation-to-Higher receptive/productive shift is the most important
+  distinction in the grammar appendix; preserve it.
+- **Two Foundation limits that catch people out.** The imperfect is productive
+  only for *avere*, *essere*, *stare* and *fare*. The conditional at Foundation
+  means *vorrei* and *mi piacerebbe* and nothing else.
+- **Register is examined and caps marks when wrong.** Build it into every
+  session involving speaking to someone. On Higher writing the formal question
+  is worth 28 of 60 marks.
+- **Justified opinion is rewarded in every speaking and writing grid.** From
+  Unit 8 onwards, no opinion without a reason.
+- **Past, present and future are all required** in the picture task, at both
+  tiers.
+- **Do not reproduce the vocabulary appendix.** Reference it, structure work
+  around it, quote only what a task needs. It is Pearson's material.
+
 ## Read the unit before it ships
 
 **A unit is not finished when the checks pass. It is finished when it has been

@@ -7,8 +7,8 @@
  */
 import type { Card } from "../scripts/flashcards";
 
-interface Props { cards: Card[]; }
-const { cards } = Astro.props;
+interface Props { cards: Card[]; noReverse?: string[]; }
+const { cards, noReverse = [] } = Astro.props;
 ---
 
 <div class="app noprint">
@@ -49,6 +49,7 @@ const { cards } = Astro.props;
 <div class="printsheets" id="printsheets"></div>
 
 <script type="application/json" id="cards-data" set:html={JSON.stringify(cards)} is:inline />
+<script type="application/json" id="no-reverse" set:html={JSON.stringify(noReverse)} is:inline />
 <script>
   import "../scripts/flashcards";
 </script>

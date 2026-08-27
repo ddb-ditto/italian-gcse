@@ -48,7 +48,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
     </details>
   )}
 
-  <Flashcards cards={deck.data.cards} />
+  <Flashcards cards={deck.data.cards} noReverse={deck.data.noReverse} />
 
   <footer class="noprint" slot="footer">
     <span>{`Edexcel GCSE Italian 1IN0 · Unit ${String(u).padStart(2, "0")} · Session ${n}`}</span>

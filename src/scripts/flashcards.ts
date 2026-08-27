@@ -27,11 +27,15 @@ export interface Card {
 }
 
 const data = document.getElementById("cards-data");
+const off = document.getElementById("no-reverse");
 if (data?.textContent) {
-  start(JSON.parse(data.textContent) as Card[]);
+  start(
+    JSON.parse(data.textContent) as Card[],
+    off?.textContent ? (JSON.parse(off.textContent) as string[]) : [],
+  );
 }
 
-function start(CARDS: Card[]): void {
+function start(CARDS: Card[], NO_REVERSE: string[]): void {
   const DECKS: string[] = [];
   for (const c of CARDS) if (!DECKS.includes(c.d)) DECKS.push(c.d);
 
@@ -60,6 +64,7 @@ function start(CARDS: Card[]): void {
    * leave a checkbox that did nothing when ticked, which reads as broken.
    */
   function reversible(name: string): boolean {
+    if (NO_REVERSE.includes(name)) return false;   // switched off in the deck
     const words = CARDS.filter((c) => c.d === name && c.t === "word");
     const meanings = words.map((c) => c.m);
     const distinct = words.filter(

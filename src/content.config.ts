@@ -65,6 +65,13 @@ const decks = defineCollection({
      * a card, and the teacher needs to know which decks need them in the room.
      */
     notes: z.array(z.object({ lead: z.string(), body: z.string() })),
+    /**
+     * Decks where "English first" is switched off by hand. It is offered where
+     * the backs are distinct translations, which is the right default — but
+     * Unit 1's backs are instructions rather than glosses, and reversing them
+     * asks "which word does this describe?" rather than testing vocabulary.
+     */
+    noReverse: z.array(z.string()).optional(),
     cards: z.array(
       z.object({
         /** Deck name. Decks run in teaching order, most fundamental first. */

@@ -7,6 +7,10 @@
       "body": "A card cannot test sound. Vowels and Read aloud are prompts for you to listen to and judge — the child has to say the vowel, not recognise it. Sound rules works on its own."
     }
   ],
+  "noReverse": [
+    "Vowels",
+    "Read aloud"
+  ],
   "cards": [
     {
       "d": "Vowels",
