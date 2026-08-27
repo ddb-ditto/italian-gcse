@@ -166,6 +166,26 @@ Eight to an A4 sheet, folded down the middle and cut along the solid lines. The
 screen app is for drilling in the room; paper is for the ten minutes in the car.
 Both come from the same deck, so they cannot disagree.
 
+## Claims about marks come from the mark schemes
+
+The specification, the papers and the mark schemes answer three different
+questions, and only the third one is about marks. Unit 2 shipped telling a
+reader that the apostrophe in *un'amica* "is one mark on paper". There is no
+such mark — no writing question awards anything for an article — and the same
+mark scheme lists article and gender errors, by name, among the errors that do
+not affect meaning. The claim was plausible, useful-sounding, and had never been
+near a grid.
+
+So the reference pages now carry the grids' own three-way ranking of errors, and
+the teaching plan says plainly that agreement is the cheapest error in the
+qualification while verb person, tense and mother-tongue interference are the
+expensive ones. That is the opposite of what feels urgent to drill, which is
+exactly why it is written down.
+
+Gender is still taught with the noun from Unit 2 onwards. The reason is that it
+is cheap to learn early, expensive to retrofit, and needed by the plurals and
+the agreement that follow — not that it scores.
+
 ## Still open
 
 - Custom domain, or `ddb-ditto.github.io/italian-gcse`? No `CNAME` file yet.

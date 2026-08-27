@@ -97,23 +97,49 @@ They are the project's rules, not the site's.
 
 ## What the specification requires
 
-Check these against the specification or a past paper, never from memory.
+Check these against the specification, a past paper or a mark scheme, never
+from memory. For anything about *marks* the mark scheme outranks the other two:
+the specification says what is on the course, the paper shows what is asked, and
+only the grid says what is rewarded.
 
 - **Mark the tier of every grammar point** — F, H, or receptive-only (R). The
   Foundation-to-Higher receptive/productive shift is the most important
-  distinction in the grammar appendix; preserve it.
+  distinction in the grammar appendix; preserve it. It is also the top band:
+  the writing mark scheme defines Higher "complex language" as, first on its
+  list, the grammar specific to Higher tier.
 - **Two Foundation limits that catch people out.** The imperfect is productive
   only for *avere*, *essere*, *stare* and *fare*. The conditional at Foundation
   means *vorrei* and *mi piacerebbe* and nothing else.
-- **Register is examined and caps marks when wrong.** Build it into every
-  session involving speaking to someone. On Higher writing the formal question
-  is worth 28 of 60 marks.
-- **Justified opinion is rewarded in every speaking and writing grid.** From
-  Unit 8 onwards, no opinion without a reason.
+- **Register is examined.** Build it into every session involving speaking to
+  someone. The formal writing question is 28 of 60 marks on Higher and 16 of 60
+  on Foundation. Register is a bullet in the communication and content grid — it
+  holds down the larger of the two grids, it does not cap the paper, and saying
+  it caps the paper is the kind of overstatement this list exists to prevent.
+- **Justified opinion.** The grids define *straightforward* language partly as
+  opinions stated without justification, and straightforward is the band below
+  the top ones. From Unit 8 onwards, no opinion without a reason.
 - **Past, present and future are all required** in the picture task, at both
-  tiers.
+  tiers, and handling all three accurately is what the accuracy grid uses to
+  describe its top bands.
+- **Know which errors are cheap.** The writing mark schemes rank errors in three
+  named bands, identically at both tiers, and the ranking is not the intuitive
+  one:
+  1. *Do not hinder clarity* — gender, adjective agreement, and the definite and
+     indefinite articles, named explicitly. The top band is reachable with them.
+  2. *Hinder clarity* — tense and time-frame confusion, a possessive mismatched
+     to its subject, and any error frequent enough to distract.
+  3. *Prevent meaning* — the wrong message, the wrong person of the verb,
+     Anglicisms and mother-tongue interference.
+
+  So never write that an article or an agreement is "worth a mark" — Unit 2 said
+  exactly that and it was wrong. Teach gender with the noun because it is cheap
+  early and expensive to retrofit, and because plurals and agreement need it, and
+  say that rather than inventing a mark for it. Where teaching time is scarce it
+  comes off agreement and goes to verb person, tense, and translation into
+  Italian.
 - **Do not reproduce the vocabulary appendix.** Reference it, structure work
-  around it, quote only what a task needs. It is Pearson's material.
+  around it, quote only what a task needs. It is Pearson's material. The mark
+  grid descriptors are too: paraphrase them, never paste them.
 
 ## Read the unit before it ships
 
@@ -137,7 +163,11 @@ finds, each one written here because it actually happened:
    asserted twice, weakened because the specification never says what language
    Paper 3's answers are in, and then restored because the June 2025 paper
    shows Section B answered in Italian. The specification describes the
-   qualification; the papers show what it does.
+   qualification; the papers show what it does; the mark schemes show what it
+   pays for. Unit 2 shipped saying the *un'amica* apostrophe "is one mark on
+   paper". There is no such mark, and the same mark scheme names article errors
+   as the kind that do not affect meaning — a claim about marks that had never
+   been near a mark scheme.
 4. **Every rule must cover every word the unit teaches.** Session 1's gender
    rule handled -o, -a and -e; Session 3 drilled *lo sport* and *lo yogurt*,
    which are none of those.
