@@ -10,7 +10,7 @@ import zlib
 
 ACCENT = (0x7a, 0x2e, 0x1e)
 PAPER = (0xfb, 0xf9, 0xf7)
-OUT = pathlib.Path(__file__).resolve().parent.parent / "docs"
+OUT = pathlib.Path(__file__).resolve().parent.parent / "public"
 
 
 def png(path: pathlib.Path, size: int, bg, fg, inset: float) -> None:
