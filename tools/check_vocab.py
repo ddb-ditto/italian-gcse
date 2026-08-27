@@ -179,6 +179,44 @@ def undrilled() -> list[str]:
     return out
 
 
+# A stress marking: syllables joined by hyphens with exactly one of them
+# capitalised. "CA-sa", "bi-ci-CLET-ta".
+MARKED = re.compile(r"\b(?:[A-Za-zÀ-ÖØ-öø-ÿ]+-){1,5}[A-Za-zÀ-ÖØ-öø-ÿ]+\b")
+
+
+def stress_markings() -> dict[str, dict[str, list[str]]]:
+    """Every stress marking in the course, by the word it marks.
+
+    Searched everywhere — session prose, notebook tables, card fronts and the
+    answer text of cards — because casa was written ca-SA in a Grid, in a
+    WriteOut and inside a rule card's answer, and fixing only the card that a
+    narrower check could see left the site still contradicting itself.
+    """
+    found: dict[str, dict[str, list[str]]] = {}
+    files = list(SESSIONS.glob("*.mdx")) + list(DECKS.glob("*.json"))
+    files += list((REPO / "src/content/units").glob("*.mdx"))
+    for f in sorted(files):
+        for token in MARKED.findall(f.read_text(encoding="utf-8")):
+            parts = token.split("-")
+            caps = [i for i, s in enumerate(parts) if s.isupper() and len(s) > 1]
+            if len(caps) != 1 or not all(s.isalpha() for s in parts):
+                continue
+            word = "".join(parts).lower()
+            found.setdefault(word, {}).setdefault(token, []).append(f.name)
+    return found
+
+
+def check_stress_agrees() -> list[str]:
+    """The same word, marked two different ways, is the reader's problem."""
+    wrong = []
+    for word, spellings in sorted(stress_markings().items()):
+        if len(spellings) > 1:
+            shown = "; ".join(f"{t} in {', '.join(sorted(set(w)))}"
+                              for t, w in sorted(spellings.items()))
+            wrong.append(f"{word!r} is stressed two ways — {shown}")
+    return wrong
+
+
 def check_stress() -> list[str]:
     """A card teaching the default stress must be stressed on that syllable.
 
@@ -267,7 +305,7 @@ def main() -> int:
         for line in loose:
             print(f"  ?  {line}")
 
-    disagreeing = check_articles(nouns) + check_stress()
+    disagreeing = check_articles(nouns) + check_stress() + check_stress_agrees()
     if disagreeing:
         print(f"\nItalian that does not agree with itself ({len(disagreeing)}):")
         for w in disagreeing:
