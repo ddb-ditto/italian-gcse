@@ -45,9 +45,28 @@ function start(CARDS: Card[]): void {
 
   let cards: Card[] = [];
   let deck = DECKS[0]!;
+  let canReverse = false;
   let idx = 0;
   let showingBack = false;
   let reverse = false;
+
+  /**
+   * Whether "English first" means anything for a deck.
+   *
+   * It is for vocabulary recall — given the English, produce the Italian — so
+   * it needs cards whose back is a translation. A deck of rule cards has no
+   * such side, and Unit 1's stress deck answers five different words with the
+   * same sentence, which reversed gives five identical prompts. Both used to
+   * leave a checkbox that did nothing when ticked, which reads as broken.
+   */
+  function reversible(name: string): boolean {
+    const words = CARDS.filter((c) => c.d === name && c.t === "word");
+    const meanings = words.map((c) => c.m);
+    const distinct = words.filter(
+      (c) => meanings.indexOf(c.m) === meanings.lastIndexOf(c.m),
+    );
+    return distinct.length >= 2;
+  }
 
   const esc = (s: string) =>
     s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]!));
@@ -72,6 +91,17 @@ function start(CARDS: Card[]): void {
     cards = CARDS.filter((c) => c.d === deck);
     idx = 0;
     showingBack = false;
+    canReverse = reversible(deck);
+
+    // Hide the control rather than disable it: a checkbox that is present and
+    // inert is what made this look broken in the first place.
+    const control = el("reversewrap");
+    control.hidden = !canReverse;
+    if (!canReverse) {
+      reverse = false;
+      el<HTMLInputElement>("reverse").checked = false;
+    }
+
     drawDecks();
     render();
   }
@@ -102,7 +132,7 @@ function start(CARDS: Card[]): void {
 
     // English first only applies to word cards. A rule card asks a question,
     // so reversing it would show the answer and ask for the question.
-    const flipped = reverse && card.t === "word";
+    const flipped = reverse && canReverse && card.t === "word";
     const say = card.s ? `<p class="say">${esc(card.s)}</p>` : "";
 
     if (!showingBack) {

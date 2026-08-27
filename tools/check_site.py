@@ -49,8 +49,14 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         pass
 
 
-httpd = socketserver.TCPServer(
-    ("127.0.0.1", 0), functools.partial(Handler, directory=str(DIST)))
+# Threaded: the browser holds connections open, and a single-threaded server
+# blocks on one of them as soon as the checks navigate more than a few times.
+class Server(socketserver.ThreadingTCPServer):
+    daemon_threads = True
+    allow_reuse_address = True
+
+
+httpd = Server(("127.0.0.1", 0), functools.partial(Handler, directory=str(DIST)))
 threading.Thread(target=httpd.serve_forever, daemon=True).start()
 ROOT = f"http://127.0.0.1:{httpd.server_address[1]}{BASE}"
 
@@ -266,6 +272,46 @@ with sync_playwright() as pw:
     notes.append(f"cards in this deck page: {total}")
     if total != 15:
         fails.append(f"expected 15 cards, found {total}")
+
+    # --- English first, where it means anything -----------------------------
+    # It reverses a word card so the English is the prompt. A rule deck has no
+    # such side, and a deck that answers five words with one sentence reverses
+    # into five identical prompts, so the control is only offered where it
+    # does something. Offering it everywhere is what made it look broken.
+    page.goto(f"{ROOT}/units/2/sessions/1/cards/")
+    page.wait_for_selector("#decks .chip")
+    page.locator("#decks .chip").first.click()          # the rule deck
+    if page.locator("#reversewrap").is_visible():
+        fails.append("English first is offered on a deck of rule cards")
+
+    page.locator("#decks .chip").nth(1).click()         # a word deck
+    if not page.locator("#reversewrap").is_visible():
+        fails.append("English first is not offered on a deck of word cards")
+    else:
+        forward = page.locator("#face").inner_text().strip()
+        page.locator("#reverse").check()
+        reversed_front = page.locator("#face").inner_text().strip()
+        page.locator("#card").click()
+        reversed_back = page.locator("#face").inner_text().splitlines()[0].strip()
+        notes.append(f"English first: {forward!r} becomes {reversed_front!r}")
+        if reversed_front == forward:
+            fails.append("English first does not change the prompt")
+        if reversed_back != forward:
+            fails.append(f"English first shows {reversed_back!r} on the back, "
+                         f"expected {forward!r}")
+        page.locator("#decks .chip").first.click()      # back to the rule deck
+        if page.locator("#reverse").is_checked():
+            fails.append("English first stays ticked on a deck it cannot apply to")
+
+    # The stress deck answers every card with the same sentence.
+    page.goto(f"{ROOT}/units/1/sessions/4/cards/")
+    page.wait_for_selector("#decks .chip")
+    page.locator("#decks .chip:has-text('Stress')").click()
+    if page.locator("#reversewrap").is_visible():
+        fails.append("English first is offered on a deck whose answers are all the same")
+
+    page.goto(f"{ROOT}/units/1/sessions/1/cards/")
+    page.wait_for_selector("#decks .chip")
 
     # --- print view --------------------------------------------------------
     page.emulate_media(media="print")

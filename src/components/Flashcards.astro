@@ -34,8 +34,10 @@ const { cards } = Astro.props;
   <div class="meta">
     <span></span>
     <span>
-      <label><input type="checkbox" id="reverse" /> English first</label>
-      &nbsp;·&nbsp;
+      <span id="reversewrap" hidden>
+        <label><input type="checkbox" id="reverse" /> English first</label>
+        &nbsp;·&nbsp;
+      </span>
       <button id="shuffle">Shuffle</button>
       &nbsp;·&nbsp;
       <button id="printit">Print cards</button>
