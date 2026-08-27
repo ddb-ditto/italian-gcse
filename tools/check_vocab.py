@@ -41,34 +41,37 @@ def spec_words(path: pathlib.Path) -> set[str]:
     return {w.lower().replace("’", "'") for w in WORD.findall(text)}
 
 
-INFINITIVE = re.compile(r"(.+?)(?:are|ere|ire)(?:si)?$")
+# A reflexive infinitive drops the final -e: chiamare -> chiamarsi. Matching
+# "are" plus an optional "si" therefore never matches a reflexive at all.
+INFINITIVE = re.compile(r"(.+?)(?:ar|er|ir)(?:e|si)$")
 
 
-def verb_stems(listed: set[str]) -> dict[str, str]:
-    """Stem -> infinitive, for every verb on the list.
+def verb_stems(listed: set[str]) -> dict[str, set[str]]:
+    """Stem -> every infinitive on the list that shares it.
 
     The list gives infinitives; a lesson teaches "mi chiamo" and "come stai?".
     Matching surface forms alone reports those as off-syllabus, which is wrong
     and, worse, trains whoever reads the output to wave the report away.
+
+    A stem can belong to more than one verb, and which one a form came from is
+    a question about the sentence, not the word: *chiamo* is *chiamare* in
+    "chiamo mia madre" and *chiamarsi* in "mi chiamo Marco". Both are reported,
+    because choosing between them here would be a guess presented as a fact.
     """
-    stems: dict[str, str] = {}
+    stems: dict[str, set[str]] = {}
     for word in listed:
         m = INFINITIVE.fullmatch(word)
         if m and len(m.group(1)) >= 2:
-            stem = m.group(1)
-            # Keep the longest infinitive for a stem, so "chiam" reports
-            # chiamarsi rather than an accidental shorter neighbour.
-            if len(stem) > len(stems.get(stem, "")) or stem not in stems:
-                stems[stem] = word
+            stems.setdefault(m.group(1), set()).add(word)
     return stems
 
 
-def looks_inflected(word: str, stems: dict[str, str]) -> str | None:
-    """The infinitive this is probably a form of, longest stem first."""
+def looks_inflected(word: str, stems: dict[str, set[str]]) -> list[str] | None:
+    """The infinitives this could be a form of, matching the longest stem."""
     for n in range(len(word), 1, -1):
-        lemma = stems.get(word[:n])
-        if lemma:
-            return lemma
+        found = stems.get(word[:n])
+        if found:
+            return sorted(found)
     return None
 
 
@@ -129,7 +132,7 @@ def main() -> int:
           f"listed words, {len(off)} off it")
 
     for deck, term, forms in inflected:
-        shown = ", ".join(f"{w} → {lemma}" for w, lemma in forms.items())
+        shown = ", ".join(f"{w} → {' / '.join(lemmas)}" for w, lemmas in forms.items())
         print(f"  ~  {deck}  {term:24} {shown}")
 
     for deck, term, absent in off:
