@@ -49,12 +49,23 @@ on the record sheet, and it is tested cold, on a different day from the last
 session. This is the one piece of assessment in the whole design, and making it
 the *only* one is deliberate.
 
-## Nothing personal goes in, so nothing personal comes out
+## Nobody real appears in the course
 
-The course is written here and published from here — no folder is copied in, so
-nothing arrives that was not typed on purpose. `tools/check_private.py` is a net
-under that rather than a policy: it catches a local file path pasted into a
-file, and personal names if a list is configured from outside the repository.
+Where a lesson needs a name it is an invented Italian one, or a role. The
+greetings dialogue in Unit 1 runs between *You* and *Child*, and the single slot
+where a name belongs is written `[name]` for whoever is at the table to fill in
+aloud. A worked example is better for it — a page that names one child is a page
+the other one is not in.
+
+That is a convention, not a check. Earlier versions of this repository scanned
+every file for a list of real names, which made sense while a folder of private
+material was being copied in and stopped making sense the moment the course was
+written here instead: a real name can now only arrive if someone types it on
+purpose, and a grep is not what stops that.
+
+`tools/check_paths.py` remains, and checks one thing — a local file path pasted
+into a file, which names whoever owns the machine and is permanent once the
+repository is public. That one is a genuine slip, so it is worth a net.
 
 ## Published by GitHub Actions, not by pointing Pages at a folder
 

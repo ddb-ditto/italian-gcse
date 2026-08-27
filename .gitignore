@@ -3,10 +3,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Optional list of names for tools/check_private.py. Never committed;
-# in CI the same list comes from the PRIVATE_NAMES secret instead.
-tools/private-names.txt
-
 # Astro
 node_modules/
 dist/
