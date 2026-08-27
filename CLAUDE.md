@@ -162,12 +162,20 @@ finds, each one written here because it actually happened:
    the specification.** "Handwriting is examined in two of the four papers" was
    asserted twice, weakened because the specification never says what language
    Paper 3's answers are in, and then restored because the June 2025 paper
-   shows Section B answered in Italian. The specification describes the
-   qualification; the papers show what it does; the mark schemes show what it
-   pays for. Unit 2 shipped saying the *un'amica* apostrophe "is one mark on
-   paper". There is no such mark, and the same mark scheme names article errors
-   as the kind that do not affect meaning — a claim about marks that had never
-   been near a mark scheme.
+   shows Section B answered in Italian — and then corrected a third time, and
+   this is the settled version: Paper 4 is the only paper that requires
+   *producing* written Italian. The specification says outright that Paper 1
+   needs none. Paper 3 Section B is set and answered in Italian, but at
+   Foundation that is a word-box gap-fill — the June 2025 paper's question 7
+   supplies the words and the candidate copies one into each gap — and only
+   Higher has a short open response there. Say "Paper 4 is written in Italian
+   throughout" and stop.
+
+   The specification describes the qualification; the papers show what it does;
+   the mark schemes show what it pays for. Unit 2 shipped saying the *un'amica*
+   apostrophe "is one mark on paper". There is no such mark, and the same mark
+   scheme names article errors as the kind that do not affect meaning — a claim
+   about marks that had never been near a mark scheme.
 4. **Every rule must cover every word the unit teaches.** Session 1's gender
    rule handled -o, -a and -e; Session 3 drilled *lo sport* and *lo yogurt*,
    which are none of those.
