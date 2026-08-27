@@ -19,6 +19,12 @@ const units = defineCollection({
     standfirst: z.string(),
     /** Move on when these are true, not when the material has been covered. */
     canDos: z.array(z.string()).min(1),
+    /**
+     * The can-do to hold the line on, if one of them carries the unit. Written
+     * per unit because it is about that unit's material — a note in the
+     * template would be Unit 1's opinion printed on Unit 14.
+     */
+    insist: z.string().optional(),
   }),
 });
 

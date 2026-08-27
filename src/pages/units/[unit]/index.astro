@@ -13,6 +13,7 @@ import Note from "../../../components/Note.astro";
 import PageNav from "../../../components/PageNav.astro";
 import SiteFooter from "../../../components/SiteFooter.astro";
 import decks from "../../../data/decks.json";
+import stage1 from "../../../data/stage1.json";
 
 export async function getStaticPaths() {
   const units = await getCollection("units");
@@ -47,6 +48,8 @@ const rows = sessions.map((s) => ({
 }));
 
 const first = rows[0];
+/** The unit after this one in Stage 1, if there is one — Unit 14 has no Unit 15. */
+const next = stage1.find((u) => u.number === n + 1);
 ---
 <Base
   title={`Unit ${n} — ${unit.data.title}`}
@@ -62,16 +65,15 @@ const first = rows[0];
   them in order. The cards for a session only ever cover what that session taught.</p>
   <SessionList sessions={rows} />
 
-  <Section kicker={`Before Unit ${n + 1}`}>Can-do check</Section>
+  <Section kicker={next ? `Before Unit ${next.number}` : "Before moving on"}>Can-do check</Section>
   <p>Move on when these are true, not when the material has been covered.</p>
   <Plain>
     {unit.data.canDos.map((c) => <li>{c}</li>)}
   </Plain>
 
-  <Note lead="The one to insist on">
-    <p>The third. If they can state the rule, they own it. If they can only follow it when you
-    remind them, they don't yet.</p>
-  </Note>
+  {unit.data.insist && (
+    <Note lead="The one to insist on"><p>{unit.data.insist}</p></Note>
+  )}
 
   <p class="noprint">These are the ticks on the <a href={`${base}/progress/#unit-${n}`}>record
   sheet</a> for this unit. Test them cold, on a different day from the last session.</p>
