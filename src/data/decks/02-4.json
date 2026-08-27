@@ -1,0 +1,116 @@
+{
+  "unit": 2,
+  "session": 4,
+  "notes": [
+    {
+      "lead": "What these cannot test",
+      "body": "Choosing an article under time pressure, out loud, with a real object in front of them. That is the can-do, and it happens at the labels rather than at a deck."
+    },
+    {
+      "lead": "Turn these both ways",
+      "body": "Use English first on this deck once they are confident. Going from 'a chair' to 'una sedia' is the direction the exam asks for, and it is harder."
+    }
+  ],
+  "cards": [
+    {
+      "d": "The rule",
+      "t": "rule",
+      "f": "il becomes which indefinite article?",
+      "m": "un — un libro."
+    },
+    {
+      "d": "The rule",
+      "t": "rule",
+      "f": "lo becomes which indefinite article?",
+      "m": "uno — uno studente."
+    },
+    {
+      "d": "The rule",
+      "t": "rule",
+      "f": "la becomes which indefinite article?",
+      "m": "una — una sedia."
+    },
+    {
+      "d": "The rule",
+      "t": "rule",
+      "f": "l' becomes which indefinite article?",
+      "m": "un for a masculine noun, un' for a feminine one. The one place the gender has to be known."
+    },
+    {
+      "d": "The rule",
+      "t": "rule",
+      "f": "Which is right: un amica, or un'amica?",
+      "m": "un'amica. Feminine before a vowel takes the apostrophe; masculine does not."
+    },
+    {
+      "d": "un",
+      "t": "word",
+      "f": "un libro",
+      "s": "oon LEE-bro",
+      "m": "a book"
+    },
+    {
+      "d": "un",
+      "t": "word",
+      "f": "un quaderno",
+      "s": "oon kwa-DER-no",
+      "m": "an exercise book"
+    },
+    {
+      "d": "un",
+      "t": "word",
+      "f": "un armadio",
+      "s": "oo-nar-MA-dyo",
+      "m": "a wardrobe — masculine, no apostrophe"
+    },
+    {
+      "d": "uno",
+      "t": "word",
+      "f": "uno studente",
+      "s": "OO-no stoo-DEN-te",
+      "m": "a student"
+    },
+    {
+      "d": "uno",
+      "t": "word",
+      "f": "uno spazzolino",
+      "s": "OO-no spat-tso-LEE-no",
+      "m": "a toothbrush"
+    },
+    {
+      "d": "una",
+      "t": "word",
+      "f": "una sedia",
+      "s": "OO-na SEH-dya",
+      "m": "a chair"
+    },
+    {
+      "d": "una",
+      "t": "word",
+      "f": "una penna",
+      "s": "OO-na PEN-na",
+      "m": "a pen"
+    },
+    {
+      "d": "una",
+      "t": "word",
+      "f": "una finestra",
+      "s": "OO-na fee-NES-tra",
+      "m": "a window"
+    },
+    {
+      "d": "un'",
+      "t": "word",
+      "f": "un'amica",
+      "s": "oo-na-MEE-ka",
+      "m": "a friend — feminine, apostrophe"
+    },
+    {
+      "d": "un'",
+      "t": "word",
+      "f": "un'aula",
+      "s": "oo-NOW-la",
+      "m": "a classroom — feminine, apostrophe"
+    }
+  ]
+}

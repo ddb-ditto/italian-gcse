@@ -1,0 +1,100 @@
+{
+  "unit": 2,
+  "session": 3,
+  "notes": [
+    {
+      "lead": "What these cannot test",
+      "body": "The whole session is about feeling why lo exists, and no card can make a mouth uncomfortable. Before drilling these, have them say il studente aloud three times, fast. The cards are for afterwards."
+    }
+  ],
+  "cards": [
+    {
+      "d": "The rule",
+      "t": "rule",
+      "f": "When does il become lo?",
+      "m": "Before s + another consonant, and before z, gn, ps and y — the clusters the mouth cannot easily start after l."
+    },
+    {
+      "d": "The rule",
+      "t": "rule",
+      "f": "Why is it lo zucchero and not il zucchero?",
+      "m": "Because z is really two sounds, ts. It is a consonant cluster like st or sp."
+    },
+    {
+      "d": "The rule",
+      "t": "rule",
+      "f": "Is it il sole or lo sole?",
+      "m": "il sole. The s is followed by a vowel, so there is no cluster and nothing to fix."
+    },
+    {
+      "d": "lo",
+      "t": "word",
+      "f": "lo studente",
+      "s": "lo stoo-DEN-te",
+      "m": "the student"
+    },
+    {
+      "d": "lo",
+      "t": "word",
+      "f": "lo stadio",
+      "s": "lo STA-dyo",
+      "m": "the stadium"
+    },
+    {
+      "d": "lo",
+      "t": "word",
+      "f": "lo studio",
+      "s": "lo STOO-dyo",
+      "m": "the study"
+    },
+    {
+      "d": "lo",
+      "t": "word",
+      "f": "lo spazzolino",
+      "s": "lo spat-tso-LEE-no",
+      "m": "the toothbrush"
+    },
+    {
+      "d": "lo",
+      "t": "word",
+      "f": "lo sport",
+      "s": "lo sport",
+      "m": "the sport"
+    },
+    {
+      "d": "lo",
+      "t": "word",
+      "f": "lo schermo",
+      "s": "lo SKER-mo",
+      "m": "the screen"
+    },
+    {
+      "d": "lo",
+      "t": "word",
+      "f": "lo zucchero",
+      "s": "lo TSOOK-ke-ro",
+      "m": "the sugar"
+    },
+    {
+      "d": "lo",
+      "t": "word",
+      "f": "lo zio",
+      "s": "lo TSEE-o",
+      "m": "the uncle"
+    },
+    {
+      "d": "lo",
+      "t": "word",
+      "f": "lo zoo",
+      "s": "lo DZO-o",
+      "m": "the zoo"
+    },
+    {
+      "d": "lo",
+      "t": "word",
+      "f": "lo yogurt",
+      "s": "lo YO-goort",
+      "m": "the yoghurt"
+    }
+  ]
+}

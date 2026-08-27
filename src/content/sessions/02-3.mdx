@@ -1,0 +1,85 @@
+---
+unit: 2
+number: 3
+title: "Lo, and why it exists"
+standfirst: "The session this unit turns on. It is not an exception — it is a sound rule, like Unit 1's."
+summary: "Before s+consonant, z, gn, ps and y, il becomes lo. Taught as what it is: a rule about what the mouth can comfortably do, not a list to memorise."
+minutes: 30
+deckStandfirst: "13 cards in two decks, and one of them asks you to say why. Print this page for fold-over cards, 8 to a sheet."
+---
+
+import Answers from "../../components/Answers.astro";
+import DoneWhen from "../../components/DoneWhen.astro";
+import Grid from "../../components/Grid.astro";
+import Lead from "../../components/Lead.astro";
+import Note from "../../components/Note.astro";
+import Notebook from "../../components/Notebook.astro";
+import Rule from "../../components/Rule.astro";
+import Section from "../../components/Section.astro";
+import Steps from "../../components/Steps.astro";
+import WordTable from "../../components/WordTable.astro";
+import WriteOut from "../../components/WriteOut.astro";
+
+<Section kicker="Session 3">The point</Section>
+
+<p>Start with the mouth, not the rule. Have them say this aloud, quickly, three times:</p>
+
+<p><em>il studente, il studente, il studente</em></p>
+
+<p>It is genuinely uncomfortable — <em>l</em> then <em>st</em> is a pile-up of consonants. Now
+<em>lo studente</em>. The vowel gives the mouth somewhere to go. <strong>That is the entire
+reason <em>lo</em> exists</strong>, and a child who has felt it does not need to memorise it.</p>
+
+<Rule lead="Before a consonant cluster the mouth cannot easily start → lo">
+<WordTable words={[{"term": "s + another consonant", "say": "", "gloss": "<em>lo studente</em>, <em>lo stadio</em>, <em>lo spazzolino</em>"}, {"term": "z", "say": "", "gloss": "<em>lo zucchero</em>, <em>lo zio</em> — z is really <em>ts</em>, two sounds"}, {"term": "gn, ps, y", "say": "", "gloss": "rarer, same reason"}]} />
+  <Lead spaced>Everything else stays il</Lead>
+  <p><em>Il sole</em>, not <em>lo sole</em> — <em>s</em> followed by a vowel is easy to say, so
+  nothing changes. It is the <strong>cluster</strong> that triggers it, never the letter
+  <em>s</em> on its own.</p>
+</Rule>
+
+<Note lead="Why z counts">
+<p><em>Z</em> looks like one letter and is two sounds — <em>ts</em>. So <em>lo zucchero</em> is
+really <em>lo tsucchero</em>, and it is a consonant cluster like all the others. This is the same
+observation as Unit 1, where a single written letter turned out to be two sounds. The spelling hides
+the sound; the sound makes the rule.</p>
+</Note>
+
+<h3>How to teach it</h3>
+
+<Steps>
+<li>Do the <em>il studente</em> experiment above before anything is written down. The feeling comes first or the rule is just another line.</li>
+  <li>Add it to the article table. One line, and it earns the arrow: <strong>il → lo</strong> before a cluster.</li>
+  <li>Sort these ten out loud, <em>il</em> or <em>lo</em>, saying the whole pair each time: <Grid words={["studente", "zucchero", "libro", "spazzolino", "tavolo", "zio", "sport", "quaderno", "stadio", "schermo"]} /></li>
+  <li>Then the one that proves it: ask for <em>il sole</em> — the sun. It starts with s. Most learners say <em>lo sole</em>. Let them, then have them say both aloud and pick the comfortable one.</li>
+</Steps>
+
+<Notebook lead="In the notebook">
+<WriteOut>
+<strong>lo</strong> instead of <strong>il</strong> before <strong>s + consonant</strong>, <strong>z</strong>, <strong>gn</strong>, <strong>ps</strong>, <strong>y</strong><br />
+    because <em>il studente</em> is hard to say and <em>lo studente</em> is not<br />
+    <strong>s</strong> + a vowel is easy — so <em>il sole</em> keeps its <em>il</em>
+</WriteOut>
+  <p>Then the ten words in two columns, <strong>IL</strong> and <strong>LO</strong>, each written in
+  full with its article, and <strong>the trigger underlined</strong> — the <em>st</em>, the
+  <em>z</em>, the <em>sp</em>.</p>
+</Notebook>
+
+<Answers lead="Answers">
+<p><strong>lo</strong> — studente, zucchero, spazzolino, zio, sport, stadio, schermo.<br />
+  <strong>il</strong> — libro, tavolo, quaderno.<br />
+  And <em>il sole</em>, because <em>so-</em> is a consonant and a vowel, not a cluster.</p>
+</Answers>
+
+<Note lead="Do not accept a right answer without a reason" child>
+<p>A child can get all ten right by copying the pattern from the last one. Ask "why?" on at least
+three of them, and accept only an answer about the sound. "Because it starts with st" is the
+answer; "because it looks like the other one" is not, and it will fall apart in Unit 6 when the
+same instinct governs verb spellings.</p>
+</Note>
+
+<DoneWhen lead="Done when">
+<p>They can state the rule in their own words, sort the ten without help, and say why
+<em>il sole</em> keeps its <em>il</em>. This is the can-do the whole unit turns on — the same way
+the hard and soft rule was Unit 1's.</p>
+</DoneWhen>

@@ -1,0 +1,142 @@
+{
+  "unit": 2,
+  "session": 1,
+  "notes": [
+    {
+      "lead": "What these cannot test",
+      "body": "A card shows the article already attached, so it cannot tell you whether they can choose it. Cover the article with a thumb and ask for the whole pair — that is the test, and only a person in the room can run it."
+    }
+  ],
+  "cards": [
+    {
+      "d": "The rule",
+      "t": "rule",
+      "f": "A noun ends in -o. Which article?",
+      "m": "il — nouns in -o are almost always masculine."
+    },
+    {
+      "d": "The rule",
+      "t": "rule",
+      "f": "A noun ends in -a. Which article?",
+      "m": "la — nouns in -a are almost always feminine."
+    },
+    {
+      "d": "The rule",
+      "t": "rule",
+      "f": "A noun ends in -e. Which article?",
+      "m": "Either. The ending tells you nothing, so the gender is learned with the word."
+    },
+    {
+      "d": "il",
+      "t": "word",
+      "f": "il libro",
+      "s": "eel LEE-bro",
+      "m": "the book"
+    },
+    {
+      "d": "il",
+      "t": "word",
+      "f": "il tavolo",
+      "s": "eel TA-vo-lo",
+      "m": "the table"
+    },
+    {
+      "d": "il",
+      "t": "word",
+      "f": "il quaderno",
+      "s": "eel kwa-DER-no",
+      "m": "the exercise book"
+    },
+    {
+      "d": "il",
+      "t": "word",
+      "f": "il letto",
+      "s": "eel LET-to",
+      "m": "the bed"
+    },
+    {
+      "d": "il",
+      "t": "word",
+      "f": "il bagno",
+      "s": "eel BA-nyo",
+      "m": "the bathroom"
+    },
+    {
+      "d": "il",
+      "t": "word",
+      "f": "il giardino",
+      "s": "eel jar-DEE-no",
+      "m": "the garden"
+    },
+    {
+      "d": "il",
+      "t": "word",
+      "f": "il divano",
+      "s": "eel dee-VA-no",
+      "m": "the sofa"
+    },
+    {
+      "d": "il",
+      "t": "word",
+      "f": "il banco",
+      "s": "eel BAN-ko",
+      "m": "the desk"
+    },
+    {
+      "d": "la",
+      "t": "word",
+      "f": "la sedia",
+      "s": "la SEH-dya",
+      "m": "the chair"
+    },
+    {
+      "d": "la",
+      "t": "word",
+      "f": "la penna",
+      "s": "la PEN-na",
+      "m": "the pen"
+    },
+    {
+      "d": "la",
+      "t": "word",
+      "f": "la cucina",
+      "s": "la koo-CHEE-na",
+      "m": "the kitchen"
+    },
+    {
+      "d": "la",
+      "t": "word",
+      "f": "la finestra",
+      "s": "la fee-NES-tra",
+      "m": "the window"
+    },
+    {
+      "d": "la",
+      "t": "word",
+      "f": "la matita",
+      "s": "la ma-TEE-ta",
+      "m": "the pencil"
+    },
+    {
+      "d": "la",
+      "t": "word",
+      "f": "la lavagna",
+      "s": "la la-VA-nya",
+      "m": "the blackboard"
+    },
+    {
+      "d": "la",
+      "t": "word",
+      "f": "la gomma",
+      "s": "la GOM-ma",
+      "m": "the rubber"
+    },
+    {
+      "d": "la",
+      "t": "word",
+      "f": "la porta",
+      "s": "la POR-ta",
+      "m": "the door"
+    }
+  ]
+}

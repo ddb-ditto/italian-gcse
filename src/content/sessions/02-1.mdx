@@ -1,0 +1,71 @@
+---
+unit: 2
+number: 1
+title: "Gender, and the two easy articles"
+standfirst: "Six nouns in ten are settled by one glance at the last letter."
+summary: "Every noun is masculine or feminine. Nouns in -o are almost always masculine and take il; nouns in -a are almost always feminine and take la. Sixteen words from the house and the school table."
+minutes: 30
+deckStandfirst: "19 cards in three decks. Every card is the article and the noun together, because that is how they are worth knowing. Print this page for fold-over cards, 8 to a sheet."
+---
+
+import Answers from "../../components/Answers.astro";
+import DoneWhen from "../../components/DoneWhen.astro";
+import Grid from "../../components/Grid.astro";
+import Lead from "../../components/Lead.astro";
+import Note from "../../components/Note.astro";
+import Notebook from "../../components/Notebook.astro";
+import Rule from "../../components/Rule.astro";
+import Section from "../../components/Section.astro";
+import Steps from "../../components/Steps.astro";
+import WordTable from "../../components/WordTable.astro";
+import WriteOut from "../../components/WriteOut.astro";
+
+<Section kicker="Session 1">The point</Section>
+
+<p>Every Italian noun is either masculine or feminine. Not the thing — the <em>word</em>. A chair is
+not feminine in any way you could point at; <em>sedia</em> simply is a feminine word, and that fact
+travels with it everywhere.</p>
+
+<Rule lead="The last letter tells you, most of the time">
+<WordTable words={[{"term": "-o → masculine → il", "say": "eel", "gloss": "<em>il libro</em>, <em>il tavolo</em>"}, {"term": "-a → feminine → la", "say": "lah", "gloss": "<em>la sedia</em>, <em>la penna</em>"}, {"term": "-e → could be either", "say": "", "gloss": "has to be learned: <em>il cane</em>, <em>la classe</em>"}]} />
+  <Lead spaced>So there are two jobs, and only the first one is a rule</Lead>
+  <p>Look at the last letter, and you know the gender. Know the gender, and the article follows
+  with no thought at all. The nouns ending in <em>-e</em> are the ones that need memorising, and
+  there are far fewer of them.</p>
+</Rule>
+
+<h3>How to teach it</h3>
+
+<Steps>
+<li>Say the rule and write it down. Two lines, and it goes on the fifth page of the notebook under the heading <strong>ARTICLES</strong>.</li>
+  <li>Take these sixteen words one at a time, out loud. For each one: last letter, then gender, then article, then the whole thing said together. <Grid words={["libro", "sedia", "tavolo", "penna", "quaderno", "cucina", "letto", "finestra", "bagno", "matita", "giardino", "lavagna", "divano", "gomma", "banco", "porta"]} /></li>
+  <li>Then go round again saying only the finished pair — <em>il libro</em>, <em>la sedia</em> — until there is no gap between the article and the noun. The gap is the thing you are removing.</li>
+</Steps>
+
+<Notebook lead="In the notebook">
+<p>The rule first, on the fifth page:</p>
+  <WriteOut>
+nouns ending in <strong>-o</strong> are usually <strong>masculine</strong> → <strong>il</strong><br />
+    nouns ending in <strong>-a</strong> are usually <strong>feminine</strong> → <strong>la</strong><br />
+    nouns ending in <strong>-e</strong> can be either — learn it with the noun
+</WriteOut>
+  <p>Then two columns, headed <strong>IL</strong> and <strong>LA</strong>, and the sixteen words
+  sorted into them — written out in full, article included, never the bare noun.</p>
+</Notebook>
+
+<Note lead="The two that are not decided by the rule">
+<p><em>Il cane</em> and <em>la classe</em> both end in <em>-e</em>, so the last letter tells you
+nothing and the article has to be remembered along with the word. Put them at the bottom of the
+page with a line above them. There will be more of these; that line is where they go.</p>
+</Note>
+
+<Answers lead="Answers">
+<p><strong>il</strong> — libro, tavolo, quaderno, letto, bagno, giardino, divano, banco.<br />
+  <strong>la</strong> — sedia, penna, cucina, finestra, matita, lavagna, gomma, porta.</p>
+</Answers>
+
+<DoneWhen lead="Done when">
+<p>They can take any of the sixteen and produce the pair without a pause, and say which letter told
+them. A pause means the noun was learned alone and the article is being worked out each time, which
+is the habit this session exists to prevent.</p>
+</DoneWhen>

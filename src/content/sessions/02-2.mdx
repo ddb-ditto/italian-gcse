@@ -1,0 +1,76 @@
+---
+unit: 2
+number: 2
+title: "When the noun starts with a vowel"
+standfirst: "One article for both genders — which is easy to say and hides the thing you need."
+summary: "Before a vowel both il and la become l'. Easy to use and quietly dangerous, because the article stops telling you the gender and the noun has to carry it alone."
+minutes: 25
+deckStandfirst: "10 cards in three decks. The gender is on the back of every card, because the front no longer shows it. Print this page for fold-over cards, 8 to a sheet."
+---
+
+import Answers from "../../components/Answers.astro";
+import DoneWhen from "../../components/DoneWhen.astro";
+import Grid from "../../components/Grid.astro";
+import Lead from "../../components/Lead.astro";
+import Note from "../../components/Note.astro";
+import Notebook from "../../components/Notebook.astro";
+import Rule from "../../components/Rule.astro";
+import Section from "../../components/Section.astro";
+import Steps from "../../components/Steps.astro";
+import WordTable from "../../components/WordTable.astro";
+import WriteOut from "../../components/WriteOut.astro";
+import Warn from "../../components/Warn.astro";
+
+<Section kicker="Session 2">The point</Section>
+
+<p>Two vowels meeting is awkward to say. Italian avoids it constantly, and this is the first place it
+shows up: before a noun starting with a vowel, both <em>il</em> and <em>la</em> shorten to
+<em>l'</em>.</p>
+
+<Rule lead="Before a vowel → l', whatever the gender">
+<WordTable words={[{"term": "l'armadio", "say": "lar-MA-dyo", "gloss": "the wardrobe — masculine"}, {"term": "l'aula", "say": "LOW-la", "gloss": "the classroom — feminine"}, {"term": "l'astuccio", "say": "las-TOO-cho", "gloss": "the pencil case — masculine"}, {"term": "l'orario", "say": "lo-RA-ryo", "gloss": "the timetable — masculine"}, {"term": "l'ora", "say": "LO-ra", "gloss": "the hour — feminine"}]} />
+  <Lead spaced>Say it as one word</Lead>
+  <p>The apostrophe is not a pause. <em>L'aula</em> is two syllables and sounds like a single word —
+  which is the whole reason the language does it. If they are saying "luh — aula", they have not got
+  it yet.</p>
+</Rule>
+
+<Warn lead="This is where gender gets lost">
+<p><em>L'armadio</em> is masculine and <em>l'aula</em> is feminine, and the article is identical.
+So for these nouns the article is no longer doing the remembering for you, and the gender has to be
+learned with the word itself. It matters immediately in Unit 3, where the plurals go different ways
+— and by then the article will not be there to remind them.</p>
+</Warn>
+
+<h3>How to teach it</h3>
+
+<Steps>
+<li>Add the line to the article table in the notebook. It is one line and it goes under the two from last session.</li>
+  <li>Say these five aloud, as single words, until the join disappears: <Grid words={["l'armadio", "l'aula", "l'astuccio", "l'orario", "l'ora"]} /></li>
+  <li>Then the test that matters: say the noun on its own and ask for the gender. <em>Armadio?</em> Masculine. <em>Aula?</em> Feminine. If that is slow, the word was learned as a sound and not as a gendered noun, and it needs going back over.</li>
+</Steps>
+
+<Notebook lead="In the notebook">
+<WriteOut>
+before a vowel, <strong>il</strong> and <strong>la</strong> both become <strong>l'</strong><br />
+    — so the article stops showing the gender, and the noun has to carry it
+</WriteOut>
+  <p>Then the five words, each written twice: once as <em>l'armadio</em> and once as
+  <em>armadio (m)</em>. The second column is the one they will need in Unit 3.</p>
+</Notebook>
+
+<Note lead="Back to Unit 1 for a moment">
+<p>This is the same instinct as the silent <em>i</em> in <em>ciao</em> — Italian bending spelling to
+keep the mouth moving smoothly. Point that out. A rule that connects to something they already own
+is one rule; a rule on its own is another thing to carry.</p>
+</Note>
+
+<Answers lead="Answers">
+<p><strong>Masculine</strong> — armadio, astuccio, orario.<br />
+  <strong>Feminine</strong> — aula, ora.</p>
+</Answers>
+
+<DoneWhen lead="Done when">
+<p>They use <em>l'</em> without being reminded, say it as one word, and can still tell you the
+gender of all five nouns with the article taken away. The last of those is the one to test.</p>
+</DoneWhen>

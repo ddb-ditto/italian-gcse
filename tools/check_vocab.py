@@ -37,11 +37,22 @@ EXCEPTIONS = REPO / "src/data/off-syllabus.json"
 
 # Italian words, keeping the accented vowels and the apostrophe in l', un', dell'.
 WORD = re.compile(r"[a-zàèéìòóùA-ZÀÈÉÌÒÙ][a-zàèéìòóù'’]+")
+# l'armadio and un'amica are an article joined to a noun, not one long word.
+ELISION = re.compile(r"^(?:l|un|dell|nell|all|dall|sull|quest)['’]", re.I)
+
+
+def bare_words(term: str) -> list[str]:
+    """The Italian words in a card front, with elided articles taken off."""
+    out = []
+    for w in WORD.findall(term.lower().replace("’", "'")):
+        out.append(ELISION.sub("", w))
+    return [w for w in out if w]
 
 
 # An article and the noun it belongs to, at the start of a card front.
 ARTICLE_NOUN = re.compile(
-    r"^(il|lo|la|l['’]|i|gli|le|un|uno|una|un['’])\s*([A-Za-zÀ-ÖØ-öø-ÿ'’]+)", re.I)
+    r"^(un['’]|l['’]|il|lo|la|i|gli|le|uno|una|un)\s*"
+    r"([A-Za-zÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ'’]*)", re.I)
 FEMININE = {"la", "le", "una"}
 MASCULINE = {"il", "lo", "i", "gli", "un", "uno"}
 # lo and uno go before s+consonant, z, gn, ps, pn, x, y and i+vowel; il and un
@@ -62,13 +73,15 @@ def check_articles(nouns: dict[str, set[str]]) -> list[str]:
         if not m:
             continue
         article = m.group(1).lower().replace("’", "'")
-        noun = m.group(2).lower().replace("’", "'")
+        noun = ELISION.sub("", m.group(2).lower().replace("’", "'"))
         genders = nouns.get(noun)
         if not genders:
             continue                     # reported separately as off-list
         flat = {g[0] for g in genders}   # m, f, mpl, fpl -> m, f
 
-        if article in FEMININE and "f" not in flat:
+        if article in ("l'", "l’"):
+            pass                          # l' serves both genders by design
+        elif article in FEMININE and "f" not in flat:
             wrong.append(f"{deck}: {term!r} — {noun} is {'/'.join(sorted(genders))}")
         elif article in MASCULINE and "m" not in flat:
             wrong.append(f"{deck}: {term!r} — {noun} is {'/'.join(sorted(genders))}")
@@ -77,19 +90,46 @@ def check_articles(nouns: dict[str, set[str]]) -> list[str]:
             wrong.append(f"{deck}: {term!r} — {noun} does not take lo/uno")
         if article in ("il", "un") and NEEDS_LO.match(noun):
             wrong.append(f"{deck}: {term!r} — {noun} takes lo/uno, not il/un")
-        if article in ("il", "un", "la", "una") and VOWEL.match(noun):
-            wrong.append(f"{deck}: {term!r} — {noun} begins with a vowel, so l'/un'")
+        # Before a vowel: il and la both give way to l', and una gives way to
+        # un'. But masculine un does not — "un amico" is right and "un'amico"
+        # is not, and an earlier version of this check said the opposite.
+        if article in ("il", "la") and VOWEL.match(noun):
+            wrong.append(f"{deck}: {term!r} — {noun} begins with a vowel, so l'")
+        if article == "una" and VOWEL.match(noun):
+            wrong.append(f"{deck}: {term!r} — {noun} begins with a vowel, so un'")
+        if article == "un'" and "f" not in flat:
+            wrong.append(f"{deck}: {term!r} — un' is feminine, and {noun} is "
+                         f"{'/'.join(sorted(genders))}; masculine takes un")
     return wrong
 
 
+# A word drill in a session: <Grid words={["libro", "sedia", ...]} />. These
+# are vocabulary as much as a card is — a child says every one of them aloud —
+# and checking only the decks left them unexamined.
+GRID = re.compile(r"<Grid\s+words=\{\[(.*?)\]\}", re.S)
+QUOTED = re.compile(r'"([^"]+)"')
+# A stress guide, not a word: "a-MI-co", "SA-ba-to". The capitalised syllable
+# is the giveaway — no Italian word carries one mid-string.
+SYLLABLES = re.compile(r"-.*[A-Z]{2}|[A-Z]{2}.*-")
+
+SESSIONS = REPO / "src/content/sessions"
+
+
 def taught_terms() -> list[tuple[str, str]]:
-    """(deck id, term) for every word card in the course."""
+    """(where, term) for every Italian word the course teaches."""
     out = []
     for f in sorted(DECKS.glob("*.json")):
         deck = json.loads(f.read_text(encoding="utf-8"))
         for card in deck["cards"]:
             if card["t"] == "word":
                 out.append((f.stem, card["f"]))
+    for f in sorted(SESSIONS.glob("*.mdx")):
+        text = f.read_text(encoding="utf-8")
+        for block in GRID.findall(text):
+            for word in QUOTED.findall(block):
+                if SYLLABLES.search(word):
+                    continue              # a stress guide, not a word
+                out.append((f"{f.stem} grid", word))
     return out
 
 
@@ -122,7 +162,7 @@ def main() -> int:
 
     on, inflected, grammar_only, off, undeclared = 0, [], [], [], []
     for deck, term in taught_terms():
-        words = [w.lower().replace("’", "'") for w in WORD.findall(term)]
+        words = bare_words(term)
         if not words:
             continue                      # a single letter: the vowels
         missing = [w for w in words if w not in listed]

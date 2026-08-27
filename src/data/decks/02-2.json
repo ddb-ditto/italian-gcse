@@ -1,0 +1,80 @@
+{
+  "unit": 2,
+  "session": 2,
+  "notes": [
+    {
+      "lead": "What these cannot test",
+      "body": "The gender is on the back of every card here, because the front no longer shows it. That is the point of the session, and it means the card is doing the remembering. Ask for the gender with the card face down."
+    }
+  ],
+  "cards": [
+    {
+      "d": "The rule",
+      "t": "rule",
+      "f": "The noun starts with a vowel. Which article?",
+      "m": "l' — for both genders, so the article stops telling you which one it is."
+    },
+    {
+      "d": "The rule",
+      "t": "rule",
+      "f": "Is l' masculine or feminine?",
+      "m": "Both. That is why the gender has to be learned with the noun from here on."
+    },
+    {
+      "d": "l' (m)",
+      "t": "word",
+      "f": "l'armadio",
+      "s": "lar-MA-dyo",
+      "m": "the wardrobe — masculine"
+    },
+    {
+      "d": "l' (m)",
+      "t": "word",
+      "f": "l'astuccio",
+      "s": "las-TOO-cho",
+      "m": "the pencil case — masculine"
+    },
+    {
+      "d": "l' (m)",
+      "t": "word",
+      "f": "l'orario",
+      "s": "lo-RA-ryo",
+      "m": "the timetable — masculine"
+    },
+    {
+      "d": "l' (m)",
+      "t": "word",
+      "f": "l'anno",
+      "s": "LAN-no",
+      "m": "the year — masculine"
+    },
+    {
+      "d": "l' (f)",
+      "t": "word",
+      "f": "l'aula",
+      "s": "LOW-la",
+      "m": "the classroom — feminine"
+    },
+    {
+      "d": "l' (f)",
+      "t": "word",
+      "f": "l'ora",
+      "s": "LO-ra",
+      "m": "the hour — feminine"
+    },
+    {
+      "d": "l' (f)",
+      "t": "word",
+      "f": "l'acqua",
+      "s": "LAK-kwa",
+      "m": "the water — feminine"
+    },
+    {
+      "d": "l' (f)",
+      "t": "word",
+      "f": "l'amica",
+      "s": "la-MEE-ka",
+      "m": "the friend — feminine"
+    }
+  ]
+}

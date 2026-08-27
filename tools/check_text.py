@@ -41,6 +41,39 @@ def double_encoded(line: str) -> str | None:
     return again if again != line else None
 
 
+NUMBER = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
+          "seven": 7, "eight": 8}
+CLAIM = re.compile(r"(\d+) cards? in (\w+) decks?", re.I)
+STANDFIRST = re.compile(r'deckStandfirst: "([^"]*)"')
+
+
+def deck_claims() -> list[str]:
+    """A session's standfirst says how big its deck is. It has to be right.
+
+    "Nothing but a recorder and these pages" sat above a box demanding a
+    notebook, and a deck page saying 16 cards while showing 19 is the same
+    failure: a claim nobody re-reads once the thing it describes has changed.
+    """
+    import json
+
+    bad = []
+    for session in sorted((REPO / "src/content/sessions").glob("*.mdx")):
+        deck = REPO / f"src/data/decks/{session.stem}.json"
+        if not deck.exists():
+            bad.append(f"{session.name}: no deck at src/data/decks/{session.stem}.json")
+            continue
+        cards = json.loads(deck.read_text(encoding="utf-8"))["cards"]
+        said = STANDFIRST.search(session.read_text(encoding="utf-8"))
+        m = CLAIM.search(said.group(1)) if said else None
+        if not m:
+            continue                       # says nothing about size, so nothing to check
+        counted, decks = len(cards), len({c["d"] for c in cards})
+        if int(m.group(1)) != counted or NUMBER.get(m.group(2).lower()) != decks:
+            bad.append(f"{session.name}: standfirst says {m.group(0)!r}, "
+                       f"deck has {counted} cards in {decks}")
+    return bad
+
+
 def main() -> int:
     bad, read = [], 0
     for path in sorted(REPO.rglob("*")):
@@ -69,6 +102,7 @@ def main() -> int:
                                f"{fixed.strip()[:60]!r}")
                     break
 
+    bad += deck_claims()
     print(f"scanned {read} text file(s)")
     if bad:
         print(f"\nFAILED — {len(bad)} problem(s):")
